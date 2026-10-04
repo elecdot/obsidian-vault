@@ -13,6 +13,11 @@ content conventions of an enclosing vault.
 Use relative Markdown links in repository documentation. Content-note links
 follow this vault's identity and reference conventions.
 
+The enclosing repository's old skills, including its Obsidian skill series,
+are obsolete and were never used. Do not load or follow them. Use the
+primary references in [References](docs/references.md) and this vault's
+current contracts. New local skills must follow current authoritative specs.
+
 ## Route the Work
 
 - For orientation, read [README.md](README.md).
@@ -28,7 +33,11 @@ follow this vault's identity and reference conventions.
   `write-better-english` skill. Resolve material uncertainty about meaning
   in the writing discussion.
 
-## Continue the Design
+## Implementation and Design Maintenance
+
+Q66 is approved: implement the initial setup and its verification. This is
+an independent Git repository. Commit completed, verified phases using
+Conventional Commits, preserving any concurrent author changes.
 
 Record newly confirmed decisions in their owning document during the
 discussion. Keep definitions in CONTEXT.md, workflow decisions in
