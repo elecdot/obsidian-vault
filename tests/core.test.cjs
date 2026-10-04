@@ -82,6 +82,15 @@ test('unsafe paths and symlink writes cannot escape the selected vault',async t=
   await fs.symlink(os.tmpdir(),path.join(root,'knowledge'));
   await assert.rejects(io.create(root,{action:'note',name:'Escape'}),/Symlink/);
 });
+test('indented code is not an actionable checklist',()=>{
+  const result=core.inspectBody('    - [ ] code sample\n\t- [ ] more code\n- [ ] real action');
+  assert.deepEqual(result.tasks.map(x=>x.text),['real action']);
+});
+test('illustrations cannot silently become live organizational context',async()=>{
+  const c=await io.contract(),files=[{path:'examples/domain.md',meta:{kind:'domain',status:'active'}}];
+  assert.throws(()=>core.plan(c,{action:'note',name:'Real note',context:'examples/domain.md'},files,''),/content/);
+  assert(core.validate(c,{kind:'note',domains:['[[examples/domain]]']},'knowledge/n.md',(v,s)=>core.resolveDisk(v,s,files)).some(f=>f.code==='link.scope'));
+});
 test('reference checks do not mistake ambiguous or wrong-role targets for valid structure',async()=>{
   const c=await io.contract();
   const files=[{path:'activities/a/introduction.md',meta:{kind:'activity'}},{path:'activities/b/introduction.md',meta:{kind:'activity'}},{path:'knowledge/domain.md',meta:{kind:'note'}}];

@@ -117,6 +117,7 @@ function validate(c, meta, p, resolve) {
       const result=resolve(ref,p);
       if (result.state === 'ambiguous') {add('suggestion','link.ambiguous',`${name}: qualify ${ref}; offline resolution is ambiguous`);continue;}
       if (result.state !== 'ok') {add('error','link.missing',`${name}: cannot resolve ${ref}`);continue;}
+      if (spec.reference !== 'source' && scope(c,result.file.path)!=='content') add('error','link.scope',`${name}: organizational entry must be in content scope`);
       if (spec.reference !== 'source' && result.file.meta?.kind !== spec.reference) add('error','link.role',`${name}: ${ref} must identify a ${spec.reference} entry`);
       if (spec.reference === 'domain' && result.file.meta?.status === 'retired') add('info','domain.retired',`${ref} is retired; existing references remain valid`);
     }
@@ -126,7 +127,14 @@ function validate(c, meta, p, resolve) {
     if (EMPTY(meta.date) || EMPTY(meta.period)) add('error','period.pair','date and period must be supplied together');
     else if (validDate(meta.date) && c.properties.period.values.includes(meta.period) && periodInfo(meta.period,meta.date).date !== meta.date) add('error','period.start','date must be the first day of its period');
   }
-  if (meta['managed-by'] === 'zotero') for (const key of ['source-id','zotero-uri']) if (EMPTY(meta[key])) add('error','import.identity',`Managed Source needs ${key}`);
+  if (meta['managed-by'] === 'zotero') {
+    for (const key of ['source-id','zotero-uri']) if (EMPTY(meta[key])) add('error','import.identity',`Managed Source needs ${key}`);
+    if(!EMPTY(meta['source-id']))try {
+      const expected=require('./zotero-id.cjs').identity(meta['source-id']);
+      if(expected.path!==p)add('error','import.path',`Managed Source moved from its reproducible destination ${expected.path}; inspect before another import`);
+      if(!EMPTY(meta['zotero-uri']) && meta['zotero-uri']!==expected.desktop)add('error','import.identity','Zotero URI differs from source identity');
+    }catch(e){add('error','import.identity',e.message);}
+  }
   return findings;
 }
 function slugify(name) {
@@ -158,7 +166,7 @@ function plan(c, opts, files, cue, now=new Date()) {
   let folder=def.root;
   if (opts.context) {
     const ctx=files.find(f=>f.path === cleanPath(opts.context));
-    if (!ctx || !['domain','activity','source'].includes(ctx.meta?.kind)) throw new Error('Context must be an existing Domain, Activity, or Source entry');
+    if (!ctx || scope(c,ctx.path)!=='content' || !['domain','activity','source'].includes(ctx.meta?.kind)) throw new Error('Context must be an existing content Domain, Activity, or Source entry');
     if (!['note','capture','guide'].includes(opts.action)) throw new Error('Use explicit relationship options for new entries');
     const key={domain:'domains',activity:'activities',source:'sources'}[ctx.meta.kind];
     meta[key]=[wikilink(ctx.path)];
@@ -171,7 +179,10 @@ function plan(c, opts, files, cue, now=new Date()) {
   if (fallback) {let n=2;while(files.some(f=>f.path === p)) p=`${folder}/${slug}-${n++}.md`;}
   const title=name || 'Capture';
   let body=opts.body || (def.cue ? cue : '');
-  if (def.related) body+=(body ? '\n\n' : '')+'> [!tip]- Entry\n> Describe its purpose and the useful routes back into your work.\n\n![[bases/related.base]]';
+  if (def.related) {
+    body+=(body ? '\n\n' : '')+'> [!tip]- Entry\n> Describe its purpose and the useful routes back into your work.\n\n![[bases/related.base#Direct notes]]';
+    if(def.kind==='domain') body+='\n\n## Related activities\n\n![[bases/related.base#Related activities]]';
+  }
   return {path:p,meta,text:render(meta,title,body),reopen:false};
 }
 function inspectBody(body, firstLine=1) {
@@ -193,7 +204,7 @@ function inspectBody(body, firstLine=1) {
       for(let j=i+1;j<lines.length && /^ {0,3}>/.test(lines[j]);j++) context.push(lines[j].replace(/^ {0,3}> ?/,''));
       candidates.push({line:firstLine+i,cue:marker[1] || 'Refinement candidate',context:context.join('\n')});
     }
-    const task=visible.match(/^\s*[-*+]\s+\[([ xX])\]\s+(.+)$/);
+    const task=visible.match(/^ {0,3}[-*+]\s+\[([ xX])\]\s+(.+)$/);
     if(task) tasks.push({line:firstLine+i,done:task[1].toLowerCase()==='x',text:task[2]});
     inQuote=/^ {0,3}>/.test(visible);
   }

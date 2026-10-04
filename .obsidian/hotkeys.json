@@ -1,0 +1,4 @@
+{
+  "templater-obsidian:templates/commands/vault-menu.md": [{"modifiers":["Mod","Shift"],"key":"N"}],
+  "templater-obsidian:templates/commands/capture.md": [{"modifiers":["Mod","Shift"],"key":"C"}]
+}

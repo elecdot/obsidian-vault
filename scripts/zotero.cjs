@@ -17,10 +17,14 @@ async function importSnapshot(root,data,dryRun=false) {
     // Exclusive lock among our importers; verify the file again before replacing.
     const lock=`${target}.lock`;
     const fd=await io.fs.open(lock,'wx');
+    const temp=`${target}.${require('node:crypto').randomUUID()}.tmp`;
     try {
+      await io.fs.writeFile(temp,p.text,{flag:'wx'});
       if(await io.fs.readFile(target,'utf8')!==before)throw new Error('Source changed during import; retry after reviewing it');
-      await io.fs.writeFile(target,p.text);
-    } finally {await fd.close();await io.fs.unlink(lock);}
+      await io.fs.rename(temp,target);
+    } finally {
+      await io.fs.rm(temp,{force:true});await fd.close();await io.fs.unlink(lock);
+    }
   }
   return {result:before===undefined?'created':'updated',path:p.path};
 }

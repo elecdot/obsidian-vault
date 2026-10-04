@@ -1,0 +1,13 @@
+{
+  "templates_folder": "templates/commands",
+  "user_scripts_folder": "scripts/templater",
+  "trigger_on_file_creation": false,
+  "enable_folder_templates": false,
+  "enable_file_templates": false,
+  "enabled_templates_hotkeys": [
+    "templates/commands/vault-menu.md",
+    "templates/commands/capture.md",
+    "templates/commands/inspect.md"
+  ],
+  "startup_templates": []
+}

@@ -1,0 +1,30 @@
+# Maintained view; content scope follows docs/metadata.md.
+filters:
+  and:
+    - 'file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))'
+views:
+  - type: table
+    name: "Captures"
+    sort:
+      - property: file.mtime
+        direction: DESC
+    filters: 'file.inFolder("inbox")'
+    order:
+      - file.name
+      - kind
+      - activities
+      - domains
+      - file.mtime
+  - type: table
+    name: "Missing role or lifecycle"
+    filters: '!kind || (["activity", "domain"].contains(kind) && !status)'
+    order:
+      - file.name
+      - kind
+      - status
+  - type: table
+    name: "Unassociated authored notes"
+    filters: 'kind == "note" && !domains && !activities && !sources'
+    order:
+      - file.name
+      - file.mtime

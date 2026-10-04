@@ -1,0 +1,10 @@
+{
+  "types": {
+    "kind": "text", "format": "text", "status": "text",
+    "domains": "multitext", "activities": "multitext", "sources": "multitext",
+    "aliases": "aliases", "tags": "tags", "cssclasses": "multitext",
+    "date": "date", "period": "text", "managed-by": "text",
+    "source-id": "text", "zotero-uri": "text", "url": "text",
+    "authors": "multitext", "year": "text", "citation-key": "text", "zotero-tags": "multitext"
+  }
+}
