@@ -1,0 +1,18 @@
+{
+  "name": "personal-knowledge-vault",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Creation and read-only maintenance helpers for this vault",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "vault": "node scripts/vault.cjs",
+    "test": "node tests/run.cjs",
+    "check": "node scripts/check.cjs",
+    "audit": "node scripts/vault.cjs audit"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  }
+}

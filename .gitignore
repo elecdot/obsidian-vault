@@ -1,0 +1,9 @@
+node_modules/
+.obsidian/workspace*.json
+.obsidian/cache/
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+.obsidian/plugins/*/manifest.json
+.trash/
+.DS_Store
+*.tmp

@@ -398,7 +398,230 @@ An audit finding does not authorize an edit or removal. Repairs belong to
 the requested editing or maintenance work; uncertainty about meaning stays
 visible for discussion. Provisional properties do not create automatic Tasks.
 
-## Remaining Contract Decisions
+## Executable Field Registry
+
+This authored block is the mechanical source read by creators and audits.
+The surrounding prose owns meaning and judgment. Change the relevant meaning
+and this definition together; no generator overwrites this document.
+Dates describe the selected period, and optional empty values are tolerated.
+
+<!-- vault-contract:start -->
+```json
+{
+  "version": 1,
+  "timezone": "Asia/Shanghai",
+  "contentRoots": [
+    "inbox",
+    "knowledge",
+    "activities",
+    "domains",
+    "sources",
+    "journals"
+  ],
+  "contentFiles": [
+    "home.md",
+    "maintenance.md"
+  ],
+  "supportRoots": [
+    "docs",
+    "templates",
+    "bases",
+    "scripts",
+    "tests",
+    "examples",
+    ".agents",
+    ".obsidian",
+    "node_modules",
+    ".git",
+    ".trash"
+  ],
+  "supportFiles": [
+    "README.md",
+    "AGENTS.md",
+    "CONTEXT.md"
+  ],
+  "properties": {
+    "kind": {
+      "type": "text",
+      "values": [
+        "note",
+        "source",
+        "activity",
+        "domain"
+      ],
+      "required": true
+    },
+    "format": {
+      "type": "text",
+      "values": [
+        "journal",
+        "review",
+        "guide"
+      ],
+      "kinds": [
+        "note"
+      ]
+    },
+    "status": {
+      "type": "text",
+      "byKind": {
+        "activity": [
+          "planned",
+          "active",
+          "paused",
+          "completed",
+          "abandoned"
+        ],
+        "domain": [
+          "active",
+          "retired"
+        ]
+      },
+      "requiredKinds": [
+        "activity",
+        "domain"
+      ]
+    },
+    "domains": {
+      "type": "list",
+      "reference": "domain"
+    },
+    "activities": {
+      "type": "list",
+      "reference": "activity"
+    },
+    "sources": {
+      "type": "list",
+      "reference": "source"
+    },
+    "aliases": {
+      "type": "list"
+    },
+    "tags": {
+      "type": "list"
+    },
+    "cssclasses": {
+      "type": "list"
+    },
+    "date": {
+      "type": "date",
+      "kinds": [
+        "note"
+      ],
+      "requiredFormats": [
+        "journal",
+        "review"
+      ]
+    },
+    "period": {
+      "type": "text",
+      "values": [
+        "day",
+        "week",
+        "month"
+      ],
+      "kinds": [
+        "note"
+      ],
+      "requiredFormats": [
+        "journal",
+        "review"
+      ]
+    },
+    "managed-by": {
+      "type": "text",
+      "values": [
+        "zotero"
+      ],
+      "kinds": [
+        "source"
+      ]
+    },
+    "source-id": {
+      "type": "text",
+      "kinds": [
+        "source"
+      ]
+    },
+    "zotero-uri": {
+      "type": "text",
+      "kinds": [
+        "source"
+      ]
+    },
+    "url": {
+      "type": "text",
+      "kinds": [
+        "source"
+      ]
+    },
+    "authors": {
+      "type": "list",
+      "kinds": [
+        "source"
+      ]
+    },
+    "year": {
+      "type": "text",
+      "kinds": [
+        "source"
+      ]
+    },
+    "citation-key": {
+      "type": "text",
+      "kinds": [
+        "source"
+      ]
+    },
+    "zotero-tags": {
+      "type": "list",
+      "kinds": [
+        "source"
+      ]
+    }
+  },
+  "creators": {
+    "capture": {
+      "kind": "note",
+      "root": "inbox",
+      "optionalName": true
+    },
+    "note": {
+      "kind": "note",
+      "root": "knowledge",
+      "cue": true
+    },
+    "guide": {
+      "kind": "note",
+      "format": "guide",
+      "root": "knowledge",
+      "cue": true
+    },
+    "domain": {
+      "kind": "domain",
+      "root": "domains",
+      "status": "active",
+      "related": true
+    },
+    "activity": {
+      "kind": "activity",
+      "root": "activities",
+      "entry": "introduction",
+      "status": "planned",
+      "related": true
+    },
+    "source": {
+      "kind": "source",
+      "root": "sources",
+      "entry": "source",
+      "related": true
+    }
+  }
+}
+```
+<!-- vault-contract:end -->
+
+## Implementation Follow-up
 
 - Applicability to system documents and exceptional content.
 - Role-specific required fields, defaults, and accepted empty states.
