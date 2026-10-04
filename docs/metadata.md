@@ -1,9 +1,10 @@
 # Metadata Contract
 
 This document owns the accepted metadata meanings and types for content
-notes. It records decisions through Q65. Tool interfaces, empty-state handling,
-and additional role-specific requirements remain to be worked out for initial
-use. Proposals are labeled where they appear.
+notes. It implements the meanings agreed through Q65 and the Q66 operational
+baseline. The marked registry below is consumed by the implemented creators
+and audits. Runtime evidence and remaining integration limits live in
+[Verification](verification.md).
 
 Model vocabulary lives in [CONTEXT.md](../CONTEXT.md); workflow rationale
 lives in [the design](design.md). Templates, imports, agent writers, views,
@@ -37,9 +38,16 @@ A direct manual Capture may temporarily omit frontmatter in `inbox/`.
 General entry points and triage checks must still expose it. Establish its
 role when organizing it as a standard content note.
 
-Missing optional associations do not create tasks. The detailed treatment
-of empty values, additional role-specific requirements, and system
-documents remains open.
+Missing optional associations do not create tasks. Creators omit unused
+optional fields; readers tolerate omitted, null, or empty optional values.
+Populated values must have their registered type. Empty required fields are
+reported rather than silently given a lifecycle meaning.
+
+Activity and Domain entries require `status`; ordinary Notes do not receive
+a universal maturity state. Content scope is declared in the registry.
+Repository documents, templates, examples, and other support files do not
+require content-note metadata. Unexpected Markdown locations are surfaced
+for a scope decision.
 
 ### Context at Creation
 
@@ -68,8 +76,7 @@ Its initial formal values are:
 
 The relevant creation flow supplies the value. Most explanations, reading
 records, and experiment Notes can omit `format`; the author need not choose
-a formal subtype before writing. Date and period properties remain to be
-specified.
+a formal subtype before writing.
 
 The organizing purpose of a Domain or Activity entry is already expressed
 by its `kind`; it does not need `format: guide` as a second label. A Note
@@ -131,10 +138,10 @@ The [tooling guidance](tooling.md) retains registration and automation as
 intended capabilities, with a scope tied to useful writing and maintenance.
 
 Where creation and audit need the same mechanical facts, share a small
-readable definition. A marked data block here remains a possible
-representation, to be selected with those tools. Registration should be
-deliberately designed to keep definitions and their consumers consistent;
-its final storage and interfaces remain open. No block or reader is installed.
+readable definition. The [marked registry](#executable-field-registry) is now
+read by the core shared between the command-line and Obsidian adapters.
+Native property settings and Base scope/lifecycle coverage are checked for
+agreement. Semantics remain in this document; no generator overwrites it.
 
 ## Relationships
 
@@ -184,8 +191,12 @@ explicitly rather than assume every internal `sources` target has that role.
 Structural validation must allow the accepted personal-Note targets while
 preserving the existing-target requirement.
 
-The full set of direct locator formats and concrete resolution checks remain
-open. The [audit boundary](#audit-and-field-evolution) governs validation.
+Initial external locators use HTTP(S) or Zotero URLs. Offline checks resolve
+explicit paths and unambiguous short links conservatively; ambiguous targets
+need qualification or native resolution. The Obsidian adapter uses the app's
+resolver. Organizational entries must be in content scope; examples cannot
+become live context accidentally. The [audit boundary](#audit-and-field-evolution)
+governs validation.
 
 Body links continue to express the local meaning of a passage. Relationship
 properties record the main associations needed for organization; they do
@@ -263,8 +274,16 @@ identify the designated generated files and assets rather than treating
 the entire `sources/` tree as generated or exempt from authored-note checks.
 See [Source contexts](design.md#source-contexts).
 
-The concrete ownership marker, stable source identifier, output naming,
-and supported import fields remain to be selected and verified.
+The snapshot profile writes `managed-by: zotero`, `source-id` (the canonical
+synced, library-scoped item URI), and `zotero-uri` (the desktop selection
+location). The stable path derives from the same identity. Audit reports moved
+managed Sources, and import refuses unowned or mismatched destinations.
+Local-only identities need a separately verified profile.
+
+Optional reproducible metadata includes `authors`, `year`, `citation-key`,
+`url`, and `zotero-tags`. The year is Text; imported tags are not automatically
+copied to native `tags`. This profile does not imply live selection transport
+has passed; see [the recorded limit](verification.md#source-integration).
 
 ## Lifecycle Semantics
 
@@ -303,8 +322,21 @@ when making new structural associations. Reorganization may change those
 associations after their meaning has been reviewed; retirement alone does
 not rewrite them.
 
-Concrete creation prompts, missing-state handling, and any structured
-retirement fields remain implementation details to settle.
+Creation exposes the planned/active choice for an Activity; missing required
+state is a structural finding. Retirement reasons and successor routes remain
+authored prose without another mandatory field set.
+
+## Dates and Periods
+
+`date` is the first day of the represented period, stored as a real
+`YYYY-MM-DD` Date. `period` is Text with values `day`, `week`, or `month`.
+Journal and review formats require both. If either is used on another ordinary
+Note, supply both consistently; a writing cadence is not enforced.
+
+Creators use calendar months and Monday-based ISO weeks, with the ISO week-year
+in weekly filenames. They use the registry's author timezone for today's
+default and accept an explicit represented date. These are not file creation
+timestamps and do not impose universal created/updated properties.
 
 ## Native Properties
 
@@ -323,8 +355,9 @@ Use `tags` for optional topical keywords. Domain relationships and tags
 do not need to mirror one another. Review, refinement, and task intentions
 will use a separately designed workflow convention.
 
-The detailed keyword convention and treatment of imported Zotero tags
-remain open.
+Keep topical keywords useful and intentional. The snapshot importer preserves
+Zotero tags in `zotero-tags` rather than automatically mixing them into native
+`tags`; any future mapping needs an explicit purpose and maintained rule.
 
 Tags can occur in frontmatter or in the body. A view intended to include
 all native tags should use `file.tags` or `file.hasTag(...)`; `note.tags`
@@ -351,8 +384,9 @@ A deliberate rename follows the reference-maintenance procedure.
 Aliases serve name compatibility; the contract does not require permanent
 equality between the H1 and the first alias.
 
-Date-based Journals and generated Source records have their own naming
-inputs. Their detailed conventions remain to be selected.
+Date-based Journals use the period convention in [Operations](operations.md).
+Generated Source records use library-scoped identity rather than mutable
+titles or citation keys.
 
 ### Quick-capture Names
 
@@ -623,14 +657,8 @@ Dates describe the selected period, and optional empty values are tolerated.
 
 ## Implementation Follow-up
 
-- Applicability to system documents and exceptional content.
-- Role-specific required fields, defaults, and accepted empty states.
-- Date-based and generated naming, plus concrete rename and collision handling.
-- Consolidated registration and date or period fields.
-- State defaults, transition details, and lightweight planning fields.
-- Source-specific identifiers and import metadata.
-- Target-role checks, direct-source reference formats, and concrete audit rules.
-
-Track their dependencies in [Design Questions](design-questions.md).
-The [initial setup draft](initial-setup.md) proposes concrete defaults for
-review; its additional fields and enum changes are not accepted by this link.
+Core scope, empty values, period fields, lifecycle requirements, and creation
+rules are implemented. Remaining integration work is recorded in
+[Verification](verification.md), including the stopped live Zotero selection
+investigation. Future locator/profile extensions need a defined consumer and
+checks; their absence does not make ordinary writing invalid.

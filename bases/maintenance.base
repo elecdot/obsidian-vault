@@ -2,6 +2,11 @@
 filters:
   and:
     - 'file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))'
+formulas:
+  title: 'link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))'
+properties:
+  formula.title:
+    displayName: Note
 views:
   - type: table
     name: "Captures"
@@ -10,7 +15,7 @@ views:
         direction: DESC
     filters: 'file.inFolder("inbox")'
     order:
-      - file.name
+      - formula.title
       - kind
       - activities
       - domains
@@ -19,12 +24,12 @@ views:
     name: "Missing role or lifecycle"
     filters: '!kind || (["activity", "domain"].contains(kind) && !status)'
     order:
-      - file.name
+      - formula.title
       - kind
       - status
   - type: table
     name: "Unassociated authored notes"
     filters: 'kind == "note" && !domains && !activities && !sources'
     order:
-      - file.name
+      - formula.title
       - file.mtime

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vault writing partner"
+  short_description: "Develop and edit the author's personal understanding"
+  default_prompt: "Use $vault-write to help develop this note from my draft and sources."

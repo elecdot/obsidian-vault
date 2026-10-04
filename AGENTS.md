@@ -27,6 +27,11 @@ current contracts. New local skills must follow current authoritative specs.
   [open questions](docs/design-questions.md).
 - For metadata, creation, import, view, or audit work, read the
   [metadata contract](docs/metadata.md).
+- For commands and runtime limits, read [Operations](docs/operations.md)
+  and [Verification](docs/verification.md).
+- For paired writing use [vault-write](.agents/skills/vault-write/SKILL.md);
+  for organization use [vault-organize](.agents/skills/vault-organize/SKILL.md);
+  for audits or tool changes use [vault-maintain](.agents/skills/vault-maintain/SKILL.md).
 - Before editing a note, inspect its purpose, the author's draft, and the
   directly relevant sources and surrounding notes.
 - For English editing of settled ideas, use the available

@@ -6,7 +6,8 @@ possibility to develop, not a committed Task.
 
 The author accepted in-place capture and reliable collection in Q49.
 The initial marker and discovery design below implements that direction;
-its rendering and search behavior still need runtime validation.
+Its core rendering and scoped native inspection have runtime coverage; see
+[Verification](verification.md) for the observed limits.
 
 ## Mark a Candidate
 
@@ -39,8 +40,8 @@ Use native Search as the initial body-marker entry. Scope it to authored
 content and exclude templates, documentation, examples, generated sources,
 and generated reports. Include authored reading Notes inside Source
 contexts; excluding the whole `sources/` tree would hide valid candidates.
-Final paths, file-ownership detection, and the resulting query will follow
-the completed layout.
+The implemented home is `maintenance.md`; it combines native discovery with
+the scoped inspector and the registered content/ownership rules.
 
 An agent or read-only command should report the source path, location, cue,
 and enough surrounding context to make the finding useful. Revisit the
@@ -79,7 +80,8 @@ and path filters. It is a discovery surface; ordinary text matching alone
 does not establish the author's intent.
 See [Search](https://obsidian.md/help/plugins/search).
 
-Validate real markers against lookalikes in code samples, source quotations,
-templates, comments, and generated material. Also check search context,
-navigation back to the passage, and removal from results after a marker is
-resolved. These checks have not yet been run in Obsidian.
+The scoped inspector distinguishes markers from fenced code, comments, nested
+quotations, templates, examples, and managed Sources. Native search remains a
+broader discovery surface. Offline cases and a native marker-location check
+are recorded in [Verification](verification.md). Reinspect the actual passage
+when interpreting a match; the scanner does not certify author intent.

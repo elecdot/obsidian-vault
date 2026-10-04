@@ -38,9 +38,9 @@ async function create(app,parseYaml,opts) {
   const cueFile=app.vault.getAbstractFileByPath('templates/fragments/writing-cue.md');
   const cue=await app.vault.read(cueFile);
   const plan=core.plan(s.c,opts,s.files,cue);
-  const errors=core.validate(s.c,plan.meta,plan.path,resolver(app,s.files)).filter(f=>f.level==='error');
+  const errors=core.validate(s.c,plan.meta,plan.path,resolver(app,s.files)).filter(f=>f.level==='error' || f.code==='field.provisional');
   if(errors.length)throw new Error(errors.map(e=>e.message).join('\n'));
-  const existing=app.vault.getAbstractFileByPath(plan.path);
+  const existing=app.vault.getAbstractFileByPath(plan.path) || app.vault.getFiles().find(f=>f.path.toLowerCase()===plan.path.toLowerCase());
   if(existing) {
     if(plan.reopen && existing.extension==='md') {
       const meta=core.parseNote(await app.vault.read(existing),parseYaml).meta;
@@ -72,10 +72,11 @@ async function audit(app,parseYaml) {
 }
 async function importSnapshot(app,parseYaml,data) {
   const s=await state(app,parseYaml),p=zotero.snapshotPlan(data);
-  const errors=core.validate(s.c,p.meta,p.path,resolver(app,s.files)).filter(f=>f.level==='error');
+  const errors=core.validate(s.c,p.meta,p.path,resolver(app,s.files)).filter(f=>f.level==='error' || f.code==='field.provisional');
   if(errors.length)throw new Error(errors.map(e=>e.message).join('\n'));
-  const existing=app.vault.getAbstractFileByPath(p.path);
+  const existing=app.vault.getAbstractFileByPath(p.path) || app.vault.getFiles().find(f=>f.path.toLowerCase()===p.path.toLowerCase());
   if(existing) {
+    if(existing.path!==p.path)throw new Error('Import destination spelling differs from its stable path; inspect before reimport');
     if(existing.extension!=='md')throw new Error('Import target is not a Markdown file');
     await app.vault.process(existing,current=>{zotero.assertOwned(core.parseNote(current,parseYaml).meta,p.meta);return p.text;});
     return existing;
@@ -157,7 +158,17 @@ async function run(tp,mode) {
     }
     if(!file)file=await create(app,O.parseYaml,opts);
   }
-  tp.hooks.on_all_templates_executed(()=>app.workspace.getLeaf(false).openFile(file));
+  const newlyCreated=!s.files.some(f=>f.path===file.path);
+  tp.hooks.on_all_templates_executed(async()=>{
+    const leaf=app.workspace.getLeaf(false);
+    if(newlyCreated && action!=='import') {
+      await leaf.openFile(file,{active:true,state:{mode:'source'}});
+      const lines=(await app.vault.read(file)).split('\n');
+      leaf.view.editor?.setCursor(lines.findIndex(line=>line.startsWith('# '))+1,0);
+      leaf.view.editor?.focus();
+    } else if(action==='import') await leaf.openFile(file,{active:true,state:{mode:'preview'}});
+    else await leaf.openFile(file);
+  });
   return file;
 }
 module.exports={state,create,audit,importSnapshot,run};

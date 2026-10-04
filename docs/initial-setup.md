@@ -1,27 +1,26 @@
-# Initial Setup Draft
+# Initial Setup
 
-Status: integration draft after Q65. Accepted meanings remain in
-[Metadata](metadata.md), workflows in [Design](design.md), and tool ownership
-in [Tooling](tooling.md). The operational defaults below are proposals for
-review, not already installed configuration. Q64 and Q65 are now accepted
-and recorded in their owning contracts. Q66 reviews the remaining operational
-defaults as a group and the scope of the first implementation.
+Status: Q66 approved the operational baseline and implementation. Accepted
+meanings live in [Metadata](metadata.md), workflows in [Design](design.md), and
+write ownership in [Tooling](tooling.md). Core tools and views are implemented;
+[Operations](operations.md) describes use and [Verification](verification.md)
+records actual checks. Live selected-item Zotero import is pending after the
+author requested stopping further attempts.
 
-This document brings the first-use pieces together. Once a proposed rule is
-adopted, its owning contract should hold it and this draft should point there
+This document brings the first-use pieces together. Each adopted rule belongs in its owning contract; this setup description points
+there
 rather than become another independently maintained rule set.
 
 ## Review Scope for Q66
 
-The semantic decisions through Q65 are already accepted. The review concerns
-these operational defaults and proceeding with the implementation sequence
-in this document:
+Q66 approved these operational defaults and the implementation sequence.
+The meanings through Q65 were already accepted:
 
-| Area | Proposed starting choice |
+| Area | Approved starting choice |
 | --- | --- |
 | Metadata | Omit unused optional fields on creation; tolerate empty optional values when reading; require lifecycle state on Activity and Domain entries |
 | Date-based writing | `date` records the represented period's first day; `period` is day/week/month; use calendar months and Monday-based ISO weeks |
-| Locations and audit scope | Add the proposed home and Journal locations; distinguish content from support files and report unexpected locations |
+| Locations and audit scope | Use the home and Journal locations; distinguish content from support files and report unexpected locations |
 | Creation and discovery | Provide the supported capture, contextual writing, reading-return, entry, and period actions with the initial views |
 | Registration and agent support | Share consumed field definitions and supply the initial audit and task-specific skills, without an infrastructure generator |
 | Sources | Keep import ownership explicit and native tags intentional; finish stable identity and destinations from real exporter evidence |
@@ -33,7 +32,7 @@ semantics is a new design issue, not a silent interpretation of this review.
 
 ## Files and Scope
 
-Keep the accepted content locations and add these proposed operational homes:
+The implemented locations use these responsibilities:
 
 | Location | Responsibility |
 | --- | --- |
@@ -54,7 +53,7 @@ content and support locations should be reported as needing a scope decision,
 not silently omitted or automatically rewritten as a content Note. This
 scope does not hide files from ordinary access and search.
 
-Attachments should have predictable local homes, provisionally an
+Attachments should have predictable local homes, an
 `attachments/` subfolder of the containing content folder. Exclude those
 folders from Markdown content classification. Zotero-owned assets have their
 own explicit import destination. Verify the Obsidian settings and collisions
@@ -71,7 +70,7 @@ values must have the registered type. An empty required value remains missing.
 Manual empty fields do not trigger unsolicited rewrites; structural audit
 reports malformed or incompatible populated values.
 
-| Note purpose | Proposed creation baseline |
+| Note purpose | Creation baseline |
 | --- | --- |
 | Ordinary or contextual writing | `kind: note`; chosen relationships and useful aliases only |
 | Quick capture | `kind: note`; optional name, with the accepted provisional fallback; only explicit context is carried |
@@ -80,11 +79,11 @@ reports malformed or incompatible populated values.
 | Activity entry | `kind: activity`, with `planned` for chosen future work or `active` when explicitly starting or recording ongoing work |
 | Manually maintained Source record | `kind: source`; enough source location or description to make retrieval useful |
 | Imported Source record | `kind: source` and reproducible import metadata under the import ownership contract |
-| Daily Journal | `kind: note`, `format: journal`, plus the proposed date and period fields below |
+| Daily Journal | `kind: note`, `format: journal`, plus the date and period fields below |
 | Weekly or monthly review | `kind: note`, `format: review`, plus date and period fields |
 
 All standard content Notes need `kind`; the accepted unclassified manual
-Capture exception in `inbox/` remains. Propose requiring `status` for Domain
+Capture exception in `inbox/` remains. Require `status` for Domain
 and Activity entries so missing lifecycle data is exposed rather than silently
 treated as active. This does not introduce a general Note maturity status.
 
@@ -114,7 +113,7 @@ and meanings, including the distinction from paused work.
 Creation for future work uses `planned`; an explicit request to begin or
 record ongoing work can use `active`. Command labels should make that intent
 clear without requiring a classification form. Missing-state handling remains
-an operational proposal above, not a fallback that guesses whether work began.
+the explicit requirement above; missing state does not guess whether work began.
 
 ## Q65: What Can Be a Source Reference?
 
@@ -130,7 +129,7 @@ This preserves both the primary file role and the actual basis of the writing.
 
 ## Journals and Period Reviews
 
-Propose two fields only for these dated forms:
+Use these fields for dated forms:
 
 | Field | Type | Meaning and responsibility |
 | --- | --- | --- |
@@ -141,7 +140,7 @@ The represented period is independent of file creation or modification time.
 Backdated writing retains the intended period. These fields do not add
 universal `created` or `updated` properties to other Notes.
 
-Use calendar months and ISO weeks starting Monday. Proposed paths and data:
+Use calendar months and ISO weeks starting Monday. Paths and data:
 
 | Entry | Path example | Frontmatter values beyond `kind: note` |
 | --- | --- | --- |
@@ -163,7 +162,8 @@ Provide clearly named today/this-week/this-month actions and selection of a
 different period when needed. Open an existing target; otherwise create once.
 Do not backfill missing periods or duplicate Tasks automatically. Prefer native
 Daily Notes where it fits, with a small Templater/helper flow for period reviews.
-The date interfaces have documentation support; the combined flows are untested.
+The date interfaces have documentation support and combined-flow verification
+is recorded in [Verification](verification.md).
 
 ## Creation and Return Actions
 
@@ -196,7 +196,7 @@ the required resolution and checks.
 
 ## Discovery and Maintenance
 
-The proposed initial navigation provides:
+The initial navigation provides:
 
 - A readable home with selected entry links and access to the complete views.
 - Domain and Activity overviews by their explicit lifecycle states.
@@ -226,15 +226,14 @@ treatment; audit does not silently repair or delete them.
 
 Implement registration and shared validation for the initial field set and
 creation actions. Keep the definition readable from the human contract and
-make creators and audits actually use it. Choose the exact machine block or
-file representation with those consumers; no infrastructure generator is
-part of this draft.
+make creators and audits actually use it. The marked JSON block in the metadata document is the shared representation;
+no infrastructure generator is part of this setup.
 
-For imported Sources, propose a reproducible ownership property such as
-`managed-by: zotero`. It is a design candidate, not an installed convention.
-Stable external source identity and import paths still require a real exporter
-sample: do not use mutable title or citation key alone, and do not infer
-whole-folder ownership. A marker identifies ownership; the importer still
+The controlled snapshot profile uses `managed-by: zotero` and a synced,
+library-scoped item URI for identity and paths. Snapshot behavior is verified;
+the live selection mapping still needs a supported real response. Mutable
+titles or citation keys do not determine destinations, and ownership does
+not extend to the whole folder. A marker identifies ownership; the importer still
 needs an explicit operation and a verified per-source destination before
 writing. Existing re-import evidence remains in
 [Design Questions](design-questions.md#import-identity-and-replacement-evidence).
@@ -245,7 +244,7 @@ auditing or maintaining the supporting tools. Reuse the English-writing skill
 for settled ideas and reference the same contracts rather than copy them into
 each skill. Final skill names and packaging follow the implemented actions.
 
-## Proposed Implementation Sequence
+## Implementation Sequence
 
 1. Finalize the accepted field definitions and reviewed defaults in their
    owning documents. Implement readable registration, shared structural
@@ -267,9 +266,9 @@ meaning or write ownership should return to the design discussion.
 
 ## Verification and Remaining Boundaries
 
-The new vault currently contains documents and the writing cue only. The
-original vault's installed plugins and available `obsidian.exe` command do
-not establish that the new vault is configured or that its UI works.
+The new vault now contains the implemented tools, templates, views, settings,
+and skills. Verification targets the author's independently opened runtime
+copy at `P:\\new-vault`; the original vault's configuration is not used as proof.
 
 Before considering the initial setup usable, exercise the two
 [first-use walkthroughs](first-use.md), period creation across a year boundary,
@@ -278,9 +277,7 @@ existing writing, and the chosen import/re-import ownership behavior. Include
 an example of changing a registered value and checking its actual consumers.
 Keep example content clearly separate from the author's knowledge.
 
-Q64 and Q65 are settled. Q66 is the review of this proposed operational
-baseline and implementation scope. Import identity, final machine-data layout,
-and runtime behavior still require concrete technical work; approval of the
-baseline is not evidence that those checks have passed. No configuration,
-plugin installation, or content migration has been performed by writing
-this draft.
+Q64–Q66 are settled. The recorded results, rather than approval alone,
+establish which behaviors passed. Core implementation and synthetic import
+checks are complete; the stopped live Zotero adapter is an explicit remaining
+integration item. Old-vault content migration remains deferred.

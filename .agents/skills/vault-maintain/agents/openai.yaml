@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vault maintenance"
+  short_description: "Audit structure and maintain the vault's supporting tools"
+  default_prompt: "Use $vault-maintain to inspect the vault and address the requested maintenance work."

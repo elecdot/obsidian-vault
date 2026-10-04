@@ -28,7 +28,8 @@ Start from [[home]]. In an existing Markdown Note, use the command palette:
 The menu shortcut is Ctrl/Cmd+Shift+N; capture is Ctrl/Cmd+Shift+C. Use the
 **Insert** commands, not Templater's separate **Create from template** commands.
 The launcher preserves selected text and opens the destination after template
-execution finishes. Its supported insert flow cancels before creating files.
+execution finishes. Newly authored Notes open for editing after their heading;
+imported material opens for reading. Its supported insert flow cancels before creating files.
 Using Create from template may leave Templater's own initial draft; the helper
 refuses that mode rather than repurpose an unknown file.
 
@@ -93,7 +94,9 @@ It writes `sources/zotero-<users-or-groups>-<library-id>-<item-key>/source.md`.
 The URI's library scope and key determine the location. A changed title or
 citation key changes reproducible metadata, not the path. Re-import requires
 matching `managed-by: zotero` and `source-id`; an unowned target is refused.
-Personal reading files are never part of that write.
+Personal reading files are never part of that write. Numbered annotation
+headings are display structure and can change on re-import; use an annotation's
+Zotero locator for a precise citation when one is available.
 
 Zotero tags are retained as `zotero-tags`, not automatically copied into
 native `tags`. Zotero comments remain labelled as such. Unknown or local-only

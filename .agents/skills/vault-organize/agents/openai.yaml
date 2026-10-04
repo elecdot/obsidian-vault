@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vault organization"
+  short_description: "Organize notes while preserving purpose and provenance"
+  default_prompt: "Use $vault-organize to organize this material and its meaningful connections."

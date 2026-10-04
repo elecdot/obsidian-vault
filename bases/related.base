@@ -3,12 +3,17 @@ filters:
   and:
     - 'file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))'
     - 'file.path != this.file.path'
+formulas:
+  title: 'link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))'
+properties:
+  formula.title:
+    displayName: Note
 views:
   - type: table
     name: "Direct notes"
     filters: 'kind == "note" && (list(domains).contains(this) || list(activities).contains(this) || list(sources).contains(this))'
     order:
-      - file.name
+      - formula.title
       - format
       - activities
       - sources
@@ -17,5 +22,5 @@ views:
     name: "Related activities"
     filters: 'kind == "activity" && list(domains).contains(this)'
     order:
-      - file.name
+      - formula.title
       - status

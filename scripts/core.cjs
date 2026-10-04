@@ -13,9 +13,14 @@ function loadContract(text) {
   if (matches.length !== 1) throw new Error('Expected exactly one marked JSON contract in docs/metadata.md');
   const c = JSON.parse(matches[0][1]);
   if (c.version !== 1 || !c.properties?.kind?.values?.length || !c.creators || !Array.isArray(c.contentRoots)) throw new Error('Invalid contract structure');
+  const strings=(value,label)=>{if(!Array.isArray(value) || value.some(x=>typeof x!=='string' || !x) || new Set(value).size!==value.length)throw new Error(`${label} must be a list of distinct strings`);};
+  if(typeof c.timezone!=='string' || !c.timezone)throw new Error('Contract needs an explicit author timezone');
+  for(const key of ['contentRoots','contentFiles','supportRoots','supportFiles'])strings(c[key],key);
   new Intl.DateTimeFormat('en', {timeZone:c.timezone}).format();
   for (const [name, spec] of Object.entries(c.properties)) {
     if (!['text','list','date'].includes(spec.type)) throw new Error(`Unknown type for ${name}`);
+    for(const key of ['values','kinds','requiredKinds','requiredFormats'])if(spec[key]!==undefined)strings(spec[key],`${name}.${key}`);
+    if(spec.byKind)for(const [kind,values] of Object.entries(spec.byKind))strings(values,`${name}.${kind}`);
     for (const kind of [...(spec.kinds || []), ...(spec.requiredKinds || []), ...Object.keys(spec.byKind || {})]) {
       if (!c.properties.kind.values.includes(kind)) throw new Error(`Unknown kind ${kind} in ${name}`);
     }
@@ -111,7 +116,11 @@ function validate(c, meta, p, resolve) {
     if (spec.values && !spec.values.includes(v)) add('error','field.value',`Unknown ${name}: ${v}`);
     if (spec.byKind && !provisional && !spec.byKind[meta.kind]?.includes(v)) add('error','field.value',`${name}: ${v} is invalid for ${meta.kind}`);
     if (spec.reference) for (const ref of v) {
-      if (spec.reference === 'source' && /^(https?:\/\/|zotero:\/\/)/i.test(ref)) continue;
+      if (spec.reference === 'source' && /^(https?:\/\/|zotero:\/\/)/i.test(ref)) {
+        try {if(!new URL(ref).hostname)throw new Error('missing host');}
+        catch {add('error','link.syntax',`sources: malformed locator ${ref}`);}
+        continue;
+      }
       const target=wikiTarget(ref);
       if (!target) {add('error','link.syntax',`${name}: expected a wikilink${spec.reference === 'source' ? ' or HTTP(S)/Zotero URL' : ''}`);continue;}
       const result=resolve(ref,p);
@@ -144,7 +153,7 @@ function slugify(name) {
   return slug;
 }
 function render(meta, title, body='') {
-  return `---\n${Object.entries(meta).map(([k,v])=>`${k}: ${JSON.stringify(v)}`).join('\n')}\n---\n# ${title}\n\n${body.trim()}\n`;
+  return `---\n${Object.entries(meta).map(([k,v])=>`${k}: ${JSON.stringify(v)}`).join('\n')}\n---\n# ${title}\n\n${body.trim()}\n\n`;
 }
 function plan(c, opts, files, cue, now=new Date()) {
   const local=localParts(now,c.timezone);

@@ -4,7 +4,7 @@ const {snapshotPlan,assertOwned}=require('./zotero-core.cjs');
 async function importSnapshot(root,data,dryRun=false) {
   const c=await io.contract(root),p=snapshotPlan(data);
   const findings=core.validate(c,p.meta,p.path,()=>({state:'missing'}));
-  if(findings.some(f=>f.level==='error')) throw new Error(findings.map(f=>f.message).join('\n'));
+  if(findings.some(f=>f.level==='error' || f.code==='field.provisional')) throw new Error(findings.map(f=>f.message).join('\n'));
   const target=await io.safe(root,p.path);
   let before;
   try {before=await io.fs.readFile(target,'utf8');assertOwned(core.parseNote(before,io.yaml).meta,p.meta);}

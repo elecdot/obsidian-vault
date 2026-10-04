@@ -3,8 +3,9 @@
 These are design examples through Q63, not the author's research records
 or a claim that the described tools already work. They illustrate accepted
 relationships, entry defaults, and naming behavior without prescribing the
-author's prose organization. No illustrated content files have been created.
-Each internal target below is assumed to exist in the hypothetical scenario
+author's prose organization. Illustrative files now live under [examples](../examples/README.md), outside
+live content scope. The paths below describe the hypothetical content scenario;
+each target is assumed to exist
 before a structural relationship points to it.
 
 Source paths are readable illustrations of the accepted layout, not a final
@@ -92,8 +93,8 @@ as membership or recursively collecting their entire contents.
 Official Bases interfaces can express the one-hop lookup, but cross-file
 `file.properties` does not automatically refresh when vault content changes.
 Such an extension needs a verified refresh strategy; the effect of relationship
-edits cannot be assumed immediately visible. Neither presentation has yet
-been implemented or tested in this vault. See the
+edits cannot be assumed immediately visible. The accepted direct presentation has native-app coverage; the optional
+cross-file extension is not implemented. See the
 [relationship-view evidence](design-questions.md#domain-context-query-evidence).
 
 ## Reading: A Source Before an Activity

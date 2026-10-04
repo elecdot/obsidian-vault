@@ -5,8 +5,10 @@ that this is a personal knowledge vault whose design will also evolve through
 use. Their subsequent clarification retains well-designed tools, registration,
 and automation as explicit goals. Avoiding excessive engineering does not
 authorize dropping those capabilities or their supporting design rationale.
-Detailed implementations are still pending; no custom creator, contract
-reader, audit runner, or infrastructure generator is implemented yet.
+The initial creators, shared registry reader, audit runner, Obsidian adapter,
+views, and local skills are implemented. There is no infrastructure generator.
+See [Operations](operations.md) and [Verification](verification.md) for the
+actual interfaces, evidence, and the stopped live Zotero selection work.
 
 ## Working Scale
 
@@ -55,11 +57,11 @@ The registration design should preserve these responsibilities:
 | Supported creation and audit actions | The actual declarations or implementation entry points used to execute them |
 | Templates, Base definitions, and import adapters | Their maintained source files, linked from relevant operating guidance |
 
-A marked data block in the Markdown contract remains a concrete candidate
-for shared mechanical definitions. Its exact representation and reader are
-unimplemented. Select a format that remains visible and editable and avoids
-another independently maintained copy of the same constraints. Registering
-a formal convention changes its owning definition, not a disconnected record.
+The marked JSON block in the Markdown contract now supplies the mechanical
+definitions to `scripts/core.cjs`. The CLI and Obsidian adapter share that
+reader and validator. Native settings and static view coverage are checked
+against it. Registering a convention changes its consumed definition and
+semantic explanation, not a disconnected record.
 
 Provide a navigable account of the supported actions, their scope, and where
 to maintain them. An inventory can read actual declarations or managed files;
@@ -114,7 +116,8 @@ An invoked writer has an explicit target. Invalid required definitions or a
 conflicting target produce an error before its writes; periodic creation
 reopens existing entries. Custom tooling does not rewrite files in the
 background or automatically migrate content when conventions change.
-These boundaries still need verification against the actual implementation.
+These boundaries have behavioral and native-app coverage described in
+[Verification](verification.md); live Zotero selection remains separately pending.
 
 ## Maintenance and Checks
 
@@ -153,9 +156,9 @@ understanding or whether a classification still serves its purpose.
 
 ## Implementation Options and Deferred Expansion
 
-Shared machine-readable definitions, consistent entry-point registration,
-useful inventories, and cross-interface checks remain active design work.
-Their scope and representation follow the workflows they support.
+Shared definitions, creator registration, inventory, and cross-interface checks
+now support the initial workflows. Extend them when a concrete workflow needs
+more coverage, preserving their existing meanings and write boundaries.
 
 The initial design still has no infrastructure generator, as established in
 Q60. Limited generation remains a future candidate if a concrete repeated

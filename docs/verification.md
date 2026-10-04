@@ -6,7 +6,8 @@ references alone are not counted as runtime verification.
 ## Offline
 
 Run `npm ci`, `npm test`, `npm run check`, and `npm run audit` at the repository
-root. Behavioral tests use temporary vaults outside personal content and
+root. On 2026-10-04, 19 behavioral tests and the contract/link/YAML/content checks
+passed; the source vault audit had no errors or suggestions. Behavioral tests use temporary vaults outside personal content and
 remove their own fixtures. They exercise shared-contract use, creation and
 reference rules, period boundaries, collision protection, read-only inspection,
 and Source identity and re-import ownership.
@@ -38,11 +39,27 @@ corrected to check the resolved target, and rerun successfully.
 Native Base queries returned the planned Activity in the future view. The
 embedded Domain view showed exactly the directly linked explanation, not the
 Activity-only Capture. The recent-writing view returned results in descending
-modification order. These observations go beyond YAML parsing.
+modification order. The second Domain view separately showed the related
+Activity. Period embeds rendered without errors, and Source rows displayed
+their readable alias while retaining the stable target path.
+
+The real capture command was invoked with selected text in a temporary Note.
+After Escape cancellation, the original text and selection content were
+preserved and no capture was created. The initial test assumed a close button;
+the actual prompt uses keyboard cancellation, so the test was corrected and
+passed through the real UI flow. These observations go beyond YAML parsing.
 
 The runtime test lives in `tests/obsidian-runtime.cjs`. It creates explicit
 Verification fixtures and supports cleanup after checking their content.
 Its desktop checks are separate from the normal offline test command.
+
+Core Daily Notes created a real temporary day record with `kind: note`,
+`format: journal`, `period: day`, and the expected local date. The native
+Obsidian YAML parser also rejected duplicate keys. The verification Notes
+were removed after their checks, and the vault was returned to Home.
+
+The three new skills passed the bundled system skill-creator validator;
+this validates packaging, not every future assistant judgment.
 
 ## Source Integration
 

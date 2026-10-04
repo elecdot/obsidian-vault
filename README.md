@@ -7,13 +7,17 @@ Obsidian is the primary daily interface. Editors and agents are also important
 interfaces for writing and maintenance. The author's explanations and judgments
 lead the work; agents support their development, organization, and upkeep.
 
-## Current Phase
+## Start Here
 
-Design documentation is being established alongside the ongoing interview.
-The accepted direction and remaining choices are recorded separately.
-The initial metadata contract and a shared writing cue are available.
-Full note creators, navigation views, integrations, and validation commands
-remain under design or awaiting implementation.
+Open [home.md](home.md) in Obsidian. Use **Templater: Insert vault-menu**
+(Ctrl/Cmd+Shift+N), **Insert capture** (Ctrl/Cmd+Shift+C), or **Insert inspect**.
+The [operations guide](docs/operations.md) covers setup, command-line use,
+reading, periods, references, and maintenance.
+
+For CLI support, run `npm ci`, then `npm test`, `npm run check`, and
+`npm run audit`. The shared registry is an authored block in
+[metadata.md](docs/metadata.md#executable-field-registry), consumed by the
+creators and validators rather than copied into each tool.
 
 This directory was started on 2026-10-03. The current documentation checkpoint,
 2026-10-04, covers Q65 and retains the author's correction of scale:
@@ -21,19 +25,23 @@ establish a useful personal knowledge vault whose model and support can
 evolve through use. Well-designed tools,
 registration, automation, and agent skills remain explicit goals. Initial
 scenarios guide their scope and validation; avoiding excessive engineering
-preserves needed capabilities and design rationale. Supporting tools have
-not yet been implemented.
+preserves needed capabilities and design rationale. Initial tools, views,
+settings, examples, and three local skills are now implemented. Old enclosing
+repository skills were retired and primary references were rechecked.
 
 The [first-use walkthroughs](docs/first-use.md) now incorporate Q61–Q63:
 independent Activity and Domain associations, a reading-entry default that
 leaves writing organization to the author, and optional names for quick
-capture. Tool implementation and the remaining operational details are pending.
+capture. Actual examples live under [examples/](examples/README.md) and remain
+outside live knowledge views. The author-selected [AI Systems entry](domains/ai-systems.md)
+provides an initial content route.
 
-The [initial setup draft](docs/initial-setup.md) brings proposed metadata
-defaults, period records, creation actions, and initial discovery and audit
-support together. Q64 and Q65 are accepted: Activities may be `planned`, and
-personal Notes can be cited as direct Sources without changing their kind.
-Q66 reviews the remaining operational defaults and first implementation scope.
+The [initial setup](docs/initial-setup.md) records the approved Q66 baseline.
+Native Obsidian behavior and offline tests are recorded in
+[verification.md](docs/verification.md). Controlled JSON snapshot import is
+available. Live selected-item Zotero import stopped before writing when its
+selection response did not match the candidate adapter; it is not a working
+menu action and will not be retried without an explicitly resumed task.
 
 ## Read the Design
 
@@ -45,7 +53,9 @@ Q66 reviews the remaining operational defaults and first implementation scope.
 | [Refinement workflow](docs/refinement.md) | In-place candidates, discovery, and review behavior |
 | [Tooling](docs/tooling.md) | Practical support, registration, and accepted write boundaries |
 | [First-use walkthroughs](docs/first-use.md) | Illustrative writing paths and the current experience-level choices |
-| [Initial setup draft](docs/initial-setup.md) | Operational defaults for review and the first implementation scope |
+| [Initial setup](docs/initial-setup.md) | Approved operational baseline and implementation scope |
+| [Operations](docs/operations.md) | Daily actions, commands, and maintenance |
+| [Verification](docs/verification.md) | Observed tests and explicit integration limits |
 | [Design questions](docs/design-questions.md) | Open choices, dependencies, factual investigations, and interview coverage |
 | [Agent instructions](AGENTS.md) | Work routing and instructions for agents contributing here |
 

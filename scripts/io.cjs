@@ -54,10 +54,10 @@ async function create(root, opts) {
   const cue=await read(root,'templates/fragments/writing-cue.md');
   const p=core.plan(c,opts,files,cue);
   const problems=core.validate(c,p.meta,p.path,(v,s)=>core.resolveDisk(v,s,files));
-  if(problems.some(f=>f.level==='error' || f.code==='link.ambiguous')) throw new Error(problems.map(f=>f.message).join('\n'));
-  const existing=files.find(f=>f.path===p.path);
+  if(problems.some(f=>f.level==='error' || ['link.ambiguous','field.provisional'].includes(f.code))) throw new Error(problems.map(f=>f.message).join('\n'));
+  const existing=files.find(f=>f.path.toLowerCase()===p.path.toLowerCase());
   if(existing) {
-    if(p.reopen && !existing.parseError && !existing.meta['managed-by'] && ['kind','format','date','period'].every(k=>existing.meta[k]===p.meta[k])) return {result:'existing',path:p.path};
+    if(p.reopen && !existing.parseError && !existing.meta['managed-by'] && ['kind','format','date','period'].every(k=>existing.meta[k]===p.meta[k])) return {result:'existing',path:existing.path};
     throw new Error(`Target exists; it will not be replaced: ${p.path}`);
   }
   if(opts.dryRun) return {result:'preview',...p};

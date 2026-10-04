@@ -5,13 +5,16 @@ interview. Accepted product decisions live in [Design](design.md), field
 contracts in [Metadata](metadata.md), and resolved terms in
 [CONTEXT.md](../CONTEXT.md).
 
-The current documentation checkpoint is 2026-10-04, after Q65. Planned
-Activities and citing personal Notes as direct Sources are now accepted.
+The current checkpoint is 2026-10-04, after Q66 approval and initial
+implementation. Planned Activities and citing personal Notes as Sources
+remain part of the accepted model.
 Establish a useful personal knowledge model with deliberately designed
 support. The author clarified that avoiding excessive engineering retains
 necessary tools, registration, automation, and their design rationale.
-Documentation work remains authorized; supporting tools are not implemented
-and detailed implementation choices remain open.
+Implementation and staged Conventional Commits are authorized. The author
+retired the enclosing repository's old skills; [primary references](references.md)
+now ground application behavior. Current implementation results and remaining
+limits are recorded in [Verification](verification.md).
 
 ## Decision Surface
 
@@ -144,7 +147,7 @@ Source and author-chosen session, chapter, or question boundaries.
 Q63 permits an omitted name during quick capture, with a provisional filename
 and useful English naming when retained material is organized.
 
-## Current Round
+## Implementation Status
 
 Q64 and Q65 are resolved. Their meanings live in the
 [lifecycle](metadata.md#lifecycle-semantics) and
@@ -152,22 +155,27 @@ Q64 and Q65 are resolved. Their meanings live in the
 Creation for chosen future Activities uses `planned`; personal Notes can be
 Source inputs without being reclassified. The existing-target rule remains.
 
-Q66 reviews the remaining operational defaults as one concrete starting
-proposal and confirms the move from design to first implementation. Its
+Q66 approved the remaining operational defaults and the move into implementation. Its
 [review scope](initial-setup.md#review-scope-for-q66) covers optional values,
 lifecycle-state requirements, date and period conventions, content/support
 locations, creation and discovery, registration, audits, and agent support.
-Recommend adopting that baseline and following the draft's implementation
-sequence, with actual plugin behavior verified along the way.
+The initial tools, views, configuration, and skills now implement that baseline.
+Actual checks and the known live-source limitation are recorded separately.
 
-The date interfaces have primary-documentation support; full creation, query,
-and import behavior still needs verification. Source identity and destinations
-need exporter evidence, and registry encoding needs a concrete reader. These
-are technical work, not settled runtime facts. The draft installs nothing;
-Q64 and Q65 alone do not adopt its unrelated operational defaults or mark
-the vault ready for daily use.
+Creation, direct-scope queries, reference updates, and synthetic snapshot
+re-import have actual runtime evidence. The registry has a concrete shared
+reader. Real Zotero selection stopped before any Source write after a response
+shape mismatch, at the author's requested boundary. Retain that finding for a
+later explicitly resumed integration task rather than silently retrying it.
 
-## Facts to Investigate
+## Evidence Record
+
+The following observations were collected during design and implementation.
+Earlier statements that a behavior was unverified describe that investigation
+stage. Use [Verification](verification.md) for the current observed results;
+the evidence and rationale are retained rather than silently discarded.
+
+### Follow-up Work
 
 Facts are the agent's responsibility. Investigate them when they could
 change a pending decision.
@@ -182,8 +190,10 @@ change a pending decision.
 - Inspect available template and command interfaces before choosing shared
   helpers or validation architecture. This determines how writers and
   readers can follow one contract.
-- Exercise the first concrete writing and retrieval flows. This determines
-  whether prompts, note boundaries, and navigation support the intended use.
+- Continue exercising concrete writing and retrieval flows during use. Initial
+  checks have passed; new needs may expose further choices.
+- Live Zotero selection work is stopped at the author's request. Retain the
+  observed mismatch and resume only in a later explicitly requested task.
 
 ### Initial Environment Evidence
 
@@ -479,6 +489,7 @@ Question numbers refer to the design conversation.
 | Q63: optional name and provisional filename for quick capture | [Quick-capture names](metadata.md#quick-capture-names) |
 | Q64: chosen but unstarted Activities | [Lifecycle semantics](metadata.md#lifecycle-semantics) |
 | Q65: personal Notes as direct Source inputs | [Relationships](metadata.md#relationships) and [domain language](../CONTEXT.md) |
+| Q66: approved initial defaults and implementation; obsolete old skills retired | [Initial setup](initial-setup.md), [primary references](references.md), and [verification](verification.md) |
 
 ## Deferred Work
 

@@ -25,6 +25,15 @@ test('shared contract rejects malformed/duplicate blocks and drives creators',as
   c.properties.status.byKind.activity.push('trial');
   assert.equal(core.validate(c,{kind:'activity',status:'trial'},'activities/x/introduction.md',()=>({state:'missing'})).length,0);
 });
+test('malformed enum definitions stop creation before any content write',async t=>{
+  const root=await fixture(t),file=path.join(root,'docs/metadata.md');
+  const text=await fs.readFile(file,'utf8'),c=core.loadContract(text);
+  c.properties.status.byKind.activity='planned';
+  const changed=text.replace(/(<!-- vault-contract:start -->\s*```json\s*)[\s\S]*?(\s*```\s*<!-- vault-contract:end -->)/,(_,start,end)=>start+JSON.stringify(c)+end);
+  await fs.writeFile(file,changed);
+  await assert.rejects(io.create(root,{action:'activity',name:'Must not appear'}),/distinct strings/);
+  await assert.rejects(fs.stat(path.join(root,'activities')),e=>e.code==='ENOENT');
+});
 test('capture, independent associations, and provenance preserve role semantics',async t=>{
   const root=await fixture(t);
   await io.create(root,{action:'domain',name:'AI Systems'});
@@ -56,6 +65,17 @@ test('reading returns existing authored notes and supports multiple records',asy
   assert.equal((await io.create(root,{action:'reading',context})).result,'existing');
   await io.create(root,{action:'reading',context,name:'A separate question'});
   assert.equal((await io.create(root,{action:'reading',context})).result,'choose');
+});
+test('creation protects case-variant filenames across desktop filesystems',async t=>{
+  const root=await fixture(t);await fs.mkdir(path.join(root,'knowledge'));
+  await fs.writeFile(path.join(root,'knowledge/Existing.md'),'Keep this writing');
+  await assert.rejects(io.create(root,{action:'note',name:'Existing'}),/exists/);
+  assert.equal(await io.read(root,'knowledge/Existing.md'),'Keep this writing');
+});
+test('source locators need usable syntax without network requests',async()=>{
+  const c=await io.contract();
+  const findings=core.validate(c,{kind:'note',sources:['https://','zotero://','https://example.org/source']},'knowledge/a.md',()=>({state:'missing'}));
+  assert.equal(findings.filter(f=>f.code==='link.syntax').length,2);
 });
 test('auditor is read-only and distinguishes malformed, provisional and optional metadata',async t=>{
   const root=await fixture(t);
