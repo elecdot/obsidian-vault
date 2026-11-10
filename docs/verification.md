@@ -12,7 +12,19 @@ remove their own fixtures. They exercise shared-contract use, creation and
 reference rules, period boundaries, collision protection, read-only inspection,
 and Source identity and re-import ownership.
 
+On 2026-11-10, `npm test`, `npm run check`, `npm run audit`, and
+`npm run vault -- inventory` were rerun in `/home/elecdot/new-vault`.
+All 19 tests passed; the contract/link/YAML/content check reported no errors,
+and the audit reported no errors or suggestions. The live content at this
+checkpoint consists of Home, Maintenance, and the AI Systems entry, so these
+results do not establish that a real research workflow is usable.
+
 ## Obsidian
+
+The following observations are historical evidence from the 2026-10-04
+runtime copy. The intended desktop vault and its current behavior need to be
+checked for the selected [first-use task](first-use.md); the old paths and
+versions below are not a claim about the current environment.
 
 The selected runtime vault is `P:\new-vault`, a copy opened by the author.
 The implementation repository remains `/home/elecdot/vault/new-vault`.

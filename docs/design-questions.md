@@ -16,6 +16,21 @@ retired the enclosing repository's old skills; [primary references](references.m
 now ground application behavior. Current implementation results and remaining
 limits are recorded in [Verification](verification.md).
 
+## Current Readiness Discussion
+
+On 2026-11-10, the author requested a concise set of documents that support
+ongoing vault use and maintenance. Earlier discussion summaries and user
+preferences may be challenged where they no longer fit. The author selected
+the existing MoE expert load balancing research project as the
+[first real use case](first-use.md), replacing the hypothetical walkthroughs.
+
+The current discussion needs to settle the vault's responsibilities beside
+the research repository, concrete readiness criteria, and whether the earlier
+English-writing goal should constrain this use. Documentation cleanup should
+separate current rules and useful rationale from construction history and
+superseded implementation questions. The sections below retain the earlier
+record pending that cleanup; their lists are not a new release checklist.
+
 ## Decision Surface
 
 The rows track remaining work, not a list of questions that must all be put

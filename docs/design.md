@@ -620,17 +620,13 @@ and compatibility constraints should not determine the new model.
 AI Systems is the first long-term Domain. Compilation and kernels are
 examples of overlapping areas the author may explore.
 
-Potential Activity scenarios include reading *Linear Algebra Done Right*,
-taking a course such as CS61A, reproducing a paper, and developing a small
-software project. No single representative Activity has been selected.
+On 2026-11-10, the author selected the existing MoE expert load balancing
+research project as the first real use case. The [first-use document](first-use.md)
+identifies its research charter. This replaces the hypothetical walkthroughs
+as the primary evaluation scenario; the vault's role in that project and
+the completion criteria remain under discussion.
 
-These scenarios should test both deliberate domain-building and ordinary
-notes produced by active learning. Concrete examples and real use will be
-needed to evaluate the proposed contracts.
-
-The [first-use walkthroughs](first-use.md) illustrate contextual capture in
-AI Systems and personal reading around a Source. Their hypothetical Notes
-exercise the accepted model and the decisions clarified in Q61–Q63.
-The reading default concerns entry behavior, not a restriction on prose
-organization. The examples do not assert the author's understanding
-or establish a particular paper or book as an active commitment.
+Book or course study, paper reproduction, and software work remain possible
+additional scenarios when they expose a concrete need. The existing
+[illustrative files](../examples/README.md) demonstrate the model without
+asserting the author's understanding or creating active commitments.

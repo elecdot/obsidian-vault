@@ -29,12 +29,12 @@ preserves needed capabilities and design rationale. Initial tools, views,
 settings, examples, and three local skills are now implemented. Old enclosing
 repository skills were retired and primary references were rechecked.
 
-The [first-use walkthroughs](docs/first-use.md) now incorporate Q61–Q63:
-independent Activity and Domain associations, a reading-entry default that
-leaves writing organization to the author, and optional names for quick
-capture. Actual examples live under [examples/](examples/README.md) and remain
-outside live knowledge views. The author-selected [AI Systems entry](domains/ai-systems.md)
-provides an initial content route.
+The author selected the existing MoE expert load balancing research project
+as the [first real use case](docs/first-use.md) on 2026-11-10. Its role in the
+vault and the readiness criteria are being shaped around the research charter.
+Illustrative files under [examples/](examples/README.md) remain outside live
+knowledge views. The [AI Systems entry](domains/ai-systems.md) provides an
+initial content route.
 
 The [initial setup](docs/initial-setup.md) records the approved Q66 baseline.
 Native Obsidian behavior and offline tests are recorded in
@@ -52,7 +52,7 @@ menu action and will not be retried without an explicitly resumed task.
 | [Metadata contract](docs/metadata.md) | Accepted field meanings and types, plus remaining contract decisions |
 | [Refinement workflow](docs/refinement.md) | In-place candidates, discovery, and review behavior |
 | [Tooling](docs/tooling.md) | Practical support, registration, and accepted write boundaries |
-| [First-use walkthroughs](docs/first-use.md) | Illustrative writing paths and the current experience-level choices |
+| [First use](docs/first-use.md) | Selected research task and remaining workflow decisions |
 | [Initial setup](docs/initial-setup.md) | Approved operational baseline and implementation scope |
 | [Operations](docs/operations.md) | Daily actions, commands, and maintenance |
 | [Verification](docs/verification.md) | Observed tests and explicit integration limits |
@@ -71,8 +71,8 @@ Specialized workspaces can retain their own knowledge and workflows; the vault
 provides connections and a home for thinking that needs one.
 
 AI Systems is the first long-term domain for evaluating the design.
-Book or course study and paper reproduction provide contrasting activity
-scenarios. The author has not yet selected a single representative activity.
+The selected first-use task is the existing MoE expert load balancing research
+project; book or course study can provide additional scenarios when needed.
 
 English is the intended working language, including filenames. Drafts may
 use mixed language when that preserves accurate understanding.
