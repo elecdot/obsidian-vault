@@ -72,6 +72,14 @@ Specialized repositories, such as the algorithm knowledge repository, can
 retain their own knowledge, objects, and workflows. Connections and
 cross-context understanding can live in the vault.
 
+For the selected MoE research use case, the research repository owns the
+protocol, code, results, and execution state. The vault supports knowledge
+accumulation through a research entry, reading questions, comparisons, and
+personal explanations. Link to the repository's maintained records rather
+than keeping a second copy of its execution state. The author confirmed
+this division on 2026-11-16 because the research repository better supports
+the project's main work.
+
 When an Activity ends, pauses, or loses relevance, its existing Notes may
 remain as historical records and continue to be useful in a Domain.
 Refinement is selective and may occur later when value becomes apparent.
@@ -524,13 +532,14 @@ lightweight scope.
 
 ## English Writing
 
-English writing is an explicit learning goal, and an all-English vault is
-the intended direction. Filenames should remain English.
+English writing is a long-term direction for knowledge accumulation.
+Filenames should remain English. Temporary Chinese and Chinese that serves
+a meaningful purpose are both allowed; useful Chinese writing does not
+automatically become a translation task. English-only content is not a
+condition for passing a readiness stage.
 
-The author may draft in mixed language when that is necessary for accurate
-understanding. The available `write-better-english` skill can turn settled
-ideas into natural English while preserving meaning, voice, attribution,
-and certainty.
+The available `write-better-english` skill can turn settled ideas into
+natural English while preserving meaning, voice, attribution, and certainty.
 
 Questions about a claim or its reasoning return to collaborative thinking
 and learning. Wording work preserves the ideas being expressed.
@@ -595,6 +604,14 @@ These should support a complete first-use path: retain material, draft a
 personal explanation, find it through an entry point, and obtain useful
 agent assistance or checks.
 
+The author accepted one real use cycle for the first readiness assessment:
+work on an actual research question, preserve its sources, write a personal
+explanation, find it through an Activity or Domain, and continue the work.
+Verify the relevant operations in the intended Obsidian vault. The selected
+[first-use task](first-use.md) makes this concrete. Passing this assessment
+supports beginning regular use; long-term retrieval and maintenance remain
+questions to evaluate through subsequent use.
+
 The initial release should include the support needed to make that path
 reliable and maintainable. Registration and automation are not postponed
 merely because a manual workaround exists; scope them to clear benefits and
@@ -623,8 +640,10 @@ examples of overlapping areas the author may explore.
 On 2026-11-10, the author selected the existing MoE expert load balancing
 research project as the first real use case. The [first-use document](first-use.md)
 identifies its research charter. This replaces the hypothetical walkthroughs
-as the primary evaluation scenario; the vault's role in that project and
-the completion criteria remain under discussion.
+as the primary evaluation scenario. The author confirmed the workspace
+division and one-cycle readiness assessment on 2026-11-16; their owning
+rules are above under [Workspace boundaries](#scope-and-workspace-boundaries)
+and [launch requirements](#launch-requirements).
 
 Book or course study, paper reproduction, and software work remain possible
 additional scenarios when they expose a concrete need. The existing

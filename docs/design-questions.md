@@ -24,12 +24,24 @@ preferences may be challenged where they no longer fit. The author selected
 the existing MoE expert load balancing research project as the
 [first real use case](first-use.md), replacing the hypothetical walkthroughs.
 
-The current discussion needs to settle the vault's responsibilities beside
-the research repository, concrete readiness criteria, and whether the earlier
-English-writing goal should constrain this use. Documentation cleanup should
-separate current rules and useful rationale from construction history and
-superseded implementation questions. The sections below retain the earlier
-record pending that cleanup; their lists are not a new release checklist.
+The author resolved the first three questions on 2026-11-16:
+
+- [Workspace responsibilities](design.md#scope-and-workspace-boundaries):
+  knowledge accumulation in the vault; main research work and execution
+  state in the research repository.
+- [Initial readiness](design.md#launch-requirements): one real use cycle,
+  including writing, retrieval, continuation, and relevant desktop checks.
+- [English writing](design.md#english-writing): a long-term direction;
+  temporary or meaningful Chinese is allowed and English-only content is
+  not a stage gate.
+
+The next discussion evaluates the design from the general perspective of
+long-term personal knowledge management before further personalization.
+Assessment findings and recommendations are not adopted design changes.
+Documentation cleanup should separate current rules and useful rationale
+from construction history and superseded implementation questions. The
+sections below retain the earlier record pending that cleanup; their lists
+are not a new release checklist.
 
 ## Decision Surface
 

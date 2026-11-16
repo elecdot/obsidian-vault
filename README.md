@@ -30,8 +30,9 @@ settings, examples, and three local skills are now implemented. Old enclosing
 repository skills were retired and primary references were rechecked.
 
 The author selected the existing MoE expert load balancing research project
-as the [first real use case](docs/first-use.md) on 2026-11-10. Its role in the
-vault and the readiness criteria are being shaped around the research charter.
+as the [first real use case](docs/first-use.md) on 2026-11-10. The vault supports
+knowledge accumulation alongside the research repository. One real cycle of
+writing, retrieval, and continued work will provide the first readiness check.
 Illustrative files under [examples/](examples/README.md) remain outside live
 knowledge views. The [AI Systems entry](domains/ai-systems.md) provides an
 initial content route.
@@ -74,8 +75,9 @@ AI Systems is the first long-term domain for evaluating the design.
 The selected first-use task is the existing MoE expert load balancing research
 project; book or course study can provide additional scenarios when needed.
 
-English is the intended working language, including filenames. Drafts may
-use mixed language when that preserves accurate understanding.
+English writing is a long-term direction for knowledge accumulation, with
+English filenames. Temporary or meaningful Chinese is allowed; English-only
+content is not a readiness condition.
 
 ## Initial Completion Standard
 
