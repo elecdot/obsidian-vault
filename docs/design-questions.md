@@ -19,6 +19,18 @@ definite problems; actual writing and retrieval will inform further changes.
 | Current desktop environment | Identify the intended runtime vault and verify plugin installation before relying on the historical `P:\new-vault` checks | This checkout contains Templater configuration but no plugin runtime files; another copy's installation is unverified. |
 | GitHub copy | When implementing the backup arrangement, identify the remote and which content is committed and pushed | This checkout has no configured remote. Git is the intended approach; remote setup is not an added first-use gate. |
 
+## Maintenance Tool Environment
+
+Within the [agreed environment requirements](design.md#scope-and-workspace-boundaries),
+mise is the proposed tool manager. Its tool configuration has not yet been
+adopted or implemented in this repository.
+
+| Open item | Evidence or decision needed | Scope |
+| --- | --- | --- |
+| Tool manager and task entry points | Compare mise tool selection with existing npm scripts against the benefit of mise tasks; consider alternatives where they improve the actual workflow | Repository-level tool version management is required; a task-runner migration is not yet accepted. |
+| Version and update policy | Choose exact versions or a release-line policy, and whether npm needs a version independent of Node | Keep the maintenance environment reproducible without duplicating project library dependency management. |
+| Windows setup and verification | Establish the intended Windows vault location and verify native tool selection and checks there | Historical Obsidian checks do not verify the current CLI on Windows; shared WSL paths and native Windows paths may require different setup. |
+
 ## Confirmed Tool Defects
 
 - **Empty frontmatter is rejected.** The shared [parser](../scripts/core.cjs)

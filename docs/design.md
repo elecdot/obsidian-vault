@@ -48,6 +48,16 @@ maintenance interfaces. The plain files remain readable elsewhere; matching
 Obsidian's full navigation in every reader is not a requirement. Mobile
 convenience is an improvement rather than an initial launch condition.
 
+Windows desktop Obsidian is the primary environment. Windows remains a
+first-class target for vault tooling; technical maintenance may also run in
+WSL/Linux. Intended platform support is distinct from the
+[verified runtime coverage](verification.md).
+
+Maintenance tools need repository-level version management, initially for
+the JavaScript toolchain and extendable to other tools the vault requires.
+The tool manager, task entry points, and version policy are
+[under discussion](design-questions.md#maintenance-tool-environment).
+
 Specialized repositories can retain their own records and workflows. The
 vault provides connections, personal understanding, and a home for thinking
 that needs one. It can hold project records when no suitable Workspace does.
