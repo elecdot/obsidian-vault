@@ -11,5 +11,5 @@ live organizational context.
 
 The relationships deliberately stay within `examples/` so these examples do
 not add apparent contributions to the author's actual AI Systems Domain.
-The selected [first-use task](../docs/first-use.md) now uses the author's
-existing MoE research project to evaluate real writing and retrieval.
+The selected [first-use task](../docs/first-use.md) uses the existing MoE
+research project to evaluate real writing and retrieval.

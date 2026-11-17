@@ -18,5 +18,6 @@ the application; documentation alone does not establish successful use.
 | Git coverage | [Recording changes](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [remotes](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes) | Distinguish files present locally, committed history, and commits pushed to another copy |
 | Zotero adapter | [Integration templates](https://github.com/community-archive/obsidian-zotero-integration/blob/main/docs/Templating.md), [Zotero resource identity](https://www.zotero.org/support/dev/web_api/v3/basics#resources) | Explicit per-file ownership and library-scoped stable identity; never assume title-based re-import paths are stable |
 
-Runtime results and environment limits belong in [Verification](verification.md).
+Verification coverage and environment limits belong in
+[Verification](verification.md).
 The [tooling guide](tooling.md) identifies the maintained implementations.

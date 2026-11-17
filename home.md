@@ -6,7 +6,7 @@ aliases: [Home]
 # Home
 
 Use search to return directly to a Note, or enter through a Domain, Activity,
-or Source below. Add a few personally useful routes here when they help.
+or Source below.
 
 Open the command palette and choose **Templater: Insert vault-menu**, or use
 **Ctrl/Cmd+Shift+N**. Quick capture: **Ctrl/Cmd+Shift+C**. These insert commands

@@ -91,6 +91,8 @@ classification, or the validity of every claim and external link. Inspect
 the relevant passage when interpreting a result. Repair belongs to requested
 maintenance, not to the fact that an audit found something.
 
-[Verification](verification.md) records observed results and environment limits.
+[Verification](verification.md) records current coverage, relevant runtime
+evidence, and environment limits. Record routine check results with the
+verified change in Git; do not append a run log to maintained documentation.
 [Open questions](design-questions.md) holds deferred investigations; these are
 not an implicit list of features to build.

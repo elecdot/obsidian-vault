@@ -1,10 +1,9 @@
 # First Use: MoE Expert Load Balancing Research
 
-The author selected the existing **First Try** research project as the
-vault's first real use case. It replaces the hypothetical walkthroughs
-as the readiness scenario.
-The [illustrative files](../examples/README.md) remain examples, outside live
-content scope.
+The existing **First Try** research project is the selected first-use task.
+Use one real research question to exercise writing, retrieval, and
+continuation. The [illustrative files](../examples/README.md) demonstrate the
+model and remain outside live content scope.
 
 ## Selected Task
 
@@ -25,8 +24,8 @@ research progress.
 
 ## Agreed Use and First Assessment
 
-On 2026-11-16, the author confirmed that the vault supports knowledge
-accumulation while the research repository carries the main research work.
+The vault supports knowledge accumulation while the research repository
+carries the main research work.
 The [Workspace boundary](design.md#scope-and-workspace-boundaries) keeps the
 protocol, code, results, and execution state in that repository. The vault
 provides an entry into the research, reading questions, comparisons, and
@@ -42,8 +41,7 @@ Use one real research question for the [first readiness assessment](design.md#la
 
 The [English-writing direction](design.md#english-writing) permits temporary
 or meaningful Chinese; English-only content is not an assessment condition.
-The workflow has not yet been exercised with real research writing. The
-first cycle establishes initial usability, not long-term effectiveness.
+The first cycle establishes initial usability, not long-term effectiveness.
 
 Existing [operations](operations.md) and the [metadata contract](metadata.md)
 provide the starting capabilities. [Verification](verification.md) separates

@@ -4,8 +4,8 @@ aliases: [Example Linear Algebra Done Right source]
 ---
 # Linear Algebra Done Right — example Source
 
-This illustrates a manually maintained Source record for the book named in
-the design discussion. A real record should identify the edition or Zotero
-item being used. No edition, page reference, or book excerpt is invented here.
+This illustrates a manually maintained Source record. Identify the edition
+or Zotero item being used in a real record; this example leaves those details
+unspecified and contains no book excerpts.
 
 Personal work belongs in [[examples/reading/reading-notes|a separate Note]].

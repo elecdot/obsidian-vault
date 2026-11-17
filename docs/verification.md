@@ -1,24 +1,21 @@
 # Verification
 
-Record observations with their date and environment. Documentation and
-configuration alone are not evidence of successful runtime behavior.
-[Tooling](tooling.md#checks-and-their-limits) describes the checks and their scope.
+This document records verification coverage and the limits of available
+runtime evidence. Documentation and configuration alone do not establish
+successful use. [Tooling](tooling.md#checks-and-their-limits) describes the
+checks and where to record routine results.
 
 ## Offline
 
-On 2026-11-10 in `/home/elecdot/new-vault`, all 19 behavioral tests passed;
-`npm run check` and `npm run audit` reported no errors or suggestions, and
-`npm run vault -- inventory` completed. The same baseline passed on 2026-10-04.
-Tests use temporary vaults outside personal content and remove their fixtures.
+Use `npm test`, `npm run check`, `npm run audit`, and
+`npm run vault -- inventory` for the [documented checks](tooling.md#checks-and-their-limits).
+Behavioral tests use temporary vaults outside personal content and remove
+their fixtures. A passing suite covers its tested cases; it does not rule
+out the [confirmed tool defects](design-questions.md#confirmed-tool-defects).
 
-On 2026-11-17, the documentation refactor preserved the executable registry
-byte for byte. All 19 tests passed and the content audit reported zero errors
-or suggestions. Support links and contracts were checked with `npm run check`;
-the desktop runtime was not exercised by this documentation change.
-
-At that checkpoint, live content consisted of Home, Maintenance, and the
-AI Systems entry. These checks do not establish real research usability;
-the [first-use assessment](first-use.md) remains to be performed.
+Offline checks establish structural behavior. They do not establish useful
+research writing or successful operation in the intended desktop vault.
+The [first-use assessment](first-use.md) exercises that real path.
 
 ## Obsidian
 
@@ -53,16 +50,12 @@ Controlled snapshot import and its ownership checks passed offline and
 synthetic native-app tests. **Live selected-item import is not verified and
 is not exposed as a working menu action.**
 
-On 2026-10-04, the attempted item was *SALS: Sparse attention in latent space
-for KV cache compression*. Zotero 9.0.6 was reachable; Better BibTeX 9.0.68
-responded after the author's restart. Earlier probes had reported an empty
-response and then HTTP 404 for JSON-RPC; the readiness recheck returned 200.
-
-The selected-item attempt failed with `Selected-item identity has an
-unsupported shape` while interpreting citation-key selection data, before
-item export, annotation retrieval, or Source writing. SALS was not imported.
-The raw selection mapping was not retained, so its shape and the cause cannot
-be inferred from that error alone.
+The attempted item was *SALS: Sparse attention in latent space for KV cache
+compression*, using Zotero 9.0.6 and Better BibTeX 9.0.68. Selection failed with
+`Selected-item identity has an unsupported shape` while interpreting
+citation-key selection data, before item export, annotation retrieval, or
+Source writing. SALS was not imported. The raw selection mapping was not
+retained, so its shape and the cause cannot be inferred from that error alone.
 
 The author stopped repeated attempts. Resume only when explicitly requested,
 using the actual selection mapping and exporter sample. The candidate remains

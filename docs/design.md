@@ -237,6 +237,9 @@ discussion before changing its expression.
 
 ## Launch Requirements
 
+The pre-use review focuses on definite design and text problems and unfinished
+setup prose. Uncertain design changes wait for evidence from actual use.
+
 Start regular use with a clear model, maintainable field contracts, usable
 creation and retrieval, and agent guidance that respects authorship.
 The [first-use task](first-use.md) tests one actual research question:
