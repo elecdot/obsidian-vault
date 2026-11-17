@@ -38,11 +38,10 @@ current contracts. New local skills must follow current authoritative specs.
   `write-better-english` skill. Resolve material uncertainty about meaning
   in the writing discussion.
 
-## Implementation and Design Maintenance
+## Design and Maintenance
 
-Q66 is approved: implement the initial setup and its verification. This is
-an independent Git repository. Commit completed, verified phases using
-Conventional Commits, preserving any concurrent author changes.
+This is an independent Git repository. Commit completed, verified phases
+using Conventional Commits, preserving concurrent author changes.
 
 Record newly confirmed decisions in their owning document during the
 discussion. Keep definitions in CONTEXT.md, workflow decisions in
@@ -51,9 +50,9 @@ and factual checks in docs/design-questions.md.
 
 Label proposals and unverified assumptions where they appear. Update the
 question record when a decision is resolved or its dependencies change.
-Use the accepted [document roles](docs/metadata.md#document-role) when reasoning
-about `kind`. Consult the open questions before extending the metadata contract
-or treating a proposed folder layout as an established convention.
+Use the [document roles](docs/metadata.md#document-role) when reasoning about
+`kind`. Keep proposed conventions and practice suggestions distinct from
+adopted rules; a discussion of a possible improvement is not its adoption.
 
 Work within the user's current request. Continue authorized documentation
 work while implementation choices remain under discussion.
@@ -61,9 +60,9 @@ work while implementation choices remain under discussion.
 When adding conventions or tooling, apply the
 [design scale](docs/design.md#design-scale): identify the writing or
 maintenance action it improves and design proportionate support for it.
-Preserve needed capabilities, rationale, and unresolved trade-offs when
-simplifying. Distinguish implementation alternatives from deferred expansion;
-use concrete note scenarios to resolve remaining choices.
+Preserve useful capabilities and rationale when simplifying. Use concrete
+note scenarios to distinguish design friction from developing writing and
+maintenance practices. Deferred possibilities are not an implementation backlog.
 
 ## Preserve Authorship and Purpose
 

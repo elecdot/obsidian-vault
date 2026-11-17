@@ -32,4 +32,4 @@ path:/^(inbox|knowledge|activities|domains|sources|journals)\// task-todo: -[man
 Maintain each action's checkbox in its original Note. For the shared inspector's
 standalone Markdown checklist scope, use `npm run vault -- tasks`.
 
-[[docs/refinement|Refinement workflow]] · [[docs/operations|Tool operations]]
+[[docs/operations#Refinement|Refinement workflow]] · [[docs/operations|Tool operations]]

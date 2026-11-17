@@ -1,443 +1,290 @@
 # Metadata Contract
 
-This document owns the accepted metadata meanings and types for content
-notes. It implements the meanings agreed through Q65 and the Q66 operational
-baseline. The marked registry below is consumed by the implemented creators
-and audits. Runtime evidence and remaining integration limits live in
-[Verification](verification.md).
-
-Model vocabulary lives in [CONTEXT.md](../CONTEXT.md); workflow rationale
-lives in [the design](design.md). Templates, imports, agent writers, views,
-and checks should use the same meanings.
+This document owns content-note field meanings, types, applicability, and
+ownership. The [marked registry](#executable-field-registry) is read by the
+creators and audits. Change meaning and mechanical definitions together.
+[CONTEXT](../CONTEXT.md) defines terms, [Design](design.md) owns workflows,
+and [Tooling](tooling.md) describes consumers and checks.
 
 ## Document Role
 
-`kind` is a Text property recording a content note's primary responsibility:
+`kind` is Text and records a content Note's primary responsibility:
 
-| Value | Primary responsibility |
+| Value | Responsibility |
 | --- | --- |
-| `note` | Preserve an explanation, thought, working record, or other ordinary writing |
-| `source` | Describe a Source and hold relevant source material or annotations |
-| `activity` | Describe an Activity and organize its entry points and useful progress information |
-| `domain` | Describe a Domain and organize its questions, concepts, and entry points |
+| `note` | An explanation, thought, working record, or other ordinary writing |
+| `source` | A record describing a Source and holding material or annotations |
+| `activity` | An Activity entry organizing relevant work and useful progress information |
+| `domain` | A Domain entry organizing questions, concepts, and routes |
 
-A developed explanation and a thought still being worked on both use
-`kind: note`. A Journal also uses this role; its writing form is represented
-separately. A Guide's organizing function does not introduce another kind.
-
-The creator or creation flow sets the role from the intended purpose.
-Moving a note or revising its explanation does not itself change that role.
+An ordinary Note keeps its role as its explanation develops or its location
+changes. Journals use `kind: note`. A Guide is an organizing function, not a
+separate kind. A Note cited as a Source keeps its primary role.
 
 ### Creation Baseline
 
-Standard template and agent creation flows supply `kind` automatically
-from the intended purpose. They can carry known context and provenance into
-optional relationships without requiring a sequence of classification prompts.
+Standard creators supply `kind` and required values, omitting unused optional
+fields. Readers tolerate omitted, null, or empty optional values; populated
+values must have their registered types. Empty required values are findings.
+Activity and Domain entries require `status`; ordinary Notes have no universal
+maturity state.
 
-A direct manual Capture may temporarily omit frontmatter in `inbox/`.
-General entry points and triage checks must still expose it. Establish its
-role when organizing it as a standard content note.
+Direct manual capture may temporarily omit frontmatter in `inbox/`. Keep it
+visible through general discovery and establish its role when organizing it
+as a standard content Note. Missing optional associations do not create tasks.
 
-Missing optional associations do not create tasks. Creators omit unused
-optional fields; readers tolerate omitted, null, or empty optional values.
-Populated values must have their registered type. Empty required fields are
-reported rather than silently given a lifecycle meaning.
-
-Activity and Domain entries require `status`; ordinary Notes do not receive
-a universal maturity state. Content scope is declared in the registry.
-Repository documents, templates, examples, and other support files do not
-require content-note metadata. Unexpected Markdown locations are surfaced
-for a scope decision.
+The registry declares content and support scope. Home and Maintenance are
+content; repository documents, templates, examples, configuration, and scripts
+need no content-note metadata. Markdown in `attachments/` is excluded from
+content classification. Unexpected Markdown locations are reported for a
+scope decision, not silently classified or ignored.
 
 ### Context at Creation
 
-Global quick capture does not infer relationships solely from the file
-currently open. A contextual creation action supplies its explicitly chosen
-Activity, Source, or Domain without another round of classification. It
-does not automatically copy all associations from the surrounding Note.
-Agent creation uses the same deliberate context from the request.
-
-A Capture may carry known relationships while it remains in `inbox/` for
-later disposition. Being related to an Activity does not mean that the
-material is already understood, organized, or selected for its authored Guide.
-When a relationship is uncertain, omit the structural value and preserve
-useful context in the writing instead of guessing.
+Context comes from the chosen action or explicit agent request. A contextual
+creator carries its selected Activity, Source, or Domain association; it does
+not copy all relationships from that entry or infer context from an unrelated
+open tab. A Capture may carry known associations while remaining in `inbox`.
+Omit uncertain structural values and preserve useful context in the writing.
+[Design](design.md#capture-and-refinement) owns the default choice of context.
 
 ## Writing Forms
 
-`format` is an optional Text property for ordinary `kind: note` content.
-Its initial formal values are:
+`format` is optional Text on `kind: note`:
 
-| Value | Meaning | Intended use |
-| --- | --- | --- |
-| `journal` | A date- or period-centered personal record | Journal creation, reopening, and chronological discovery |
-| `review` | Deliberate reflection over a period of learning or work | Weekly learning and monthly direction or organization reviews |
-| `guide` | An independent authored route through questions and related material | Finding explanatory entry points across contexts |
+| Value | Meaning and consumer |
+| --- | --- |
+| `journal` | A date- or period-centered personal record; creation and chronological discovery |
+| `review` | Deliberate reflection over a learning/work period; review entry and retrieval |
+| `guide` | An independent authored route through questions and material; explanatory navigation |
 
-The relevant creation flow supplies the value. Most explanations, reading
-records, and experiment Notes can omit `format`; the author need not choose
-a formal subtype before writing.
-
-The organizing purpose of a Domain or Activity entry is already expressed
-by its `kind`; it does not need `format: guide` as a second label. A Note
-may use headings, lists, or a recurring writing pattern without registering
-that pattern as a format. Templates and fragments need not correspond
-one-to-one with formal values.
+Most writing omits `format`. Activity and Domain entries already express their
+organizing role through `kind` and do not add `format: guide`. A prose pattern
+or template does not automatically require a registered form.
 
 ### Admission Rule for New Formats
 
-Q56 accepted the following admission rule. A new formal value must satisfy
-all of these conditions:
+A new formal value needs all four:
 
-1. **A named use.** Identify a recurring user action and its concrete
-   consumer: a retrieval view, creation flow, review step, or maintenance
-   operation. State what the author will do with the result. Merely wanting
-   a list of a newly invented category is not enough. An established need
-   or a concrete first-use scenario can supply the evidence; no arbitrary
-   note-count threshold is required.
-2. **A necessary distinction.** Explain why existing roles, relationships,
-   scoped queries, or a body heading do not serve that action adequately.
-   A different template layout alone does not require a format. The value
-   must describe a writing form, not a topic, context, maturity judgment,
-   or commitment to future work.
-3. **A usable boundary.** Give a short definition, an example, a near-miss
-   that does not qualify, and a rule for mixed Notes. The author and agent
-   should be able to assign it without guessing at the author's mastery.
-   When purposes cannot be distinguished usefully, retain the ordinary Note
-   rather than forcing a choice or splitting it merely for classification.
-4. **An owned contract.** Define who or which creation flow assigns it,
-   when its meaning needs review, and which writers, readers, and checks
-   depend on it. Record this beside the formal definition before making
-   shared tooling depend on the value.
+1. **A named use:** a user action and concrete retrieval, creation, review,
+   or maintenance consumer. An established need or a first-use scenario can
+   supply evidence; no arbitrary note count or new category alone justifies it.
+2. **A necessary distinction:** existing roles, associations, scoped queries,
+   or headings do not adequately serve that action. The value describes a
+   writing form, not a topic, context, maturity judgment, or future commitment.
+3. **A usable boundary:** definition, example, near-miss, and treatment of
+   mixed Notes. Assignment must not require guessing the author's mastery.
+   Keep ordinary Notes when the distinction does not help; do not split for
+   classification alone.
+4. **An owned contract:** who assigns it, when its meaning needs review,
+   and which writers, readers, and checks depend on it.
 
-For example, `experiment` would not qualify simply because several Notes
-contain commands or results. It could qualify if the author repeatedly needs
-to locate experiment records for comparison or reruns across Activities,
-existing associations cannot identify that set adequately, and the meaning
-and maintenance of an experiment record can be stated clearly.
-
-Try a writing pattern in the body, a fragment, or a scoped workflow first
-when its value is uncertain. Provisional-field support does not silently
-expand the formal `format` enum.
-
-If a format's consuming workflow disappears, reconsider the value. Retire
-it from new creation when appropriate, document treatment of existing uses,
-and update consumers and checks together. Retirement is a maintenance
-decision; it does not automatically delete properties or rewrite old Notes.
-
-### Registration Follow-up
-
-The author supports registration of formal contracts and dependent entry
-points in principle, subject to a design that limits maintenance cost and
-drift. This document currently owns field and format contracts.
-
-Q60's narrowed boundaries are accepted in principle: rules stay visible and
-editable, daily writing remains independent, and tool writes are controlled.
-This document is the current registration home for adopted fields and formats.
-The [tooling guidance](tooling.md) retains registration and automation as
-intended capabilities, with a scope tied to useful writing and maintenance.
-
-Where creation and audit need the same mechanical facts, share a small
-readable definition. The [marked registry](#executable-field-registry) is now
-read by the core shared between the command-line and Obsidian adapters.
-Native property settings and Base scope/lifecycle coverage are checked for
-agreement. Semantics remain in this document; no generator overwrites it.
+For example, commands and results alone do not justify `experiment`. A
+recurring need to find comparable experiment records across Activities might,
+if existing associations are insufficient and the boundary is clear.
+Try a body pattern or fragment when the value is uncertain. Provisional-field
+support does not expand the formal `format` values. If a consumer disappears,
+reconsider new creation and existing uses together; retirement does not
+automatically delete properties or rewrite Notes.
 
 ## Relationships
 
-The following properties are optional Lists:
+The following optional properties are Lists, including for a single value:
 
-| Property | Meaning | Main use |
-| --- | --- | --- |
-| `domains` | Domains to which the note contributes | Domain entry points and cross-domain discovery |
-| `activities` | Learning or work Activities associated with the note | Activity organization and later return |
-| `sources` | Materials the note uses or cites | Provenance and continued reading |
+| Property | Meaning |
+| --- | --- |
+| `domains` | Domains to which the Note contributes |
+| `activities` | Learning or work Activities associated with the Note |
+| `sources` | Materials the Note uses or cites |
 
-Each may contain more than one reference. Use a list even when there is
-only one value. A relationship can be omitted while it is unknown or
-irrelevant; the note must remain discoverable through general entry points.
-
-These relationships are independent and can coexist on the same Note.
-A Note may explicitly belong to an Activity context and contribute directly
-to one or more Domains, while also citing Sources. Its `domains` need not
-copy or match the Domains of its Activities.
-
-For example, with both target entries already present:
+They are independent and may coexist. A Note's Domain associations need not
+copy or match those of its Activities. For example, with existing targets:
 
 ```yaml
 kind: note
 activities:
-  - "[[activities/kernel-paper-reproduction/introduction]]"
+  - "[[activities/kernel-study/introduction]]"
 domains:
   - "[[domains/ai-systems]]"
 ```
 
-The Note appears in both direct relationship views. Omitting `domains`
-leaves it outside a Domain's direct association view; the Activity route,
-authored Guide links, and ordinary backlinks can still provide access.
-An Activity's Domain association alone does not supply the Note's direct
-Domain membership.
+This Note appears in both direct association views. Without its own `domains`
+it remains reachable through the Activity rather than the Domain's direct
+Note list. A field may be omitted while unknown or irrelevant.
 
-Domain and Activity references identify their respective entries. A `sources`
-reference may point to a Source record, an existing personal Note used as
-direct input or evidence, or a direct source location. A cited Note keeps its
-primary `kind`; it does not need to become `kind: source` or gain a duplicate
-Source wrapper merely because another Note draws on it.
+Domain and Activity targets identify their respective entries in live content
+scope. A `sources` target may be a Source record, an existing personal Note
+used as direct input or evidence, or an external locator. A cited personal
+Note needs no duplicate Source wrapper. Source-record views filter `kind: source`;
+they do not treat every cited Note as a Source-record file.
 
-Keep merely related material in body links. A source relationship preserves
-the basis of the writing; it does not establish that a cited claim is correct
-or understood. A bibliography or Source-record view should filter `kind: source`
-explicitly rather than assume every internal `sources` target has that role.
-Structural validation must allow the accepted personal-Note targets while
-preserving the existing-target requirement.
+Supported external locators are HTTP(S) and Zotero URLs. A local external
+workspace path can be recorded in the body; it is not a supported `sources`
+property value. The offline resolver accepts explicit paths and unambiguous
+short targets, reporting ambiguous ones for review; Obsidian uses its native
+resolver. A source link preserves provenance without proving its claim.
 
-Initial external locators use HTTP(S) or Zotero URLs. Offline checks resolve
-explicit paths and unambiguous short links conservatively; ambiguous targets
-need qualification or native resolution. The Obsidian adapter uses the app's
-resolver. Organizational entries must be in content scope; examples cannot
-become live context accidentally. The [audit boundary](#audit-and-field-evolution)
-governs validation.
-
-Body links continue to express the local meaning of a passage. Relationship
-properties record the main associations needed for organization; they do
-not need to repeat every body link.
+Keep merely related material and the local meaning of a citation in body
+links. Relationship properties need not repeat every body link.
 
 ### Incoming Discovery and Authored Guides
 
-Maintain a relationship on the referring Note, including a Capture when
-the relationship is known. The target entry can discover it through incoming
-links or a derived view; creation does not need to append a member link to
-the entry's authored body.
-
-Passive discovery describes this direction of maintenance. It does not
-change the meaning of the relationship or introduce a weaker relationship
-type. A broad backlink may be only a mention; a view for Activity association
-must inspect `activities`, and equivalent views use their respective fields.
-
-Guides remain selective authored routes. Their prose and chosen links change
-when doing actual organizing work, rather than whenever a related Capture
-is created. The complete derived view must still expose relevant Captures
-outside that selection. Its presentation remains to be implemented.
+Maintain associations on the referring Note. Derived views provide access
+without appending every new member to an entry's authored Guide. Typed views
+inspect their specific relationship field; a broad backlink may be only a
+mention. Guides select and explain routes rather than duplicate membership.
+Displaying a Base does not rewrite a Guide, though its table can edit metadata.
 
 ### Existing Targets and Exploratory Links
 
-Internal references in `domains`, `activities`, and `sources` point to
-existing notes. An entry can be short and still developing; its existence
-provides a stable destination for navigation.
-
-Omit a structural relationship while its target or meaning is not ready.
-Do not create a refinement task solely because such a field is absent.
-Direct external Source references do not require a local Source note.
-
-Body links may name concepts whose notes have not been created. They can
-preserve a possible semantic connection without making it a structural
-dependency or a commitment to create the target.
-
-An unresolved internal structural reference violates this contract and is
-an audit error. Exploratory body links do not have the same requirement.
-Concrete detection and reference-repair procedures remain to be implemented.
+Internal structural references point to existing Notes. Omit a relationship
+while its target or meaning is not ready; that absence creates no task.
+Direct external Source locators need no local Source record. Exploratory body
+links may point to unwritten concepts without committing to create them.
+Missing internal structural targets are audit errors; exploratory body links
+have a different purpose. [Operations](operations.md#maintenance-and-rename)
+describes reference-aware moves and renames.
 
 ### Assignment and Ownership
 
-- The author leads Domain associations; agents can propose or help maintain
-  them in the context of the requested work.
-- A known creation context can supply an Activity association. Additional
-  associations should reflect actual use.
-- Imports and explicit citations can supply Source references. Preserve
-  provenance when copying or extracting material.
+The author leads Domain associations; agents can propose or maintain them
+within the requested work. Chosen creation context can supply an Activity
+association. Imports and explicit citations can supply Source references.
+Preserve provenance when copying or extracting material.
 
 ### Obsidian Representation
 
-Use the same type for a property name throughout the vault. Internal links
-in YAML lists must be quoted, for example `- "[[ai-systems]]"`.
-Keep the core contract flat so it can be edited through Obsidian Properties.
-See [Properties](https://obsidian.md/help/properties).
+Keep properties flat, with one configured type per name. Quote wikilinks in
+YAML Lists, as in the example above. This supports native Properties editing;
+see [Properties](https://obsidian.md/help/properties).
 
 ## Generated Source Files
 
-A Zotero-generated Source file is owned by the import process as a whole,
-including its frontmatter. Every value written there must be reproducible
-from its source data and the controlled import template or configuration.
+Zotero-generated Source files are importer-owned as whole files, including
+frontmatter. Every generated value must be reproducible from source data and
+controlled import configuration. Keep personal classification, interpretation,
+and reading in authored Notes that link or embed the material. Local changes
+to generated properties or prose are not durable across re-import.
 
-Maintain personal classification, interpretations, and reading content in
-authored Notes or Guides. Those notes can refer to the imported Source and
-bring it into their Domain or Activity context.
+Ownership is file-specific, including in [Source contexts](design.md#source-contexts).
+It does not extend to manually maintained Source records or nearby personal
+reading. Importers and audits distinguish designated managed files and assets.
 
-Generated aliases or bibliographic properties may come from source data;
-local manual additions must not be relied on as durable state in a
-regenerated file. This ownership rule applies to Zotero-generated files,
-not to every manually maintained note with `kind: source`.
+The snapshot profile uses `managed-by: zotero`, a canonical synced,
+library-scoped item URI in `source-id`, and a desktop locator in `zotero-uri`.
+Its stable path derives from library scope and item key, not title or citation
+key. Audit reports moved managed Sources; import refuses unowned or mismatched
+destinations. Local-only identity needs a separately verified profile.
 
-A Source context can also contain authored reading Notes. Sharing a folder
-does not make those Notes importer-owned. Import and audit tools must
-identify the designated generated files and assets rather than treating
-the entire `sources/` tree as generated or exempt from authored-note checks.
-See [Source contexts](design.md#source-contexts).
-
-The snapshot profile writes `managed-by: zotero`, `source-id` (the canonical
-synced, library-scoped item URI), and `zotero-uri` (the desktop selection
-location). The stable path derives from the same identity. Audit reports moved
-managed Sources, and import refuses unowned or mismatched destinations.
-Local-only identities need a separately verified profile.
-
-Optional reproducible metadata includes `authors`, `year`, `citation-key`,
-`url`, and `zotero-tags`. The year is Text; imported tags are not automatically
-copied to native `tags`. This profile does not imply live selection transport
-has passed; see [the recorded limit](verification.md#source-integration).
+Optional reproducible fields are `authors`, `year`, `citation-key`, `url`,
+and `zotero-tags`. `authors` and `zotero-tags` are Lists; the others are Text,
+including `year`. Zotero tags are not automatically copied into native `tags`.
+The profile does not establish [live-transport success](verification.md#source-integration).
 
 ## Lifecycle Semantics
 
-`status` is a Text property with values determined by `kind`:
+`status` is required Text on Activity and Domain entries, with values by kind:
 
-| Applicable kind | Value | Meaning |
+| Kind | Value | Meaning |
 | --- | --- | --- |
-| `activity` | `planned` | Chosen for future learning or work, but not yet started |
-| `activity` | `active` | Part of the work the author is pursuing |
+| `activity` | `planned` | Chosen work that has not started |
+| `activity` | `active` | Work the author is pursuing |
 | `activity` | `paused` | Intentionally suspended, with possible resumption |
 | `activity` | `completed` | Its intended completion condition has been met |
 | `activity` | `abandoned` | The author has decided to stop pursuing it |
 | `domain` | `active` | Retained as an accepted organizing entry |
 | `domain` | `retired` | Explicitly withdrawn or replaced as an organizing entry |
 
-A planned Activity can have an entry and receive contextual Captures before
-joining the current-work view. Mark it `active` when the author explicitly
-starts pursuing it. Merely creating the entry, editing its metadata, or adding
-related material does not automatically start the Activity. A possibility
-the author has not chosen to undertake can remain a Capture.
+Activity creation defaults to `planned`; an explicit start or work already
+underway can use `active`. Creating an entry, adding material, or editing
+metadata does not itself start the Activity. An unchosen possibility can
+remain a Capture. `paused` does not mean unstarted.
 
-Creation for a chosen future Activity uses `planned`; an explicit request
-to start or record work already underway can use `active`. Keep `paused`
-for suspended work rather than using it to mean not yet started.
-
-A Domain remains `active` regardless of how recently it received attention.
-Retirement is a deliberate decision. Ordinary `note` content does not
-receive a universal maturity or completion status.
-
-These decisions affect entry points and views while retaining file
-locations. Changes to an Activity or Domain do not automatically change the
-meaning or validity of its associated Notes.
-
-Preserve existing references to a retired Domain. Prefer active Domains
-when making new structural associations. Reorganization may change those
-associations after their meaning has been reviewed; retirement alone does
-not rewrite them.
-
-Creation exposes the planned/active choice for an Activity; missing required
-state is a structural finding. Retirement reasons and successor routes remain
-authored prose without another mandatory field set.
+A Domain remains active regardless of recent attention. Preserve retired
+entries and existing references; prefer active Domains for new associations.
+Reasons and successors are authored prose, not extra required fields.
+Lifecycle changes affect views while keeping paths and associated Notes'
+independent meanings. Ordinary Notes do not receive these lifecycle values.
 
 ## Dates and Periods
 
-`date` is the first day of the represented period, stored as a real
-`YYYY-MM-DD` Date. `period` is Text with values `day`, `week`, or `month`.
-Journal and review formats require both. If either is used on another ordinary
-Note, supply both consistently; a writing cadence is not enforced.
+`date` is a real `YYYY-MM-DD` Date for the first day of the represented period.
+`period` is Text: `day`, `week`, or `month`. Journal and review formats require
+both. If either is used on another ordinary Note, supply both consistently.
+They describe the represented period, not file creation or modification time.
 
-Creators use calendar months and Monday-based ISO weeks, with the ISO week-year
-in weekly filenames. They use the registry's author timezone for today's
-default and accept an explicit represented date. These are not file creation
-timestamps and do not impose universal created/updated properties.
+Creators use calendar months, Monday-based ISO weeks, the ISO week-year for
+weekly paths, and the registry's author timezone for today's default. Explicit
+represented dates are allowed. [Period examples](operations.md#periods) show
+paths and defaults; they do not restrict other valid form/period combinations
+or impose a writing cadence.
 
 ## Native Properties
 
-Preserve Obsidian's native meanings and plural names:
-
-| Property | YAML shape | Native purpose |
+| Property | Type | Purpose |
 | --- | --- | --- |
-| `tags` | List | Native tags, with the Tags property type in Obsidian |
-| `aliases` | List | Alternative names used in discovery and link completion |
+| `tags` | List | Optional topical keywords with Obsidian's native Tags type |
+| `aliases` | List | Readable alternative names and variants for discovery |
 | `cssclasses` | List | Presentation classes |
 
-These properties remain available where useful. Their inclusion in a
-particular creation flow depends on its purpose.
+Tags and Domain associations need not mirror each other. Refinement and task
+intent use [their own operations](operations.md#refinement). Imported
+`zotero-tags` stay separate unless an explicit maintained mapping is adopted.
+Use `file.tags` or `file.hasTag(...)` for both body and frontmatter tags;
+`note.tags` covers only frontmatter. See [Tags](https://obsidian.md/help/tags)
+and [Bases properties](https://obsidian.md/help/bases/syntax#File%20properties).
 
-Use `tags` for optional topical keywords. Domain relationships and tags
-do not need to mirror one another. Review, refinement, and task intentions
-will use a separately designed workflow convention.
-
-Keep topical keywords useful and intentional. The snapshot importer preserves
-Zotero tags in `zotero-tags` rather than automatically mixing them into native
-`tags`; any future mapping needs an explicit purpose and maintained rule.
-
-Tags can occur in frontmatter or in the body. A view intended to include
-all native tags should use `file.tags` or `file.hasTag(...)`; `note.tags`
-represents only the frontmatter property. See
-[Tags](https://obsidian.md/help/tags) and
-[Bases file properties](https://obsidian.md/help/bases/syntax#File%20properties).
-
-Aliases supplement an actual link target and retain meaningful readable
-names and variants for discovery. `cssclasses` affects presentation and
-carries no content-role or relationship meaning.
-
-A custom `title` property does not acquire automatic synchronization with
-the filename or body H1. It is not part of the default naming contract.
+Aliases do not change identity; `cssclasses` carries no semantic role.
+A custom `title` is ordinary metadata without filename or H1 synchronization
+and is not part of the default contract.
 
 ## Names and Headings
 
-Create ordinary authored notes from one readable English name. Derive the
-initial filename according to its scope and use the name as the initial
-H1. Add the readable name and meaningful variants to `aliases` when useful
-for discovery and natural-language linking.
+Ordinary content filenames use readable lowercase English words separated
+by hyphens. Derive the initial filename and H1 from one readable name; add
+useful aliases. Independently reusable Notes get descriptive names; local
+entries may use names such as `introduction.md` with path-qualified references.
+No universal immutable ID or globally unique basename is required.
 
-Later changes to heading wording do not automatically rename the file.
-A deliberate rename follows the reference-maintenance procedure.
-Aliases serve name compatibility; the contract does not require permanent
-equality between the H1 and the first alias.
-
-Date-based Journals use the period convention in [Operations](operations.md).
-Generated Source records use library-scoped identity rather than mutable
-titles or citation keys.
+Use unambiguous wikilink targets for internal content links, with display text
+as needed. Generated links use known paths; native completion may supply a
+shorter resolving target. Handwritten path abbreviations need verification.
+Later H1 edits do not rename files or require matching the first alias.
+Intentional moves include [reference maintenance](operations.md#maintenance-and-rename).
+Dated names follow period rules; managed Source names follow external identity.
 
 ### Quick-capture Names
 
-Quick capture accepts an optional meaningful English name. When none is
-supplied, use a provisional English-prefixed timestamp filename, such as
-`capture-2026-10-04-213045.md`. This is an accepted exception to requiring a
-readable subject name before creating an ordinary Note.
-
-The example is a naming pattern, not an event record. Creation must handle
-collisions without overwriting files. Mixed-language writing can be retained
-immediately; naming does not need to precede capturing the thought.
-
-When organizing a Capture selected for long-term retention, give it a useful
-English name and maintain its references during the rename. The provisional
-filename does not introduce a separate immutable identifier, title property,
-or permanent synchronization between filename and heading.
+Capture names are optional. Without a name, creators use a provisional
+English-prefixed timestamp such as `capture-2026-10-04-213045.md`, avoiding
+collisions without overwriting. This illustrative pattern permits immediate
+mixed-language capture. When organizing a retained Capture, give it a useful
+English name and maintain its references; the provisional name introduces no
+new ID field or permanent title synchronization.
 
 ## Audit and Field Evolution
 
-Default audits are read-only. They report violations of established
-structural contracts as errors: for example, malformed frontmatter, a wrong
-type for a governed field, an invalid role-specific state, or an unresolved
-internal structural reference. The exact check inventory still needs to be
-implemented and verified.
+Default audits report without editing. Structural errors include malformed
+metadata, invalid governed types/values, missing required values, and missing
+internal structural targets. [Tooling](tooling.md#checks-and-their-limits)
+describes the implemented check scope and its limits.
 
-Semantic quality concerns and proposed conventions are review suggestions.
-An audit does not infer that the author understands a claim or that a Note
-must be refined. Missing optional relationships, permitted unclassified
-Captures in `inbox/`, and exploratory body links are not structural errors.
+Semantic quality and proposed conventions are review suggestions. Valid raw
+Captures, optional omissions, and exploratory body links are not errors.
+A new provisional property may be tried before it has a formal contract;
+preserve it and surface undefined meaning or ownership for review. It cannot
+silently redefine a governed field or conflict with its vault-wide type.
 
-The author may try a new property before giving it a formal contract.
-Preserve provisional fields and surface their undefined meaning or
-maintenance responsibility as review suggestions. They cannot silently
-redefine an established property or conflict with its vault-wide type.
-
-Define a field before incorporating it into a shared template, making a
-view or script depend on it, or adopting it for long-term use. Its contract
-records meaning, type, applicability, accepted values or empty states,
-maintenance responsibility, and validation behavior. Add the definition to
-this contract and update the relevant writers, readers, and checks together.
-
-An audit finding does not authorize an edit or removal. Repairs belong to
-the requested editing or maintenance work; uncertainty about meaning stays
-visible for discussion. Provisional properties do not create automatic Tasks.
+Before shared tooling or long-term conventions depend on a field, define
+meaning, type, applicability, values and empty states, ownership, and checks.
+Update its consumers with the contract. Findings do not authorize repairs,
+deletions, or tasks; those follow the requested work and adopted intent.
 
 ## Executable Field Registry
 
-This authored block is the mechanical source read by creators and audits.
-The surrounding prose owns meaning and judgment. Change the relevant meaning
-and this definition together; no generator overwrites this document.
-Dates describe the selected period, and optional empty values are tolerated.
+This authored block supplies mechanical definitions to creators and audits.
+The surrounding prose owns their meaning. Its path and markers are part of
+the current reader interface; there is no generator overwriting this file.
 
 <!-- vault-contract:start -->
 ```json
@@ -654,11 +501,3 @@ Dates describe the selected period, and optional empty values are tolerated.
 }
 ```
 <!-- vault-contract:end -->
-
-## Implementation Follow-up
-
-Core scope, empty values, period fields, lifecycle requirements, and creation
-rules are implemented. Remaining integration work is recorded in
-[Verification](verification.md), including the stopped live Zotero selection
-investigation. Future locator/profile extensions need a defined consumer and
-checks; their absence does not make ordinary writing invalid.

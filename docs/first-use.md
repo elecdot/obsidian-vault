@@ -1,8 +1,8 @@
 # First Use: MoE Expert Load Balancing Research
 
-On 2026-11-10, the author selected the existing **First Try** research
-project as the vault's first real use case. It replaces the hypothetical
-paper-reproduction and book-reading walkthroughs as the readiness scenario.
+The author selected the existing **First Try** research project as the
+vault's first real use case. It replaces the hypothetical walkthroughs
+as the readiness scenario.
 The [illustrative files](../examples/README.md) remain examples, outside live
 content scope.
 
@@ -19,11 +19,9 @@ experimental paper, and reproducible materials about expert replication
 and placement in MoE inference, while developing the author's research
 understanding.
 
-The charter inspected on 2026-11-10 records G0 as complete and the G1 core
-protocol as frozen, with formal experiments not yet started. This describes
-that document's contents, not an independent verification of research
-progress. Consult the charter for current scope, constraints, decisions,
-and execution state.
+Consult the charter and its linked project records for current scope,
+constraints, decisions, and execution state; this document does not track
+research progress.
 
 ## Agreed Use and First Assessment
 

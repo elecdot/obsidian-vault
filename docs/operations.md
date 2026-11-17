@@ -1,56 +1,85 @@
 # Using the Vault
 
-The vault remains ordinary Markdown. Templates fill a new Note once; changing
-a template does not rewrite existing writing. The [metadata contract](metadata.md)
-and its marked registry are readable source files, not generated output.
+Read and write in Obsidian. Use ordinary search, links, and file browsing
+alongside the helpers. [Design](design.md) explains workflow choices;
+[Metadata](metadata.md) owns field semantics.
+
+## Choose Where to Write
+
+Continue an existing relevant Note when possible. For reading, use its chosen
+Source or Activity context. If context or placement is undecided, capture in
+`inbox/`; a quick-capture name is optional. An intentionally independent
+explanation can start in `knowledge/`. These defaults do not require moving
+every retained idea out of its original context.
+
+Search or enter through [Home](../home.md), a Domain, or an Activity. A Note
+with only an Activity association is reached through that Activity. The
+[Maintenance entry](../maintenance.md) includes Captures and unassociated
+writing; a legal raw Capture without `kind` does not appear in Home's default
+Recent writing view, but is present in All content and Maintenance Captures.
 
 ## Obsidian Setup
 
-Open this repository folder as a separate vault. Install Templater from the
-community plugin directory and enable it. The committed configuration sets:
+Open this repository folder as a separate vault. Install and enable Templater
+from the community plugin directory. The maintained configuration uses:
 
-- Template commands: `templates/commands`.
-- User scripts: `scripts/templater` (desktop Obsidian).
-- No automatic execution on file creation, folder rules, or startup.
-- Native Daily Notes: `journals/daily`, format `YYYY/YYYY-MM-DD`, template
-  `templates/daily`. Core Daily Notes opens an existing day without replacing it.
-- New manual Notes go to `inbox`; attachments go to the containing folder's
-  `attachments/`; native internal-link updates are enabled.
+- Commands in `templates/commands` and desktop user scripts in `scripts/templater`.
+- No script autorun on startup or file creation, and no folder rules.
+- Native Daily Notes in `journals/daily`, format `YYYY/YYYY-MM-DD`, using `templates/daily`.
+- New manual Notes in `inbox`, attachments in the containing folder's
+  `attachments/`, and native internal-link updates enabled.
 
-Start from [[home]]. In an existing Markdown Note, use the command palette:
+From an existing Markdown Note, use the command palette:
 
 | Command | Use |
 | --- | --- |
-| Templater: Insert vault-menu | Creation, reading, periods, inspection, rename, and selected snapshot import |
 | Templater: Insert capture | Quick capture; blank name is allowed |
-| Templater: Insert inspect | Read-only findings, refinement candidates, and open standalone checklist items |
+| Templater: Insert vault-menu | Contextual writing, reading, periods, entries, inspection, rename, and snapshot import |
+| Templater: Insert inspect | Read-only findings, refinement candidates, and standalone checklist items |
 
-The menu shortcut is Ctrl/Cmd+Shift+N; capture is Ctrl/Cmd+Shift+C. Use the
-**Insert** commands, not Templater's separate **Create from template** commands.
-The launcher preserves selected text and opens the destination after template
-execution finishes. Newly authored Notes open for editing after their heading;
-imported material opens for reading. Its supported insert flow cancels before creating files.
-Using Create from template may leave Templater's own initial draft; the helper
-refuses that mode rather than repurpose an unknown file.
+The current menu actions remain available for observation. Menu and capture
+shortcuts are Ctrl/Cmd+Shift+N and Ctrl/Cmd+Shift+C. Other menu actions are
+choices within the menu, not separately registered palette commands.
 
-Create a Domain, Activity, or Source entry before selecting it as creation
-context. A context is deliberate; unrelated Notes open in another tab do not
-supply inherited relationships. Add other meaningful relationships through
-Properties or the command-line options below.
+Use **Insert**, not Templater's **Create from template**. The supported flow
+preserves selected text, cancels before creating files, and opens new authored
+Notes for editing after the heading. Imported material opens for reading.
+Create from template may leave Templater's own draft; the helper refuses
+that mode rather than repurpose an unknown file.
 
-Native Bases supply discovery. The inspection command supplies structural
-checks and scoped body inspection. Base tables are editable Obsidian views;
-their display itself does not rewrite the authored Guide.
+Create an entry before selecting it as structural context. The selected
+context supplies placement and its association, without inheriting unrelated
+relationships from open tabs. Other associations can be added in Properties.
+Base tables can edit properties; their display does not rewrite authored Guides.
+
+## Periods
+
+Use native Daily Notes or the menu's day/week/month actions. Existing entries
+reopen without replacing writing. Choose an explicit represented date when
+needed; missing periods and unfinished tasks are not automatically backfilled.
+
+These illustrative defaults all correspond to the date 2027-01-01:
+
+| Entry | Path | Values beyond `kind: note` |
+| --- | --- | --- |
+| Daily | `journals/daily/2027/2027-01-01.md` | `format: journal`, `period: day`, `date: 2027-01-01` |
+| Weekly | `journals/weekly/2026/2026-W53.md` | `format: review`, `period: week`, `date: 2026-12-28` |
+| Monthly | `journals/monthly/2027/2027-01.md` | `format: review`, `period: month`, `date: 2027-01-01` |
+
+Weeks start Monday; their folder and filename use the ISO week-year, which
+can differ from the calendar year. The registry timezone is Asia/Shanghai.
+`date` records the period's first day. Other valid form/period combinations
+are allowed; these defaults impose no review cadence.
 
 ## Command-line Operations
 
-Install the locked YAML dependency once with `npm ci` in this repository.
-Node 22 or later is required. Helpers select the repository containing their
-scripts by default; use `--root PATH` deliberately when operating on a copy.
+Use Node 22 or later and run `npm ci` once for the locked YAML dependency.
+Helpers select the repository containing their scripts; `--root PATH`
+explicitly targets another copy.
 
 ```sh
 npm run vault -- capture
-npm run vault -- activity --name "Kernel study"
+npm run vault -- activity --name "Kernel study" --status active
 npm run vault -- note --name "Run comparison" --context activities/kernel-study/introduction.md
 npm run vault -- note --name "Independent explanation" --domain domains/ai-systems.md --source sources/example/source.md --dry-run
 npm run vault -- reading --context sources/example/source.md
@@ -59,81 +88,109 @@ npm run audit
 npm run vault -- candidates
 npm run vault -- tasks
 npm run vault -- inventory
-npm test
-npm run check
 ```
 
-These are command examples, not a claim those example targets exist. All
-structural targets must exist before creation. Repeat `--domain`, `--activity`,
-or `--source` for multiple independent associations. `--context` chooses
-placement and one association; relationship-only options do not change placement.
-Use `--body-file PATH` to supply a draft without shell quoting its content.
+These are command examples, not existing research records. Referenced entries
+must already exist. Repeat `--domain`, `--activity`, or `--source` for multiple
+associations. `--context` chooses placement and one association; the other
+relationship options do not change placement. Use `--body-file PATH` for a
+draft and `--dry-run` to preview creation.
 
-Creation prints the path or a read-only preview. A period command reopens a
-matching existing record; ordinary-name collisions fail without replacement.
-Reading returns an existing related personal Note, offers candidate paths if
-several exist, or creates an initial reading Note. `--name` explicitly creates
-another. Audits return exit code 1 for structural errors and leave files alone.
+Ordinary-name collisions fail without replacement. Reading returns existing
+related personal writing, offers candidates when several exist, or creates
+a Note when needed; `--name` explicitly creates another. Periods reopen.
+Audits return exit code 1 for structural errors and leave files unchanged.
+Ambiguous offline links are reported for review; the native adapter resolves
+through Obsidian. Neither result establishes the author's understanding.
 
-Offline link resolution is conservative: ambiguous short targets are reported
-for review rather than silently choosing one. In Obsidian, the adapter uses
-the app's resolver. Neither audit proves the author's understanding.
+## Refinement
+
+Mark an adopted candidate near its passage in an authored Note:
+
+```markdown
+> [!refine] Explain the boundary
+> The example above seems to depend on an unstated assumption; explaining it could help later reuse.
+```
+
+State what may be worth developing and why. Keep the marker outside quoted
+material and code; include a source route when the passage is elsewhere.
+For generated Source material, put the candidate in a separate authored Note
+that references it. Agent suggestions enter Notes only when adopted or when
+recording them was explicitly requested.
+
+Use Maintenance, native Search, or the inspector to return to candidates.
+The marker in the original Note is the maintained record; the discovery view
+is not a second manual list. Include personal reading under `sources/` while
+excluding managed Sources, templates, docs, examples, and generated reports.
+Native Search can match quoted examples; the inspector excludes code,
+comments, nested quotations, and managed material. Revisit the actual passage
+before interpreting a match. Bases handles metadata, not these body markers.
+
+Choose candidates relevant to current work. Improve the existing Note,
+develop an independently useful explanation, retain the marker, or remove it
+when no longer useful. After development, a result link or short explanation
+can preserve the connection. Candidates impose no deadline or empty-queue
+requirement. An adopted action can become a Task with one completion record.
 
 ## Source Import
 
-The controlled importer accepts one explicit item snapshot with a stable
-synced Zotero URI, a title, and available creators, tags, notes, and annotations.
-Use Templater's menu to paste the JSON, or:
+The controlled importer takes one explicit JSON snapshot with a stable synced
+Zotero URI, title, and available creators, tags, notes, and annotations.
+Paste it through the menu or use:
 
 ```sh
 npm run vault -- import-zotero --input /path/to/selected-item.json --dry-run
 npm run vault -- import-zotero --input /path/to/selected-item.json
 ```
 
-It writes `sources/zotero-<users-or-groups>-<library-id>-<item-key>/source.md`.
-The URI's library scope and key determine the location. A changed title or
-citation key changes reproducible metadata, not the path. Re-import requires
-matching `managed-by: zotero` and `source-id`; an unowned target is refused.
-Personal reading files are never part of that write. Numbered annotation
-headings are display structure and can change on re-import; use an annotation's
-Zotero locator for a precise citation when one is available.
+Output is `sources/zotero-<users-or-groups>-<library-id>-<item-key>/source.md`.
+Re-import requires matching `managed-by` and `source-id` and preserves personal
+reading. [Metadata](metadata.md#generated-source-files) defines ownership and
+identity. Unknown/local-only identities are refused; manual Source records
+and direct citations remain possible. Originals stay in Zotero. Numbered
+annotation headings can change on import; prefer a precise Zotero locator.
 
-Zotero tags are retained as `zotero-tags`, not automatically copied into
-native `tags`. Zotero comments remain labelled as such. Unknown or local-only
-identities are rejected until a portable profile is established; a manual
-Source record remains possible. An unsynced library is not silently assigned
-a made-up stable identity. Original documents remain in Zotero.
-
-A direct selection adapter is retained in `scripts/zotero-transport.cjs`,
-but is not exposed as a working menu action. Live verification stopped at an
-unsupported selection response before any Source write, and the author asked
-to retain the findings rather than keep retrying. The snapshot route remains
-available. See [verification](verification.md) for the precise evidence and
-the boundary for resuming that integration later.
+Live selection is stopped and is not a working menu action. Its failure
+preceded any Source write; resume only on an explicit integration request
+with actual selection/export samples. See [Verification](verification.md#source-integration).
 
 ## Maintenance and Rename
 
-For an intentional move or rename, use the helper menu, the Obsidian file
-explorer, or native CLI with an explicit vault and exact path. Check the
-target vault first. FileManager/native rename uses Obsidian's link-update
-setting; a shell rename does not offer that assurance.
+Use the helper menu, native file explorer, or native CLI with an explicit
+vault and exact path for moves. Confirm the target vault first:
 
 ```sh
 obsidian vault=new-vault vault info=path
 obsidian vault=new-vault move path=inbox/example.md to=knowledge/example.md
 ```
 
-The helper refuses managed Source renames because their locations follow
-import identity. Source retirement/migration needs an explicit maintenance
-operation, not a normal personal-Note rename.
+Native rename follows Obsidian's link-update setting; a shell rename has no
+such assurance. Check affected references. Managed Source renames are refused
+by the helper because their paths follow import identity; migration requires
+an explicit operation. References maintained in other repositories require
+separate attention when a linked vault path changes.
 
-Review findings where useful. Preserve provisional fields while deciding
-their purpose, keep valid historical references to retired Domains, and
-adopt refinement suggestions deliberately. The inspector recognizes standalone
-root-level callouts and checklist items outside code and comments; it does not
-infer author intent from every Markdown quotation or embedded document.
+For tool or convention changes, follow [Tooling](tooling.md#change-a-convention).
+Use `npm test`, `npm run check`, and `npm run audit` as appropriate to the change.
+These are maintenance checks, not prerequisites for ordinary writing.
 
-When changing a shared convention, update its semantic explanation and marked
-registry, then run tests/checks and inspect affected templates/views. Custom
-tool failures do not prevent manual writing. See [primary references](references.md)
-and [verification](verification.md) for implementation evidence and limits.
+## Git and File Coverage
+
+The intended approach is local Git history plus a GitHub copy for notes and
+core configuration. This checkout had no configured remote when inspected on
+2026-11-17; its GitHub backup status is unverified. Configuration and push
+behavior in other copies have not been checked.
+
+Git history covers committed files; a remote copy covers the commits pushed
+to it. Untracked, ignored, and uncommitted material is outside that committed
+copy. Use `git status --short`, `git ls-files`, and `git remote` to inspect
+coverage when setting up or changing the arrangement.
+
+Core `.obsidian` settings are tracked. [Ignore rules](../.gitignore) exclude
+workspace state, caches, trash, dependencies, and plugin runtime files.
+A fresh environment installs Templater; CLI dependencies use `npm ci`.
+Vault history does not include original documents kept outside it in Zotero.
+
+Obsidian remains the primary reader, and no recurring restore exercise is
+required. A future device setup can establish the normal clone, dependency,
+and plugin setup path when it is actually needed.

@@ -1,91 +1,43 @@
 # Personal Knowledge Vault
 
-A workspace for developing personal understanding, organizing an evolving
-knowledge graph, and retaining useful thinking from learning and work.
-
-Obsidian is the primary daily interface. Editors and agents are also important
-interfaces for writing and maintenance. The author's explanations and judgments
-lead the work; agents support their development, organization, and upkeep.
+A workspace for developing personal understanding and retaining useful
+thinking across learning and work. Obsidian is the primary daily interface;
+editors and agents support writing and maintenance.
 
 ## Start Here
 
-Open [home.md](home.md) in Obsidian. Use **Templater: Insert vault-menu**
-(Ctrl/Cmd+Shift+N), **Insert capture** (Ctrl/Cmd+Shift+C), or **Insert inspect**.
-The [operations guide](docs/operations.md) covers setup, command-line use,
-reading, periods, references, and maintenance.
+Open [Home](home.md), search for an existing Note, or use the command palette
+from an open Markdown Note:
 
-For CLI support, run `npm ci`, then `npm test`, `npm run check`, and
-`npm run audit`. The shared registry is an authored block in
-[metadata.md](docs/metadata.md#executable-field-registry), consumed by the
-creators and validators rather than copied into each tool.
+- **Templater: Insert capture** — keep a thought in `inbox`; a name is optional.
+- **Templater: Insert vault-menu** — contextual writing, reading, periods,
+  creation, and maintenance.
+- **Templater: Insert inspect** — read-only structural findings, refinement
+  candidates, and tasks.
 
-This directory was started on 2026-10-03. The current documentation checkpoint,
-2026-10-04, covers Q65 and retains the author's correction of scale:
-establish a useful personal knowledge vault whose model and support can
-evolve through use. Well-designed tools,
-registration, automation, and agent skills remain explicit goals. Initial
-scenarios guide their scope and validation; avoiding excessive engineering
-preserves needed capabilities and design rationale. Initial tools, views,
-settings, examples, and three local skills are now implemented. Old enclosing
-repository skills were retired and primary references were rechecked.
+When the writing context is clear, continue there. Otherwise, capture first.
+The [operations guide](docs/operations.md) covers setup and the actual commands.
+A clean audit is not required to write.
 
-The author selected the existing MoE expert load balancing research project
-as the [first real use case](docs/first-use.md) on 2026-11-10. The vault supports
-knowledge accumulation alongside the research repository. One real cycle of
-writing, retrieval, and continued work will provide the first readiness check.
-Illustrative files under [examples/](examples/README.md) remain outside live
-knowledge views. The [AI Systems entry](domains/ai-systems.md) provides an
-initial content route.
+## Documentation
 
-The [initial setup](docs/initial-setup.md) records the approved Q66 baseline.
-Native Obsidian behavior and offline tests are recorded in
-[verification.md](docs/verification.md). Controlled JSON snapshot import is
-available. Live selected-item Zotero import stopped before writing when its
-selection response did not match the candidate adapter; it is not a working
-menu action and will not be retried without an explicitly resumed task.
-
-## Read the Design
-
-| Document | Purpose |
+| Need | Read |
 | --- | --- |
-| [Domain language](CONTEXT.md) | Definitions of the model's established terms |
-| [Design](docs/design.md) | Accepted goals, relationships, ownership, workflows, and launch requirements |
-| [Metadata contract](docs/metadata.md) | Accepted field meanings and types, plus remaining contract decisions |
-| [Refinement workflow](docs/refinement.md) | In-place candidates, discovery, and review behavior |
-| [Tooling](docs/tooling.md) | Practical support, registration, and accepted write boundaries |
-| [First use](docs/first-use.md) | Selected research task and remaining workflow decisions |
-| [Initial setup](docs/initial-setup.md) | Approved operational baseline and implementation scope |
-| [Operations](docs/operations.md) | Daily actions, commands, and maintenance |
-| [Verification](docs/verification.md) | Observed tests and explicit integration limits |
-| [Design questions](docs/design-questions.md) | Open choices, dependencies, factual investigations, and interview coverage |
-| [Agent instructions](AGENTS.md) | Work routing and instructions for agents contributing here |
+| Daily use, setup, refinement, or Git coverage | [Operations](docs/operations.md) |
+| Why the model and workflows work this way | [Design](docs/design.md) |
+| Meaning of Note, Source, Activity, Domain, and related terms | [Domain language](CONTEXT.md) |
+| Field meanings, identity, ownership, or the consumed registry | [Metadata contract](docs/metadata.md) |
+| Change tools, templates, views, or shared conventions | [Tooling](docs/tooling.md) |
+| Check what was actually verified and in which environment | [Verification](docs/verification.md) |
+| Unresolved choices, usage observations, or deferred work | [Open questions](docs/design-questions.md) |
+| Check application behavior against primary documentation | [References](docs/references.md) |
 
-For a broad understanding, read the design. For an unfamiliar term, consult
-the domain language. Continue unresolved design work from the questions
-document and update the owning document as decisions are made.
+The [first-use task](docs/first-use.md) is the existing MoE expert load
+balancing research project. The research repository carries the main work;
+the vault supports knowledge accumulation. One real cycle of writing,
+retrieval, and continuation will establish initial usability.
 
-## Intended Use
-
-The vault supports personal explanations, source-based learning, ordinary
-project notes, domain guides, journals, and lightweight daily plans.
-Specialized workspaces can retain their own knowledge and workflows; the vault
-provides connections and a home for thinking that needs one.
-
-AI Systems is the first long-term domain for evaluating the design.
-The selected first-use task is the existing MoE expert load balancing research
-project; book or course study can provide additional scenarios when needed.
-
-English writing is a long-term direction for knowledge accumulation, with
-English filenames. Temporary or meaningful Chinese is allowed; English-only
-content is not a readiness condition.
-
-## Initial Completion Standard
-
-Regular use requires a clear content model, documented metadata semantics and
-ownership, and instructions that let agents contribute consistently.
-A small set of usable creation flows, dependable entry points, basic audits,
-and representative examples should support the initial release.
-
-See the [launch requirements](docs/design.md#launch-requirements) for the
-agreed priorities. Legacy-vault access and migration are deferred independently
-of the new design.
+The [AI Systems entry](domains/ai-systems.md) is the starting Domain.
+[Examples](examples/README.md) are illustrative and excluded from live views.
+English writing is a long-term direction; temporary or meaningful Chinese is
+allowed. [Agent instructions](AGENTS.md) route contribution and maintenance.

@@ -1,9 +1,8 @@
 # Implementation References
 
-The author declared the enclosing vault's old skills obsolete on 2026-10-04.
-They are not implementation instructions or authorities for this vault.
-The adopted content model is the author's design; application behavior is
-checked against primary documentation and then against the actual runtime.
+Use these primary sources for application behavior. The vault's content
+model is defined by its own contracts. Check relevant runtime behavior in
+the application; documentation alone does not establish successful use.
 
 | Area | Primary reference | Implementation consequence |
 | --- | --- | --- |
@@ -16,13 +15,8 @@ checked against primary documentation and then against the actual runtime.
 | CLI verification | [Obsidian CLI](https://obsidian.md/help/cli) | Explicit vault targeting; installed executable alone is not proof that a vault is configured |
 | Agent skills | [Agent Skills specification](https://agentskills.io/specification) | SKILL.md name/description, focused instructions, references to the maintained local contracts |
 | YAML parsing | [yaml package](https://eemeli.org/yaml/) | Use a real parser, including malformed and duplicate-key detection, instead of inventing a frontmatter parser |
+| Git coverage | [Recording changes](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository), [remotes](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes) | Distinguish files present locally, committed history, and commits pushed to another copy |
 | Zotero adapter | [Integration templates](https://github.com/community-archive/obsidian-zotero-integration/blob/main/docs/Templating.md), [Zotero resource identity](https://www.zotero.org/support/dev/web_api/v3/basics#resources) | Explicit per-file ownership and library-scoped stable identity; never assume title-based re-import paths are stable |
 
-The earlier design's native-property, link, callout, period, and Bases claims
-were rechecked against these sources before implementation. No obsolete
-requirements for mandatory topic tags, format on every Note, one template
-per kind, or filename/alias synchronization are adopted. Existing human
-decisions do not need to be replaced simply because the old skills are retired.
-
-Runtime results and reproducible commands belong in the operating/verification
-documentation; a documentation reference is not a claim of a passing UI test.
+Runtime results and environment limits belong in [Verification](verification.md).
+The [tooling guide](tooling.md) identifies the maintained implementations.

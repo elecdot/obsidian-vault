@@ -1,174 +1,96 @@
-# Tooling and Registration
+# Maintaining Vault Tools
 
-Q60's narrowed boundaries are accepted in principle. The author emphasized
-that this is a personal knowledge vault whose design will also evolve through
-use. Their subsequent clarification retains well-designed tools, registration,
-and automation as explicit goals. Avoiding excessive engineering does not
-authorize dropping those capabilities or their supporting design rationale.
-The initial creators, shared registry reader, audit runner, Obsidian adapter,
-views, and local skills are implemented. There is no infrastructure generator.
-See [Operations](operations.md) and [Verification](verification.md) for the
-actual interfaces, evidence, and the stopped live Zotero selection work.
+Use the [design scale](design.md#design-scale) to choose support work and
+[Operations](operations.md) to use existing actions. The tools serve concrete
+writing, retrieval, and maintenance needs; ordinary Markdown remains editable
+when a helper is unavailable.
 
-## Working Scale
+## Maintained Components
 
-Use the [design scale](design.md#design-scale) to decide what to build.
-A tool should make a concrete writing, retrieval, or maintenance action easier
-and remain understandable to its maintainer. Consider the combined cost of
-using and maintaining it, rather than minimizing files, code, or documentation.
-Stable foreseeable needs can justify deliberate design before repeated use.
-
-Documents, templates, scripts, and skills are things the author will maintain
-as part of using the vault. Keep their purpose and editing location easy to
-find. Use coherent shared support where it prevents duplication or drift;
-choose small local helpers where sharing would add little value.
-
-## Initial Capabilities
-
-These capabilities remain part of the intended starting vault. Their exact
-interfaces should be designed against the first writing scenarios.
-
-| Capability | Purpose |
+| Component | Maintained source and responsibility |
 | --- | --- |
-| Contextual creation and periodic-note entry points | Reduce repeated naming and metadata work while preserving explicit context and authored content |
-| Formal metadata registration | Make meanings, types, applicability, ownership, and adopted values visible and consistently usable by tools |
-| Human Guides and derived discovery | Provide both meaningful routes and coverage of related material, including Captures and refinement candidates |
-| Structural audit and scoped maintenance | Detect defined problems, locate their source, and support requested repairs with clear write behavior |
-| Source import support | Make selected imports and re-import ownership predictable while keeping personal reading independent |
-| Agent skills and operating guidance | Support drafting, organization, audit, and tool maintenance using the same model |
+| Field meanings and mechanical registry | [Metadata](metadata.md); the marked JSON block is consumed directly |
+| Validation, names, periods, and creation plans | `scripts/core.cjs` |
+| Disk access, inventory, and CLI dispatch | `scripts/io.cjs`, `scripts/vault.cjs` |
+| Native Obsidian adapter and launcher | `scripts/obsidian.cjs`, `scripts/templater/vault.js`, `templates/commands/` |
+| Initial writing and periodic templates | `templates/`, including the shared writing cue |
+| Discovery and maintenance views | `bases/`; native Obsidian properties and view filters |
+| Snapshot import and live transport candidate | `scripts/zotero.cjs`, `scripts/zotero-transport.cjs` |
+| Native settings and command configuration | `.obsidian/`; see [Git coverage](operations.md#git-and-file-coverage) |
+| Behavioral checks and desktop probe | `tests/run.cjs`, `tests/obsidian-runtime.cjs`, `scripts/check.cjs` |
+| Task-specific agent support | `.agents/skills/vault-write/`, `vault-organize/`, and `vault-maintain/` |
+| Teaching examples | `examples/`, outside live content scope |
 
-The examples determine the initial breadth of these capabilities. They do
-not replace them with permanent manual work or postpone basic support
-indefinitely. Unresolved implementation alternatives remain labeled below.
+`npm run vault -- inventory` reports implemented actions and files. It is
+an operating index, not an exhaustive dependency graph for scripts or prose.
+Application behavior is grounded in [primary references](references.md) and
+separately checked in the runtime.
 
-## Rules and Registration
+## Shared Definitions
 
-[Metadata](metadata.md) currently registers the formal fields and formats:
-their meaning, applicability, and maintenance responsibility. Adding an
-adopted convention updates that owning definition; it does not require an
-extra catalog entry for every Note, Domain, Activity, or keyword.
+The CLI and Obsidian adapter share the registry reader and validator.
+Native property types and Base scope/lifecycle coverage are checked for
+agreement. Preserve the `docs/metadata.md` path and registry markers unless
+changing and verifying the consumers together.
 
-The registration design should preserve these responsibilities:
-
-| Information | Authority and use |
-| --- | --- |
-| Meaning, admission rationale, examples, and judgment boundaries | The owning contract document; skills and tool guidance refer to it |
-| Computable types, applicability, adopted values, and defaults | One readable definition shared by compatible creators and validators |
-| Supported creation and audit actions | The actual declarations or implementation entry points used to execute them |
-| Templates, Base definitions, and import adapters | Their maintained source files, linked from relevant operating guidance |
-
-The marked JSON block in the Markdown contract now supplies the mechanical
-definitions to `scripts/core.cjs`. The CLI and Obsidian adapter share that
-reader and validator. Native settings and static view coverage are checked
-against it. Registering a convention changes its consumed definition and
-semantic explanation, not a disconnected record.
-
-Provide a navigable account of the supported actions, their scope, and where
-to maintain them. An inventory can read actual declarations or managed files;
-a simple operating index may be enough for some entry points. Check its links
-and references. The inventory must not imply an exhaustive dependency graph
-for arbitrary scripts or free prose.
-
-Skills should refer to the shared conventions and describe concrete assistance
-such as drafting, organizing, or auditing. Their packaging follows those tasks.
-
-## Shared Consumers and Adapters
-
-Creation and structural audit should use the same mechanical field definitions
-where their runtimes permit it. This prevents separate allowed-value or type
-lists from drifting. The implementation must show that the consumers actually
-read the definition, rather than merely documenting that they should agree.
-
-Templater, Bases, and Zotero import have different interfaces. An adapter that
-cannot read a definition directly may keep a small explicit implementation,
-checked against representative data and the accepted contract. A universal
-runtime is not required to make these consumers consistent.
-
-Follow the real affected consumers when a convention changes. Refer to their
-source locations and exercise their behavior; a second hand-maintained
-field-by-tool matrix is not necessary. Native Obsidian capabilities should
-be used where they satisfy the workflow, with scripts and skills filling
-identified gaps.
+Semantic meaning stays in the contract. Where an adapter cannot share a
+mechanical definition, maintain its small explicit representation and check
+the relevant behavior. A universal runtime is not required. Current tools
+have no infrastructure generator or background content migration.
 
 ## Exact Write Boundary
 
-The initial design has no infrastructure-file generator. The accepted
-boundaries are:
-
-| Material or operation | Write behavior |
+| Operation or material | Ownership and behavior |
 | --- | --- |
-| Personal Notes, Captures, Journals, Activity and Domain entries, authored Guides, and reading Notes | Ordinary author-owned Markdown; no regeneration or synchronization from templates |
-| Rules, registration definitions, templates, writing cue, Base definitions, and import templates | Directly maintained source files |
-| A requested note-creation action | Fills the chosen new Note once; subsequent writing belongs to the author |
-| Opening an existing Journal or period review | Opens the existing file and preserves its writing |
-| Default audit or inventory | Reports findings without editing files |
-| Explicit Zotero import or re-import | Writes only designated importer-owned Source files and assets |
+| Personal Notes, entries, Guides, and reading Notes | Author-owned Markdown; no regeneration or template synchronization |
+| Rules, registry, templates, views, scripts, and skills | Directly maintained source files |
+| Requested creation | Fills a new Note once; ordinary-name collisions fail without replacing existing content |
+| Journal or period reopening | Returns the existing file and preserves writing |
+| Default audit and inventory | Read-only reports |
+| Explicit Source import | Writes designated importer-owned files with matching identity; preserves nearby authored Notes |
+| Native Base table edits | Can change underlying properties; displaying a view does not rewrite an authored Guide |
 
-Changing the writing cue affects later creations. Passive views provide access
-without rewriting an entry's authored body. Zotero's file ownership does not
-extend to personal reading Notes or manually maintained Source records.
+Writers validate their target and required definitions before writes.
+Cancellation and conflicts are covered by the [recorded checks](verification.md).
+Changing a writing cue affects future creations. Import ownership is
+file-specific; it does not extend to a whole Source folder.
 
-Existing content stays usable when a custom helper is unavailable. Reading,
-writing, linking, and manual capture require no custom build or clean audit.
-Native Obsidian features retain their own normal dependencies.
+## Change a Convention
 
-An invoked writer has an explicit target. Invalid required definitions or a
-conflicting target produce an error before its writes; periodic creation
-reopens existing entries. Custom tooling does not rewrite files in the
-background or automatically migrate content when conventions change.
-These boundaries have behavioral and native-app coverage described in
-[Verification](verification.md); live Zotero selection remains separately pending.
+1. Identify the user action improved and update its owning meaning in
+   [Design](design.md), [CONTEXT](../CONTEXT.md), or [Metadata](metadata.md).
+   A new formal format follows the [admission rule](metadata.md#admission-rule-for-new-formats).
+2. Update the registry where affected and trace the actual writers, readers,
+   settings, views, and adapters that consume the rule. Ordinary Notes do
+   not need a new format merely because their prose has a recurring pattern.
+3. Run `npm test` and `npm run check` for shared support changes. Exercise
+   affected Obsidian behavior in the application; parsing a Base does not
+   establish its results, and a snapshot test does not verify live Zotero.
+4. Update operating guidance, report remaining limits, and commit the
+   verified phase using Conventional Commits. A contract change does not
+   itself authorize bulk migration of the author's existing writing.
 
-## Maintenance and Checks
+Ordinary prose editing does not require this convention-change workflow.
+Keep each rule at one home and link to it from the other documents.
 
-Changing a convention includes maintaining its consumers. For example,
-adopting a new formal format such as `experiment` involves:
+## Checks and Their Limits
 
-1. Record its admitted purpose, boundary, and maintenance responsibility
-   under the [format admission rule](metadata.md#admission-rule-for-new-formats).
-2. Change the authoritative mechanical definition once. Implement or adjust
-   the creation, retrieval, or review behavior that justifies the value;
-   a new format does not necessarily require another template.
-3. Check the relevant creator, view, import adapter, and audit behavior where
-   affected. Confirm that allowed omissions and exceptions still work.
-4. Explain any changed operating behavior and treatment of earlier content.
-   Changes to definitions do not automatically migrate the author's Notes.
+- `npm test` exercises creation, context and references, periods, collisions,
+  inspection, and Source identity/ownership using temporary vaults.
+- `npm run check` checks the consumed contract, support links and headings,
+  native types, Base scope/lifecycle coverage, YAML assets, and content errors.
+- `npm run audit` reports malformed or nonconforming metadata, missing
+  structural targets, unexpected scope, and provisional fields. It preserves
+  legal raw Captures and optional omissions.
+- `candidates` and `tasks` inspect standalone callouts and checkboxes in
+  authored bodies, excluding code, comments, nested quotations, and managed
+  Sources. Native Search is a broader discovery surface.
 
-Ordinary note editing does not trigger this maintenance process. Default
-checks remain read-only; repair work belongs to an explicit maintenance task.
+These checks establish structural behavior, not understanding, useful
+classification, or the validity of every claim and external link. Inspect
+the relevant passage when interpreting a result. Repair belongs to requested
+maintenance, not to the fact that an audit found something.
 
-Initial checks should address concrete failures: malformed properties,
-violations of accepted field types or values, broken structural references,
-and creation or import output that violates its contract. Respect the existing
-exceptions for provisional Captures and optional associations. Semantic review
-remains distinct from structural errors.
-
-Verify Obsidian-dependent behavior in Obsidian, including relevant views,
-link resolution, and import ownership. Check actual note output and retrieval,
-not only whether a schema or Base file parses. Invalid definitions and
-conflicting targets must respect the write boundaries above. A disabled
-helper should leave existing authored Notes usable.
-
-Use representative writing and retrieval examples to judge the first version.
-Keep the checks proportionate to the action changed. Structural checks can
-detect invalid data and broken references; they cannot establish the author's
-understanding or whether a classification still serves its purpose.
-
-## Implementation Options and Deferred Expansion
-
-Shared definitions, creator registration, inventory, and cross-interface checks
-now support the initial workflows. Extend them when a concrete workflow needs
-more coverage, preserving their existing meanings and write boundaries.
-
-The initial design still has no infrastructure generator, as established in
-Q60. Limited generation remains a future candidate if a concrete repeated
-artifact warrants it: specify authoritative inputs, exact output files,
-deterministic behavior, a preview, and ownership before adopting it. Preserve
-the independence of authored Notes. This candidate is not an existing tool
-or a blanket authorization to regenerate content.
-
-A generic plugin framework and an exhaustive dependency-discovery engine
-remain deferred because current workflows do not establish their benefit.
-Simplifying the implementation should preserve required behavior and useful
-rationale; keep consequential unresolved choices visible instead of deleting
-them merely to shorten the design.
+[Verification](verification.md) records observed results and environment limits.
+[Open questions](design-questions.md) holds deferred investigations; these are
+not an implicit list of features to build.
