@@ -74,8 +74,13 @@ Use mise for repository-level maintenance tool versions and simple, clear
 command entry points. This initially covers the JavaScript toolchain and
 can extend to other tools the vault requires. Project libraries remain npm
 dependencies. The default project policy pins exact tool versions for
-reproducibility; the LTS upgrade policy and implementation details remain
-[under discussion](maintenance-notes.md#maintenance-tool-environment).
+reproducibility. Select a supported Node LTS release and use its bundled npm.
+Adopt updates deliberately by changing the exact pin and verifying the
+result; an LTS alias does not make the project environment follow updates
+automatically. The external CLI toolchain and Obsidian's embedded runtime
+are managed separately, while shared JavaScript must remain compatible
+with both. [Operations](operations.md#tool-setup-and-upgrades) owns setup
+and upgrade commands.
 
 Specialized repositories can retain their own records and workflows. The
 vault provides connections, personal understanding, and a home for thinking

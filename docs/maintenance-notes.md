@@ -21,16 +21,15 @@ definite problems; actual writing and retrieval will inform further changes.
 
 ## Maintenance Tool Environment
 
-Within the [agreed environment requirements](design.md#scope-and-workspace-boundaries),
-mise is selected for tool versions and simple command entry points, with
-exact versions as the default. Repository configuration and tasks have not
-yet been implemented.
-
-| Open item | Evidence or decision needed | Scope |
-| --- | --- | --- |
-| Task implementation | Provide clear mise entry points over the existing maintenance commands | Simplicity and discoverability justify tasks; this does not require rewriting the npm scripts. |
-| LTS upgrade policy | Resolve how supported LTS releases are selected and adopted while keeping exact project pins, and whether npm needs an independent version | Obsidian runs its adapter internally using its own YAML parser; the external CLI uses Node and the npm YAML dependency. |
-| Windows setup and verification | Choose the future Windows-native vault location and verify native tool selection and checks there | The author uses neither previously registered new-vault location; WSL directories are isolated. Historical Obsidian checks do not verify the future Windows setup. |
+The tool selection, task entry points, and LTS upgrade policy are settled in
+[Design](design.md#scope-and-workspace-boundaries) and implemented in
+[mise.toml](../mise.toml). The remaining environment check is to choose the
+future Windows-native vault location and verify setup and relevant Obsidian
+actions there. Native Windows CLI verification also awaits the author's
+Scoop installation of mise. The author uses neither previously registered
+new-vault location; WSL directories are isolated. A CLI check in a temporary Windows
+directory does not verify the future desktop vault. See
+[verification limits](verification.md).
 
 ## Confirmed Tool Defects
 

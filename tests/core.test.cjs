@@ -99,7 +99,8 @@ test('unsafe paths and symlink writes cannot escape the selected vault',async t=
   const root=await fixture(t);
   assert.throws(()=>core.cleanPath('../elsewhere.md'));
   assert.throws(()=>core.cleanPath('/outside.md'));
-  await fs.symlink(os.tmpdir(),path.join(root,'knowledge'));
+  // A Windows junction exercises the escape boundary without symlink privileges.
+  await fs.symlink(os.tmpdir(),path.join(root,'knowledge'),process.platform==='win32'?'junction':'dir');
   await assert.rejects(io.create(root,{action:'note',name:'Escape'}),/Symlink/);
 });
 test('indented code is not an actionable checklist',()=>{

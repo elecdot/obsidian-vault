@@ -1,0 +1,26 @@
+[tools]
+node = "26.13.0"
+
+[tasks.setup]
+description = "Install locked npm dependencies"
+run = "npm ci"
+
+[tasks.test]
+description = "Run behavioral tests in temporary vaults"
+run = "npm test"
+
+[tasks.check]
+description = "Check the contract, support links, YAML assets, and content"
+run = "npm run check"
+
+[tasks.audit]
+description = "Inspect vault structure without changing files"
+run = "npm run audit"
+
+[tasks.vault]
+description = "Run a vault helper; pass its action and options after --"
+run = "npm run vault --"
+
+[tasks.verify]
+description = "Run behavioral tests and structural checks"
+depends = ["test", "check"]

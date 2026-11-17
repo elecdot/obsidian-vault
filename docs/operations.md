@@ -71,23 +71,78 @@ can differ from the calendar year. The registry timezone is Asia/Shanghai.
 `date` records the period's first day. Other valid form/period combinations
 are allowed; these defaults impose no review cadence.
 
-## Command-line Operations
+## Tool Setup and Upgrades
 
-Use Node 22 or later and run `npm ci` once for the locked YAML dependency.
-Helpers select the repository containing their scripts; `--root PATH`
-explicitly targets another copy.
+Install [mise](https://mise.jdx.dev/installing-mise.html). On Windows, use
+PowerShell and `scoop install mise`, or another installation method from
+the mise guide, then reopen the terminal. Work in the Windows-native vault
+directory. WSL/Linux uses its own checkout and its own mise installation.
+
+From the repository root, run the same commands on Windows and Linux:
 
 ```sh
-npm run vault -- capture
-npm run vault -- activity --name "Kernel study" --status active
-npm run vault -- note --name "Run comparison" --context activities/kernel-study/introduction.md
-npm run vault -- note --name "Independent explanation" --domain domains/ai-systems.md --source sources/example/source.md --dry-run
-npm run vault -- reading --context sources/example/source.md
-npm run vault -- period --period week --date 2027-01-01
-npm run audit
-npm run vault -- candidates
-npm run vault -- tasks
-npm run vault -- inventory
+mise trust
+mise install node
+mise run setup
+mise run verify
+```
+
+[mise.toml](../mise.toml) pins the maintenance Node version; npm comes with
+that Node installation. `setup` installs the locked project dependency
+tree using `npm ci`. Tasks select the project tools without requiring
+shell activation. Inspect them with `mise tasks`; check the selected tools
+with `mise exec -- node --version` and `mise exec -- npm --version`.
+
+| Command | Behavior |
+| --- | --- |
+| `mise run setup` | Install locked npm dependencies; run after cloning or dependency changes |
+| `mise run test` | Run behavioral tests in temporary vaults |
+| `mise run check` | Check the contract, support links, YAML assets, and content |
+| `mise run audit` | Report structural findings without changing files |
+| `mise run vault -- ACTION OPTIONS` | Run a helper with its action and options |
+| `mise run verify` | Run both tests and structural checks; does not reinstall dependencies |
+
+The existing npm scripts remain available. To run one explicitly in the
+project environment, use `mise exec -- npm test`, for example. The package's
+Node compatibility range is separate from the exact maintenance pin.
+
+For a deliberate tool upgrade, choose a supported LTS release and write its
+exact version. The following selects the current LTS release at upgrade
+time, rather than leaving an `lts` alias in the project:
+
+```sh
+mise use --pin node@lts
+mise run setup
+mise run verify
+```
+
+Review and commit the `mise.toml` change with its verification. A tool
+upgrade does not itself update project libraries. Use npm for deliberate
+library dependency changes, and review `package.json` and `package-lock.json`
+together. Shared JavaScript also needs compatibility with Obsidian's runtime.
+
+Ordinary Obsidian actions use the application's runtime and YAML parser;
+the command-line npm dependency is not required to run the Templater menu.
+Install and verify Templater separately as described in
+[Obsidian setup](#obsidian-setup).
+
+## Command-line Operations
+
+Helpers select the repository containing their scripts; `--root PATH`
+explicitly targets another copy. Run these examples from that repository
+using the pinned tools:
+
+```sh
+mise run vault -- capture
+mise run vault -- activity --name "Kernel study" --status active
+mise run vault -- note --name "Run comparison" --context activities/kernel-study/introduction.md
+mise run vault -- note --name "Independent explanation" --domain domains/ai-systems.md --source sources/example/source.md --dry-run
+mise run vault -- reading --context sources/example/source.md
+mise run vault -- period --period week --date 2027-01-01
+mise run audit
+mise run vault -- candidates
+mise run vault -- tasks
+mise run vault -- inventory
 ```
 
 These are command examples, not existing research records. Referenced entries
@@ -139,8 +194,8 @@ Zotero URI, title, and available creators, tags, notes, and annotations.
 Paste it through the menu or use:
 
 ```sh
-npm run vault -- import-zotero --input /path/to/selected-item.json --dry-run
-npm run vault -- import-zotero --input /path/to/selected-item.json
+mise run vault -- import-zotero --input selected-item.json --dry-run
+mise run vault -- import-zotero --input selected-item.json
 ```
 
 Output is `sources/zotero-<users-or-groups>-<library-id>-<item-key>/source.md`.
@@ -171,7 +226,7 @@ an explicit operation. References maintained in other repositories require
 separate attention when a linked vault path changes.
 
 For tool or convention changes, follow [Tooling](tooling.md#change-a-convention).
-Use `npm test`, `npm run check`, and `npm run audit` as appropriate to the change.
+Use `mise run verify` and `mise run audit` as appropriate to the change.
 These are maintenance checks, not prerequisites for ordinary writing.
 
 ## Git and File Coverage
@@ -187,7 +242,8 @@ coverage when setting up or changing the arrangement.
 
 Core `.obsidian` settings are tracked. [Ignore rules](../.gitignore) exclude
 workspace state, caches, trash, dependencies, and plugin runtime files.
-A fresh environment installs Templater; CLI dependencies use `npm ci`.
+A fresh environment installs Templater; CLI tools and dependencies follow
+[tool setup](#tool-setup-and-upgrades).
 Vault history does not include original documents kept outside it in Zotero.
 
 The Windows vault list is machine-local state in

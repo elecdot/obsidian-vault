@@ -7,8 +7,10 @@ checks and where to record routine results.
 
 ## Offline
 
-Use `npm test`, `npm run check`, `npm run audit`, and
-`npm run vault -- inventory` for the [documented checks](tooling.md#checks-and-their-limits).
+Use `mise run verify`, `mise run audit`, and
+`mise run vault -- inventory` for the [documented checks](tooling.md#checks-and-their-limits).
+The underlying `npm test` and `npm run check` scripts remain available;
+[tool setup](operations.md#tool-setup-and-upgrades) selects their environment.
 Behavioral tests use temporary vaults outside personal content and remove
 their fixtures. A passing suite covers its tested cases; it does not rule
 out the [confirmed tool defects](maintenance-notes.md#confirmed-tool-defects).
@@ -16,6 +18,19 @@ out the [confirmed tool defects](maintenance-notes.md#confirmed-tool-defects).
 Offline checks establish structural behavior. They do not establish useful
 research writing or successful operation in the intended desktop vault.
 The [first-use assessment](first-use.md) exercises that real path.
+
+## Maintenance Tool Environment
+
+The mise entry points have been exercised in WSL/Linux with the pinned
+Node and bundled npm. Coverage includes dependency installation, both
+verification tasks, audit, argument forwarding with spaces, dry-run
+preservation, and failure exit propagation.
+
+Native Windows setup and task execution remain unverified while mise is
+being installed through Scoop. The directory-link test uses a junction on
+Windows so it does not require ordinary symbolic-link privileges; its
+native behavior still needs verification. These CLI checks are distinct
+from testing the intended Windows Obsidian vault and its Templater actions.
 
 ## Obsidian
 

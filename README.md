@@ -19,6 +19,10 @@ When the writing context is clear, continue there. Otherwise, capture first.
 The [operations guide](docs/operations.md) covers setup and the actual commands.
 A clean audit is not required to write.
 
+For command-line maintenance, follow
+[tool setup](docs/operations.md#tool-setup-and-upgrades), then use `mise tasks`
+to discover commands and `mise run verify` to check changes.
+
 ## Documentation
 
 | Need | Read |

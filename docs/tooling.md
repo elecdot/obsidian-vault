@@ -9,6 +9,7 @@ when a helper is unavailable.
 
 | Component | Maintained source and responsibility |
 | --- | --- |
+| Maintenance tool version and command entry points | [mise.toml](../mise.toml); npm scripts in [package.json](../package.json) remain the underlying commands |
 | Field meanings and mechanical registry | [Metadata](metadata.md); the marked JSON block is consumed directly |
 | Validation, names, periods, and creation plans | `scripts/core.cjs` |
 | Disk access, inventory, and CLI dispatch | `scripts/io.cjs`, `scripts/vault.cjs` |
@@ -25,6 +26,14 @@ when a helper is unavailable.
 an operating index, not an exhaustive dependency graph for scripts or prose.
 Application behavior is grounded in [primary references](references.md) and
 separately checked in the runtime.
+
+Use `mise tasks` to discover maintenance commands and `mise run verify` to
+run the behavioral tests and structural checks. `setup` explicitly runs
+`npm ci`; checks do not reinstall project dependencies. Tasks use portable
+npm commands and the project's Node version without requiring shell
+activation. Keep platform-dependent logic in JavaScript rather than adding
+a Bash requirement. [Operations](operations.md#tool-setup-and-upgrades)
+describes installation, upgrades, and the Windows-native setup.
 
 ## Shared Definitions
 
