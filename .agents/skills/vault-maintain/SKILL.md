@@ -1,6 +1,6 @@
 ---
 name: vault-maintain
-description: Audit this vault or maintain its metadata registry, creators, Bases, import adapter, and supporting agent guidance. Use for structural findings or changes to the vault tools; ordinary prose editing belongs to paired writing.
+description: Audit this vault or maintain its model, conventions, metadata registry, creators, Bases, import adapter, and supporting agent guidance. Use for maintenance observations, design investigations, structural findings, or tool changes; personal knowledge writing belongs to paired writing.
 ---
 
 Read [tooling](../../../docs/tooling.md), [the contract](../../../docs/metadata.md),
@@ -8,8 +8,9 @@ and [operations](../../../docs/operations.md) for the component involved.
 The enclosing repository's old skills are obsolete. Consult the current
 [primary references](../../../docs/references.md) for application behavior.
 
-Start with the requested scope and the actual commands. `npm run audit` is
-read-only; `npm run vault -- inventory` exposes implemented actions and files.
+For audits or tool work, start with the requested scope and relevant commands.
+`npm run audit` is read-only; `npm run vault -- inventory` exposes implemented
+actions and files.
 Distinguish structural errors, provisional-field suggestions, valid raw
 Captures, and semantic review. Include file locations and the violated rule.
 Findings alone do not authorize bulk repairs or deletion.
