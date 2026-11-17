@@ -48,6 +48,18 @@ tools. Observations can be recorded before they become concrete questions.
 Recording an observation or proposal does not commit to a change. The
 [Maintenance guide](../maintenance.md) serves content-note refinement.
 
+Investigate a concrete problem from its intended use, examining both the
+relevant conventions and their implementation. When evidence challenges an
+accepted convention, explain which premise the evidence undermines and how
+this affects the intended use.
+
+Proceed with corrections supported by evidence within the authorized scope,
+including corrections to conventions, when they preserve accepted goals
+and introduce no new user trade-offs. Bring new choices about goals,
+trade-offs, or scope to the author while continuing independent authorized
+work. [Tooling](tooling.md#change-tools-or-conventions) describes how to
+update and verify the affected parts.
+
 Keep an item while it needs follow-up. Once a change is complete or an item
 is closed without a change, preserve any lasting decision or rationale in
 its owning document and remove the item. This includes rejected proposals

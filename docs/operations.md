@@ -225,7 +225,7 @@ by the helper because their paths follow import identity; migration requires
 an explicit operation. References maintained in other repositories require
 separate attention when a linked vault path changes.
 
-For tool or convention changes, follow [Tooling](tooling.md#change-a-convention).
+For tool or convention changes, follow [Tooling](tooling.md#change-tools-or-conventions).
 Use `mise run verify` and `mise run audit` as appropriate to the change.
 These are maintenance checks, not prerequisites for ordinary writing.
 

@@ -64,22 +64,27 @@ Cancellation and conflicts are covered by the [recorded checks](verification.md)
 Changing a writing cue affects future creations. Import ownership is
 file-specific; it does not extend to a whole Source folder.
 
-## Change a Convention
+## Change Tools or Conventions
 
-1. Identify the user action improved and update its owning meaning in
-   [Design](design.md), [CONTEXT](../CONTEXT.md), or [Metadata](metadata.md).
+Use the [maintenance workflow](design.md#vault-maintenance) to diagnose the
+problem and determine the scope of correction.
+
+1. Identify the user action improved. Where the correction changes meaning
+   or workflow, update its owning definition in [Design](design.md),
+   [CONTEXT](../CONTEXT.md), or [Metadata](metadata.md).
    A new formal format follows the [admission rule](metadata.md#admission-rule-for-new-formats).
-2. Update the registry where affected and trace the actual writers, readers,
-   settings, views, and adapters that consume the rule. Ordinary Notes do
-   not need a new format merely because their prose has a recurring pattern.
-3. Run `npm test` and `npm run check` for shared support changes. Exercise
-   affected Obsidian behavior in the application; parsing a Base does not
-   establish its results, and a snapshot test does not verify live Zotero.
+2. Trace and update the affected registry, writers, readers, settings, views,
+   and adapters. Ordinary Notes do not need a new format merely because
+   their prose has a recurring pattern.
+3. For shared support changes, add focused behavioral cases for new risks
+   and run `npm test` and `npm run check`. Exercise affected Obsidian behavior
+   in the application; parsing a Base does not establish its results, and
+   a snapshot test does not verify live Zotero.
 4. Update operating guidance, report remaining limits, and commit the
    verified phase using Conventional Commits. A contract change does not
    itself authorize bulk migration of the author's existing writing.
 
-Ordinary prose editing does not require this convention-change workflow.
+Ordinary prose editing does not require this maintenance workflow.
 Keep each rule at one home and link to it from the other documents.
 
 ## Checks and Their Limits
