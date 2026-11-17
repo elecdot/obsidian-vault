@@ -11,7 +11,7 @@ Use `npm test`, `npm run check`, `npm run audit`, and
 `npm run vault -- inventory` for the [documented checks](tooling.md#checks-and-their-limits).
 Behavioral tests use temporary vaults outside personal content and remove
 their fixtures. A passing suite covers its tested cases; it does not rule
-out the [confirmed tool defects](design-questions.md#confirmed-tool-defects).
+out the [confirmed tool defects](maintenance-notes.md#confirmed-tool-defects).
 
 Offline checks establish structural behavior. They do not establish useful
 research writing or successful operation in the intended desktop vault.

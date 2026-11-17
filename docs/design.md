@@ -3,7 +3,7 @@
 This document owns the vault's purposes, workflow decisions, and their
 rationale. [CONTEXT](../CONTEXT.md) defines terms; [Metadata](metadata.md)
 defines fields; [Operations](operations.md) describes how to use the vault.
-Unresolved choices live in [Open questions](design-questions.md).
+Ongoing observations and investigations live in [Maintenance notes](maintenance-notes.md).
 
 ## Purpose and Priorities
 
@@ -33,12 +33,27 @@ Personal note-taking practices also evolve through use. Better defaults and
 navigation can support judgment about reuse, correction, and organization;
 that judgment does not automatically require another field or workflow.
 Specific practice suggestions remain optional until adopted. The current
-[observations](design-questions.md#practice-and-design-observations) guide
+[observations](maintenance-notes.md#practice-and-design-observations) guide
 further discussion without creating a mandatory review schedule.
 
 The author prefers command-palette access. Keep the current actions while
 observing actual use; the number of menu entries alone does not establish
 friction or justify redesign.
+
+## Vault Maintenance
+
+Use [Maintenance notes](maintenance-notes.md) for day-to-day observations
+and investigations about the vault's model, conventions, and supporting
+tools. Observations can be recorded before they become concrete questions.
+Recording an observation or proposal does not commit to a change. The
+[Maintenance guide](../maintenance.md) serves content-note refinement.
+
+Keep an item while it needs follow-up. Once a change is complete or an item
+is closed without a change, preserve any lasting decision or rationale in
+its owning document and remove the item. This includes rejected proposals
+and findings that the existing design is sufficient. Git retains the
+history. Keep deferred items with the evidence or condition needed to
+reopen them.
 
 ## Scope and Workspace Boundaries
 
@@ -60,7 +75,7 @@ command entry points. This initially covers the JavaScript toolchain and
 can extend to other tools the vault requires. Project libraries remain npm
 dependencies. The default project policy pins exact tool versions for
 reproducibility; the LTS upgrade policy and implementation details remain
-[under discussion](design-questions.md#maintenance-tool-environment).
+[under discussion](maintenance-notes.md#maintenance-tool-environment).
 
 Specialized repositories can retain their own records and workflows. The
 vault provides connections, personal understanding, and a home for thinking
@@ -185,7 +200,7 @@ A Domain initially shows directly associated Notes and related Activity
 entries. Activity-only Notes remain reachable through their Activity.
 A Note can also carry a deliberate direct Domain association; relationships
 are not automatically inherited. A flattened contextual list is an optional
-extension with [unverified refresh behavior](design-questions.md#deferred-extensions).
+extension with [unverified refresh behavior](maintenance-notes.md#deferred-extensions).
 
 Home may contain a small authored list of useful routes alongside its views.
 It is optional navigation, not an exhaustive attention record or a separate

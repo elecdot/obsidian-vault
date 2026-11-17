@@ -24,7 +24,7 @@ current contracts. New local skills must follow current authoritative specs.
 - When using or changing model terminology, read [CONTEXT.md](CONTEXT.md).
 - Before changing content conventions, metadata, workflows, or automation,
   read [the design](docs/design.md) and the relevant
-  [open questions](docs/design-questions.md).
+  [maintenance notes](docs/maintenance-notes.md).
 - For metadata, creation, import, view, or audit work, read the
   [metadata contract](docs/metadata.md).
 - For commands and runtime limits, read [Operations](docs/operations.md)
@@ -45,11 +45,12 @@ using Conventional Commits, preserving concurrent author changes.
 
 Record newly confirmed decisions in their owning document during the
 discussion. Keep definitions in CONTEXT.md, workflow decisions in
-docs/design.md, field contracts in docs/metadata.md, and unresolved choices
-and factual checks in docs/design-questions.md.
+docs/design.md, field contracts in docs/metadata.md, and maintenance
+observations and investigations in [Maintenance notes](docs/maintenance-notes.md).
 
 Label proposals and unverified assumptions where they appear. Update the
-question record when a decision is resolved or its dependencies change.
+maintenance record as evidence or dependencies change, following the
+[maintenance workflow](docs/design.md#vault-maintenance).
 Use the [document roles](docs/metadata.md#document-role) when reasoning about
 `kind`. Keep proposed conventions and practice suggestions distinct from
 adopted rules; a discussion of a possible improvement is not its adoption.

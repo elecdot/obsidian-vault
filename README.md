@@ -29,7 +29,7 @@ A clean audit is not required to write.
 | Field meanings, identity, ownership, or the consumed registry | [Metadata contract](docs/metadata.md) |
 | Change tools, templates, views, or shared conventions | [Tooling](docs/tooling.md) |
 | Check what was actually verified and in which environment | [Verification](docs/verification.md) |
-| Unresolved choices, usage observations, or deferred work | [Open questions](docs/design-questions.md) |
+| Vault-model observations, investigations, or deferred work | [Maintenance notes](docs/maintenance-notes.md) |
 | Check application behavior against primary documentation | [References](docs/references.md) |
 
 The [first-use task](docs/first-use.md) is the existing MoE expert load

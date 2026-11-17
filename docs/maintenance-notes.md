@@ -1,10 +1,10 @@
-# Open Questions and Observations
+# Vault Maintenance Notes
 
-Use this file for consequential unresolved choices and factual checks.
-Accepted workflows live in [Design](design.md) and field definitions in
-[Metadata](metadata.md). [Verification](verification.md) records coverage and
-runtime limits. Resolved items leave this list; Git retains the earlier
-design interview and setup history.
+Use this working record for day-to-day observations and investigations about
+the vault itself. The [maintenance workflow](design.md#vault-maintenance)
+defines its scope and when items leave. Accepted workflows live in
+[Design](design.md) and field definitions in [Metadata](metadata.md).
+[Verification](verification.md) records coverage and runtime limits.
 
 ## First-use Checks
 

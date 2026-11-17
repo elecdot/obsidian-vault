@@ -178,7 +178,7 @@ These are maintenance checks, not prerequisites for ordinary writing.
 
 The intended approach is local Git history plus a GitHub copy for notes and
 core configuration. Remote setup and coverage remain an
-[open check](design-questions.md#first-use-checks).
+[open check](maintenance-notes.md#first-use-checks).
 
 Git history covers committed files; a remote copy covers the commits pushed
 to it. Untracked, ignored, and uncommitted material is outside that committed
