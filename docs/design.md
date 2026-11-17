@@ -48,14 +48,18 @@ maintenance interfaces. The plain files remain readable elsewhere; matching
 Obsidian's full navigation in every reader is not a requirement. Mobile
 convenience is an improvement rather than an initial launch condition.
 
-Windows desktop Obsidian is the primary environment. Windows remains a
-first-class target for vault tooling; technical maintenance may also run in
-WSL/Linux. Intended platform support is distinct from the
+Windows desktop Obsidian, using a Windows-native vault directory, is the
+primary environment. Windows remains a first-class target for vault tooling.
+WSL/Linux may host technical maintenance in a separate workspace; opening
+its filesystem directory in Windows Obsidian is not the intended setup.
+Intended platform support is distinct from the
 [verified runtime coverage](verification.md).
 
-Maintenance tools need repository-level version management, initially for
-the JavaScript toolchain and extendable to other tools the vault requires.
-The tool manager, task entry points, and version policy are
+Use mise for repository-level maintenance tool versions and simple, clear
+command entry points. This initially covers the JavaScript toolchain and
+can extend to other tools the vault requires. Project libraries remain npm
+dependencies. The default project policy pins exact tool versions for
+reproducibility; the LTS upgrade policy and implementation details remain
 [under discussion](design-questions.md#maintenance-tool-environment).
 
 Specialized repositories can retain their own records and workflows. The

@@ -22,14 +22,15 @@ definite problems; actual writing and retrieval will inform further changes.
 ## Maintenance Tool Environment
 
 Within the [agreed environment requirements](design.md#scope-and-workspace-boundaries),
-mise is the proposed tool manager. Its tool configuration has not yet been
-adopted or implemented in this repository.
+mise is selected for tool versions and simple command entry points, with
+exact versions as the default. Repository configuration and tasks have not
+yet been implemented.
 
 | Open item | Evidence or decision needed | Scope |
 | --- | --- | --- |
-| Tool manager and task entry points | Compare mise tool selection with existing npm scripts against the benefit of mise tasks; consider alternatives where they improve the actual workflow | Repository-level tool version management is required; a task-runner migration is not yet accepted. |
-| Version and update policy | Choose exact versions or a release-line policy, and whether npm needs a version independent of Node | Keep the maintenance environment reproducible without duplicating project library dependency management. |
-| Windows setup and verification | Establish the intended Windows vault location and verify native tool selection and checks there | Historical Obsidian checks do not verify the current CLI on Windows; shared WSL paths and native Windows paths may require different setup. |
+| Task implementation | Provide clear mise entry points over the existing maintenance commands | Simplicity and discoverability justify tasks; this does not require rewriting the npm scripts. |
+| LTS upgrade policy | Resolve how supported LTS releases are selected and adopted while keeping exact project pins, and whether npm needs an independent version | Obsidian runs its adapter internally using its own YAML parser; the external CLI uses Node and the npm YAML dependency. |
+| Windows setup and verification | Choose the future Windows-native vault location and verify native tool selection and checks there | The author uses neither previously registered new-vault location; WSL directories are isolated. Historical Obsidian checks do not verify the future Windows setup. |
 
 ## Confirmed Tool Defects
 

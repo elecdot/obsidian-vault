@@ -190,6 +190,15 @@ workspace state, caches, trash, dependencies, and plugin runtime files.
 A fresh environment installs Templater; CLI dependencies use `npm ci`.
 Vault history does not include original documents kept outside it in Zotero.
 
+The Windows vault list is machine-local state in
+`%APPDATA%\obsidian\obsidian.json`, outside this repository. It is distinct
+from the portable, vault-relative settings tracked in `.obsidian`.
+When moving to another machine, open the intended Windows directory as a
+vault rather than copying the global registration file. Remove obsolete
+test locations through **Manage Vaults > More options > Remove from list**;
+this removes the registration without deleting the vault files. See the
+[settings and vault-management references](references.md).
+
 Obsidian remains the primary reader, and no recurring restore exercise is
 required. A future device setup can establish the normal clone, dependency,
 and plugin setup path when it is actually needed.
