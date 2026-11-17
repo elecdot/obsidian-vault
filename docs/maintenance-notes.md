@@ -19,18 +19,6 @@ definite problems; actual writing and retrieval will inform further changes.
 | Current desktop environment | Identify the intended runtime vault and verify plugin installation before relying on the historical `P:\new-vault` checks | This checkout contains Templater configuration but no plugin runtime files; another copy's installation is unverified. |
 | GitHub copy | When implementing the backup arrangement, identify the remote and which content is committed and pushed | This checkout has no configured remote. Git is the intended approach; remote setup is not an added first-use gate. |
 
-## Maintenance Tool Environment
-
-The tool selection, task entry points, and LTS upgrade policy are settled in
-[Design](design.md#scope-and-workspace-boundaries) and implemented in
-[mise.toml](../mise.toml). The remaining environment check is to choose the
-future Windows-native vault location and verify setup and relevant Obsidian
-actions there. Native Windows CLI verification also awaits the author's
-Scoop installation of mise. The author uses neither previously registered
-new-vault location; WSL directories are isolated. A CLI check in a temporary Windows
-directory does not verify the future desktop vault. See
-[verification limits](verification.md).
-
 ## Confirmed Tool Defects
 
 - **Empty frontmatter is rejected.** The shared [parser](../scripts/core.cjs)

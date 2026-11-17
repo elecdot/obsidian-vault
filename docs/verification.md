@@ -21,16 +21,18 @@ The [first-use assessment](first-use.md) exercises that real path.
 
 ## Maintenance Tool Environment
 
-The mise entry points have been exercised in WSL/Linux with the pinned
-Node and bundled npm. Coverage includes dependency installation, both
-verification tasks, audit, argument forwarding with spaces, dry-run
-preservation, and failure exit propagation.
+The mise entry points have been exercised in WSL/Linux and native Windows
+x64 with the pinned Node and bundled npm. The Windows run used Scoop's
+mise 2026.11.9 in an isolated Windows-native directory with spaces in its
+path. Coverage includes tool installation, task validation, locked npm
+dependency installation, both verification tasks, audit, inventory, argument
+forwarding with spaces, dry-run preservation, and failure exit propagation.
 
-Native Windows setup and task execution remain unverified while mise is
-being installed through Scoop. The directory-link test uses a junction on
-Windows so it does not require ordinary symbolic-link privileges; its
-native behavior still needs verification. These CLI checks are distinct
-from testing the intended Windows Obsidian vault and its Templater actions.
+The directory-link rejection test uses a junction on Windows and passed
+natively, as did Source replacement and ownership tests. These CLI checks
+are distinct from testing the intended Windows Obsidian vault and its
+Templater actions; current desktop setup remains a
+[first-use check](maintenance-notes.md#first-use-checks).
 
 ## Obsidian
 
