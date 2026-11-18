@@ -41,7 +41,8 @@ current contracts. New local skills must follow current authoritative specs.
 ## Design and Maintenance
 
 This is an independent Git repository. Commit completed, verified phases
-using Conventional Commits, preserving concurrent author changes.
+using the [commit convention](docs/operations.md#commit-messages), preserving
+concurrent author changes.
 
 Record newly confirmed decisions in their owning document during the
 discussion. Keep definitions in CONTEXT.md, workflow decisions in

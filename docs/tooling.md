@@ -81,8 +81,9 @@ problem and determine the scope of correction.
    in the application; parsing a Base does not establish its results, and
    a snapshot test does not verify live Zotero.
 4. Update operating guidance, report remaining limits, and commit the
-   verified phase using Conventional Commits. A contract change does not
-   itself authorize bulk migration of the author's existing writing.
+   verified phase using the [commit convention](operations.md#commit-messages).
+   A contract change does not itself authorize bulk migration of the author's
+   existing writing.
 
 Ordinary prose editing does not require this maintenance workflow.
 Keep each rule at one home and link to it from the other documents.

@@ -104,8 +104,15 @@ entry, reading questions, comparisons, and personal explanations. Link to
 maintained project records rather than duplicate execution state.
 
 The intended preservation approach is Git history for notes and core
-configuration, with a remote copy on GitHub. Coverage and implementation
-status are explicit in [Operations](operations.md#git-and-file-coverage).
+configuration, with a remote copy on GitHub. Git history primarily serves
+change tracing; authored Journals, reviews, and working Notes provide the
+narrative record of learning and work. Commit messages identify changes and
+useful reasons; current explanations, provenance, and lasting rationale stay
+in their owning Notes or contracts. A commit's time records the revision,
+while the date of an experience or represented period belongs in the Note.
+The [commit convention](operations.md#commit-messages) provides a common
+message structure for maintenance and content changes. Coverage and
+implementation status are explicit in [Operations](operations.md#git-and-file-coverage).
 Separate restore exercises are not an initial readiness condition.
 
 ## Model Relationships

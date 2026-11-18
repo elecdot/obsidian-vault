@@ -229,6 +229,60 @@ For tool or convention changes, follow [Tooling](tooling.md#change-tools-or-conv
 Use `mise run verify` and `mise run audit` as appropriate to the change.
 These are maintenance checks, not prerequisites for ordinary writing.
 
+## Commit Messages
+
+Use [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+with the vault's content type:
+
+```text
+type(scope): description
+```
+
+The scope is optional: `type: description` is also valid. Choose the type
+by the purpose of the change, not by the file extension:
+
+| Change | Type |
+| --- | --- |
+| Vault tooling, configuration, contracts, or operating guidance | Keep the established maintenance types: `feat`, `fix`, `refactor`, `docs`, `test`, `build`, `ci`, `chore`, `perf`, or `style`, as appropriate |
+| Personal content: writing, corrections, organization, or imported material | Use `note` (singular), including Captures, Journals, Source records, and Activity or Domain entries |
+
+A correction to a knowledge explanation uses `note`; a repair to the
+importer uses `fix`. `note` is a commit type, independent of the affected
+files' `kind` or `format`. One commit may change several Notes.
+
+Choose one optional scope for the main concern:
+
+- A technical component for maintenance, such as `parser`, `views`, or `obsidian`.
+- An Activity's recognizable short name or slug for work in that context,
+  such as `moe-eplb`, even when its Notes span several directories.
+- A Domain name for work organized around that Domain, such as `ai-systems`.
+- A broader content area, such as `journals`, when no particular Activity
+  or Domain is the focus. Omit the scope when there is no useful common focus.
+
+Scopes are retrieval labels for commits. Note relationships remain governed
+by their properties; a scope neither assigns nor inherits those relationships.
+Use recognizable existing names where applicable without introducing another
+scope registry or listing every affected association in the header.
+
+Illustrative messages:
+
+```text
+fix(parser): accept empty frontmatter
+docs(design): clarify the role of Git history
+note(moe-eplb): compare placement assumptions
+note(ai-systems): connect related explanations
+note(journals): record the weekly review
+note: connect reading notes with the research activity
+```
+
+Commit a coherent piece of writing or maintenance work rather than requiring
+one commit per file or save. Separate independent maintenance and content
+changes so each commit has a clear purpose. Describe the meaningful action
+in the subject; use the optional body for useful reasons, evidence, or
+validation results. Routine Captures do not require a separate explanation
+of every edit. The [history boundary](design.md#scope-and-workspace-boundaries)
+keeps current knowledge and work narratives in their maintained Notes.
+
 ## Git and File Coverage
 
 The intended approach is local Git history plus a GitHub copy for notes and

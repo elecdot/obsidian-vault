@@ -27,7 +27,7 @@ to discover commands and `mise run verify` to check changes.
 
 | Need | Read |
 | --- | --- |
-| Daily use, setup, refinement, or Git coverage | [Operations](docs/operations.md) |
+| Daily use, setup, refinement, commit messages, or Git coverage | [Operations](docs/operations.md) |
 | Why the model and workflows work this way | [Design](docs/design.md) |
 | Meaning of Note, Source, Activity, Domain, and related terms | [Domain language](CONTEXT.md) |
 | Field meanings, identity, ownership, or the consumed registry | [Metadata contract](docs/metadata.md) |
