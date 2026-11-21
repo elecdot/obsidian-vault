@@ -285,8 +285,8 @@ keeps current knowledge and work narratives in their maintained Notes.
 
 ## Git and File Coverage
 
-The intended approach is local Git history plus a GitHub copy for notes and
-core configuration. Remote setup and coverage remain an
+The [preservation approach](design.md#scope-and-workspace-boundaries) uses
+local Git history and a GitHub copy. Remote setup and coverage remain an
 [open check](maintenance-notes.md#first-use-checks).
 
 Git history covers committed files; a remote copy covers the commits pushed
@@ -294,10 +294,18 @@ to it. Untracked, ignored, and uncommitted material is outside that committed
 copy. Use `git status --short`, `git ls-files`, and `git remote` to inspect
 coverage when setting up or changing the arrangement.
 
-Core `.obsidian` settings are tracked. [Ignore rules](../.gitignore) exclude
-workspace state, caches, trash, dependencies, and plugin runtime files.
-A fresh environment installs Templater; CLI tools and dependencies follow
-[tool setup](#tool-setup-and-upgrades).
+The tracked `.obsidian` files are `app.json`, `types.json`, `daily-notes.json`,
+`templates.json`, `core-plugins.json`, `community-plugins.json`, `hotkeys.json`,
+and `plugins/templater-obsidian/data.json`. Change preferences in Obsidian as
+they become useful and review the resulting file diffs. Add new native
+settings files, such as `appearance.json` or `switcher.json`, when they capture
+a deliberate preference that should follow the vault.
+
+[Ignore rules](../.gitignore) exclude workspace state, caches, trash,
+dependencies, and community plugin folders except the tracked Templater
+settings. Add a specific exception when another plugin's settings need to
+follow the vault. A fresh environment installs Templater from the community
+directory. CLI tools and dependencies follow [tool setup](#tool-setup-and-upgrades).
 Vault history does not include original documents kept outside it in Zotero.
 
 The Windows vault list is machine-local state in
