@@ -25,7 +25,7 @@ from the community plugin directory. The maintained configuration uses:
 
 - Commands in `templates/commands` and desktop user scripts in `scripts/templater`.
 - No script autorun on startup or file creation, and no folder rules.
-- Native Daily Notes in `journals/daily`, format `YYYY/YYYY-MM-DD`, using `templates/daily`.
+- Native Daily Notes in `journals/daily`, format `YYYY/YYYY-MM-DD`, using `templates/daily.md`.
 - New manual Notes in `inbox`, attachments in the containing folder's
   `attachments/`, and native internal-link updates enabled.
 
@@ -294,12 +294,12 @@ to it. Untracked, ignored, and uncommitted material is outside that committed
 copy. Use `git status --short`, `git ls-files`, and `git remote` to inspect
 coverage when setting up or changing the arrangement.
 
-The tracked `.obsidian` files are `app.json`, `types.json`, `daily-notes.json`,
-`templates.json`, `core-plugins.json`, `community-plugins.json`, `hotkeys.json`,
-and `plugins/templater-obsidian/data.json`. Change preferences in Obsidian as
-they become useful and review the resulting file diffs. Add new native
-settings files, such as `appearance.json` or `switcher.json`, when they capture
-a deliberate preference that should follow the vault.
+The tracked native `.obsidian` files are `app.json`, `types.json`,
+`daily-notes.json`, `templates.json`, `core-plugins.json`, `hotkeys.json`,
+`appearance.json`, `backlink.json`, `canvas.json`, and `switcher.json`.
+Change preferences in Obsidian as they become useful and review the resulting
+file diffs. Add native settings files when they capture a deliberate
+preference that should follow the vault.
 
 [Ignore rules](../.gitignore) exclude workspace state, caches, trash,
 dependencies, and community plugin folders except the tracked Templater

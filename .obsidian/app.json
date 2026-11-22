@@ -5,8 +5,11 @@
   "alwaysUpdateLinks": true,
   "newLinkFormat": "shortest",
   "useMarkdownLinks": false,
-  "showInlineTitle": false,
+  "showInlineTitle": true,
   "vimMode": true,
   "defaultViewMode": "preview",
-  "livePreview": false
+  "livePreview": false,
+  "showLineNumber": true,
+  "showUnsupportedFiles": true,
+  "trashOption": "local"
 }

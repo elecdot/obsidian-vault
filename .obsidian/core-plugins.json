@@ -14,5 +14,19 @@
   "outline": true,
   "properties": true,
   "bases": true,
-  "file-recovery": true
+  "file-recovery": true,
+  "canvas": true,
+  "footnotes": true,
+  "slash-command": true,
+  "editor-status": true,
+  "bookmarks": true,
+  "zk-prefixer": false,
+  "random-note": false,
+  "word-count": true,
+  "slides": true,
+  "audio-recorder": true,
+  "workspaces": false,
+  "publish": false,
+  "sync": true,
+  "webviewer": true
 }
