@@ -37,12 +37,6 @@ describes installation, upgrades, and the Windows-native setup.
 
 ## Shared Definitions
 
-For view changes, use the [Bases workflow](../.agents/skills/vault-bases/SKILL.md)
-and its desktop-saved examples. Obsidian can remove YAML comments, change
-scalar quoting, and reorder mapping keys when it saves a Base. Keep the
-reason for a shared view convention here. The [skill maintenance guide](../.agents/skills/vault-bases/README.md)
-records the upstream revision and how to update it.
-
 The CLI and Obsidian adapter share the registry reader and validator.
 Native property types and Base scope/lifecycle coverage are checked for
 agreement. Preserve the `docs/metadata.md` path and registry markers unless
@@ -52,6 +46,37 @@ Semantic meaning stays in the contract. Where an adapter cannot share a
 mechanical definition, maintain its small explicit representation and check
 the relevant behavior. A universal runtime is not required. Current tools
 have no infrastructure generator or background content migration.
+
+## Native Base Saves
+
+Desktop Obsidian can drop comments, change scalar quoting, and reorder mapping
+keys when saving a `.base`. Keep lasting rationale in this guide. For file
+layout and line endings, start from a similar Base saved by the target version.
+If a checkout has older formatting, exercise the native writer on a temporary
+copy. This excerpt from [Related](../bases/related.base) uses its existing
+scope and title formula.
+
+```yaml
+views:
+  - type: table
+    name: Related activities
+    filters: kind == "activity" && list(domains).contains(this)
+    order:
+      - formula.title
+      - status
+```
+
+Simple names and expressions can remain plain YAML scalars. Quote values
+that YAML would otherwise interpret differently, such as the filter starting
+with `!kind` in [Maintenance](../bases/maintenance.base) or a display name
+containing a colon followed by a space. Check the parsed value if in doubt.
+
+To investigate a rewrite or verify changed output guidance, capture the bytes
+of a temporary Base before opening it. If opening produces no write, rename
+a view in the standalone Base and press Enter. Confirm the disk diff contains
+only that edit. Restore the name, press Enter, and compare the bytes with
+the captured file. Report any additional changes. Check row membership
+separately in the intended embed. See the [desktop trial](verification.md#obsidian).
 
 ## Exact Write Boundary
 

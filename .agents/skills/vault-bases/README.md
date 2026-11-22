@@ -8,18 +8,20 @@ comes from the same revision.
 
 ## Local changes
 
-The [entry point](SKILL.md) has a vault-specific name, trigger and workflow.
-It uses the vault's content scope and association model, points to desktop-saved
-examples, and adjusts upstream quoting advice to match the desktop writer.
-The generic examples remain available as syntax references. Native checks
-cover both the rows in the host Note and the bytes written on save.
+The [entry point](SKILL.md) scopes invocation to Base work and routes diagnosis,
+edits and native rewrites. The upstream `SKILL.md` supplies the topic references
+for [queries](references/queries.md), [views](references/views.md) and
+[worked examples](references/examples.md). The vault's
+[native save guidance](../../../docs/tooling.md#native-base-saves) owns
+quoting conventions and the desktop check.
 
 ## Updating
 
-Review upstream when a task needs a fix or a desktop change affects verified
-behavior. Diff the pinned upstream directory and root license against the
-candidate commit. Reconcile changes with the local workflow and quoting advice,
-and check the bundled reference and license against the candidate. Run the skill
-validator and [repository checks](../../../docs/tooling.md#checks-and-their-limits).
-When output guidance changes, repeat the native check in the entry point.
-Update the recorded SHA and permalink in the same verified commit.
+When a task needs an upstream fix or desktop behavior changes, compare the
+pinned upstream directory and root license with the candidate commit.
+Apply each relevant `SKILL.md` change to its owning topic. Reconcile quoting
+changes with the desktop evidence. Check the bundled function reference and
+license against the candidate. Run the packaging validator and
+[repository checks](../../../docs/tooling.md#checks-and-their-limits).
+Repeat the native save check when output guidance changes. Advance the SHA
+and permalink in the same verified commit.
