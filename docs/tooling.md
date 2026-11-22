@@ -19,7 +19,7 @@ when a helper is unavailable.
 | Snapshot import and live transport candidate | `scripts/zotero.cjs`, `scripts/zotero-transport.cjs` |
 | Native settings and command configuration | `.obsidian/`; see [Git coverage](operations.md#git-and-file-coverage) |
 | Behavioral checks and desktop probe | `tests/run.cjs`, `tests/obsidian-runtime.cjs`, `scripts/check.cjs` |
-| Task-specific agent support | `.agents/skills/vault-write/`, `vault-organize/`, and `vault-maintain/` |
+| Task-specific agent support | `.agents/skills/vault-write/`, `vault-organize/`, `vault-maintain/`, and [vault-bases](../.agents/skills/vault-bases/SKILL.md) for Base work |
 | Teaching examples | `examples/`, outside live content scope |
 
 `npm run vault -- inventory` reports implemented actions and files. It is
@@ -36,6 +36,12 @@ a Bash requirement. [Operations](operations.md#tool-setup-and-upgrades)
 describes installation, upgrades, and the Windows-native setup.
 
 ## Shared Definitions
+
+For view changes, use the [Bases workflow](../.agents/skills/vault-bases/SKILL.md)
+and its desktop-saved examples. Obsidian can remove YAML comments, change
+scalar quoting, and reorder mapping keys when it saves a Base. Keep the
+reason for a shared view convention here. The [skill maintenance guide](../.agents/skills/vault-bases/README.md)
+records the upstream revision and how to update it.
 
 The CLI and Obsidian adapter share the registry reader and validator.
 Native property types and Base scope/lifecycle coverage are checked for

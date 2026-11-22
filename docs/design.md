@@ -42,8 +42,10 @@ friction or justify redesign.
 
 Introduce official Obsidian skills on demand through this vault's existing
 workflows. The local guidance identifies the task, the applicable vault
-contract, and how to check the result here. Consult the relevant upstream
-skill when its format or application guidance helps with that task.
+contract, and how to check the result here. Consult the relevant skill when
+its format or application guidance helps. When desktop behavior or the vault
+contract calls for changes to upstream instructions, keep the adaptation,
+its source revision, and its maintenance guidance together in the repository.
 
 ## Vault Maintenance
 

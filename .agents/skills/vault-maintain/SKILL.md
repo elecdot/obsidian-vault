@@ -4,7 +4,8 @@ description: Audit this vault or maintain its model, conventions, metadata regis
 ---
 
 Use the [maintenance workflow](../../../docs/design.md#vault-maintenance)
-for diagnosis and decision scope. Read [tooling](../../../docs/tooling.md),
+for diagnosis and decision scope. When creating, editing, or diagnosing a Base,
+use [vault-bases](../vault-bases/SKILL.md). Read [tooling](../../../docs/tooling.md),
 [the contract](../../../docs/metadata.md), and [operations](../../../docs/operations.md)
 for the component involved.
 The enclosing repository's old skills are obsolete. Consult the current

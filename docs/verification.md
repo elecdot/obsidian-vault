@@ -41,6 +41,16 @@ temporary note in Source mode. Dismissing the dialogs preserved the note text
 and created no additional notes. The temporary note was removed. The
 [first real writing and retrieval cycle](first-use.md) has separate criteria.
 
+On **2026-11-22**, the [Bases workflow](../.agents/skills/vault-bases/SKILL.md)
+was exercised in `P:\vault` with Obsidian 1.15.1 (installer 1.12.4).
+A temporary Domain embedded an edited copy of [Related](../bases/related.base).
+Its direct-notes view returned exactly the Note linked to the Domain and
+excluded the Note linked only to its Activity. Opening the embed preserved
+the initial file hash. In the standalone Base, renaming the view and pressing
+Enter wrote exactly the intended name change to disk. Restoring the name
+and pressing Enter reproduced the original SHA-256. The five fixtures were
+removed. This trial covers the tested table and native save on this version.
+
 Earlier checks ran on **2026-10-04** in the author's copy at
 `P:\new-vault`; the source repository was then `/home/elecdot/vault/new-vault`.
 Observed versions: Obsidian application 1.13.7, installer 1.12.4, Templater 2.25.1.
