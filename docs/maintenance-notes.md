@@ -16,7 +16,6 @@ definite problems; actual writing and retrieval will inform further changes.
 | Open item | Evidence or decision needed | Scope |
 | --- | --- | --- |
 | First real use | A real question, the author's writing, successful return, and continuation in the intended desktop vault | Initial usability; does not prove long-term effectiveness |
-| Current desktop environment | Identify the intended runtime vault and verify plugin installation before relying on the historical `P:\new-vault` checks | This checkout contains Templater configuration but no plugin runtime files; another copy's installation is unverified. |
 | GitHub copy | When implementing the backup arrangement, identify the remote and which content is committed and pushed | This checkout has no configured remote. Git is the intended approach; remote setup is not an added first-use gate. |
 
 ## Confirmed Tool Defects
@@ -91,7 +90,7 @@ becomes part of regular use.
 
 | Candidate | Reopen when | Known boundary |
 | --- | --- | --- |
-| Live selected-item Zotero import | The author explicitly resumes integration work | Selection failed before export or writes; the raw mapping was not retained. Obtain actual selection/export samples before changing the adapter. See [evidence](verification.md#source-integration). |
+| Live selected-item Zotero import | The author explicitly resumes integration work | Zotero remains part of the Source workflow. Live import and its portable settings are deferred. The last selection failed before export or writes. Obtain actual selection and export samples before changing the adapter. See [evidence](verification.md#source-integration). |
 | Domain list flattened through Activities | Direct Notes plus Activity entry points cause a concrete retrieval problem | Cross-file `file.properties` and `file.backlinks` have refresh limitations in the documented API; the proposed combined query and refresh strategy are unverified. See [references](references.md). |
 | Additional Source identity/locator profiles | Actual material cannot use the supported snapshot identity or direct locators | Define identity, ownership, and affected consumers before extending the contract. |
 | New formal formats or generated support files | An identifiable writing or maintenance action benefits | Apply the format admission rule or specify authoritative inputs, outputs, preview, and ownership; no generic framework is planned. |

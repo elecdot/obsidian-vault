@@ -1,0 +1,14 @@
+{
+  "imageNamePattern": "{{fileName}}",
+  "dupNumberAtStart": false,
+  "dupNumberDelimiter": "-",
+  "dupNumberAcrossExtensions": true,
+  "dupNumberAlways": true,
+  "dupNumberWidth": 1,
+  "nameInputPosition": "end",
+  "autoRename": true,
+  "handleAllAttachments": false,
+  "excludeExtensionPattern": "",
+  "excludedFolders": "",
+  "disableRenameNotice": false
+}

@@ -30,14 +30,18 @@ forwarding with spaces, dry-run preservation, and failure exit propagation.
 
 The directory-link rejection test uses a junction on Windows and passed
 natively, as did Source replacement and ownership tests. These CLI checks
-are distinct from testing the intended Windows Obsidian vault and its
-Templater actions; current desktop setup remains a
-[first-use check](maintenance-notes.md#first-use-checks).
+are distinct from the [desktop Obsidian checks](#obsidian).
 
 ## Obsidian
 
-These are historical observations from **2026-10-04**, not verification of
-the currently intended desktop vault. The runtime was the author's copy at
+On **2026-11-22**, Templater 2.27.0 ran Capture, Vault Menu, and Inspect via
+their registered Insert commands in `P:\vault`. The plugin needed a reload
+to register the recovered commands. Each command opened its dialog from a
+temporary note in Source mode. Dismissing the dialogs preserved the note text
+and created no additional notes. The temporary note was removed. The
+[first real writing and retrieval cycle](first-use.md) has separate criteria.
+
+Earlier checks ran on **2026-10-04** in the author's copy at
 `P:\new-vault`; the source repository was then `/home/elecdot/vault/new-vault`.
 Observed versions: Obsidian application 1.13.7, installer 1.12.4, Templater 2.25.1.
 Native CLI calls and the three Templater command entries were available.

@@ -29,6 +29,10 @@ from the community plugin directory. The maintained configuration uses:
 - New manual Notes in `inbox`, attachments in the containing folder's
   `attachments/`, and native internal-link updates enabled.
 
+If installation replaces the tracked Templater settings, restore the script
+folder and template commands in the installed version's settings format,
+then reload Templater to register the commands.
+
 From an existing Markdown Note, use the command palette:
 
 | Command | Use |
@@ -301,11 +305,16 @@ Change preferences in Obsidian as they become useful and review the resulting
 file diffs. Add native settings files when they capture a deliberate
 preference that should follow the vault.
 
+`community-plugins.json` tracks Templater, Paste image rename, and Style
+Settings. Install them from the community directory on a new machine to
+restore their respective workflows. Git carries Templater's command settings
+and Paste image rename's attachment naming settings in their `data.json`
+files. Style Settings currently has only an enablement entry.
+
 [Ignore rules](../.gitignore) exclude workspace state, caches, trash,
-dependencies, and community plugin folders except the tracked Templater
-settings. Add a specific exception when another plugin's settings need to
-follow the vault. A fresh environment installs Templater from the community
-directory. CLI tools and dependencies follow [tool setup](#tool-setup-and-upgrades).
+dependencies, and community plugin folders with specific exceptions for
+tracked settings. CLI tools and dependencies follow
+[tool setup](#tool-setup-and-upgrades).
 Vault history does not include original documents kept outside it in Zotero.
 
 The Windows vault list is machine-local state in
