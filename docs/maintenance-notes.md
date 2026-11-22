@@ -18,6 +18,46 @@ definite problems; actual writing and retrieval will inform further changes.
 | First real use | A real question, the author's writing, successful return, and continuation in the intended desktop vault | Initial usability; does not prove long-term effectiveness |
 | GitHub copy | When implementing the backup arrangement, identify the remote and which content is committed and pushed | This checkout has no configured remote. Git is the intended approach; remote setup is not an added first-use gate. |
 
+## Pilot plan for Obsidian Bases
+
+The author observed that opening agent-created Bases in desktop Obsidian
+rewrote the files. On 2026-11-22, all eight working copies under
+`bases/` parsed to the same YAML data as their versions at `4ea90ea`.
+The desktop copies lost a header comment and some outer YAML quotes.
+In [Recent writing](../bases/content.base), `sort` and `limit` moved
+below `order`. These differences obscure later edits in Git. The comparison
+covers the saved data. Desktop results and first-save stability for a new
+agent edit still need a trial.
+
+The proposed trial applies the [on-demand approach](design.md#design-scale)
+to one Base.
+
+1. When a task creates or edits a Base, route it from
+   [vault-maintain](../.agents/skills/vault-maintain/SKILL.md) to a short
+   section in [Tooling](tooling.md). Put the upstream
+   [Bases skill](https://github.com/obsidianmd/obsidian-skills/tree/main/plugins/obsidian/skills/obsidian-bases)
+   beside the Bases syntax reference in [References](references.md).
+   Start with a link. A local copy can be considered if offline access is
+   needed. Consult the CLI skill only when the task uses the desktop CLI.
+2. Start the edit from a desktop-saved Base of the same kind. Use the
+   [metadata contract](metadata.md#relationships) for relationships and
+   content scope. Keep durable rationale in the tooling guidance. Preserve
+   any YAML quoting the expression needs, as in the filter beginning with
+   `!kind` in [Maintenance](../bases/maintenance.base).
+3. Try one representative edit in a temporary copy. Run the
+   [repository checks](tooling.md#checks-and-their-limits) and capture
+   the file before opening it. Embed the copy in a temporary host Note in
+   the target desktop vault and inspect its rows. For
+   [Direct notes](../bases/related.base), a Note directly linked to the
+   host Domain should appear and one linked only to its Activity should
+   stay out. Compare the file after the first native save with the captured
+   copy. If opening alone produces no write, change a view
+   name in the UI and restore it to exercise the desktop writer.
+4. The pilot passes when the rows match the intended relationships and the
+   native save adds no file diff. If it rewrites the file, keep the diff,
+   adjust the local example, and retry. Record any untested desktop step
+   alongside the offline result.
+
 ## Confirmed Tool Defects
 
 - **Empty frontmatter is rejected.** The shared [parser](../scripts/core.cjs)

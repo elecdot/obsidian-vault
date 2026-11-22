@@ -40,6 +40,11 @@ The author prefers command-palette access. Keep the current actions while
 observing actual use; the number of menu entries alone does not establish
 friction or justify redesign.
 
+Introduce official Obsidian skills on demand through this vault's existing
+workflows. The local guidance identifies the task, the applicable vault
+contract, and how to check the result here. Consult the relevant upstream
+skill when its format or application guidance helps with that task.
+
 ## Vault Maintenance
 
 Use [Maintenance notes](maintenance-notes.md) for day-to-day observations
