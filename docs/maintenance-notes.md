@@ -32,18 +32,25 @@ agent edit still need a trial.
 The proposed trial applies the [on-demand approach](design.md#design-scale)
 to one Base.
 
-1. When a task creates or edits a Base, route it from
-   [vault-maintain](../.agents/skills/vault-maintain/SKILL.md) to a short
-   section in [Tooling](tooling.md). Put the upstream
-   [Bases skill](https://github.com/obsidianmd/obsidian-skills/tree/main/plugins/obsidian/skills/obsidian-bases)
-   beside the Bases syntax reference in [References](references.md).
-   Start with a link. A local copy can be considered if offline access is
-   needed. Consult the CLI skill only when the task uses the desktop CLI.
-2. Start the edit from a desktop-saved Base of the same kind. Use the
-   [metadata contract](metadata.md#relationships) for relationships and
-   content scope. Keep durable rationale in the tooling guidance. Preserve
-   any YAML quoting the expression needs, as in the filter beginning with
-   `!kind` in [Maintenance](../bases/maintenance.base).
+1. Bring the [upstream Bases skill](https://github.com/obsidianmd/obsidian-skills/blob/main/plugins/obsidian/skills/obsidian-bases/SKILL.md)
+   and its function reference into `.agents/skills/vault-bases/` from one
+   pinned commit. Include the upstream MIT license. The local name
+   `vault-bases` distinguishes this adaptation if the official plugin is
+   also installed. Scope its description to creating, editing, or diagnosing
+   a Base in this vault. [Codex](https://developers.openai.com/codex/skills/)
+   discovers the description and reads the instructions when it selects
+   the skill. Link to it from [vault-maintain](../.agents/skills/vault-maintain/SKILL.md)
+   for Base work. Consult the CLI skill when a task needs the desktop CLI.
+2. Adapt the upstream workflow and quoting guidance where they differ from
+   desktop-saved examples. The skill must work when invoked directly. Link
+   to the [metadata contract](metadata.md#relationships) for relationships
+   and content scope, and start from a desktop-saved Base of the same kind.
+   For example, [Recent writing](../bases/content.base) has a plain view
+   name, while the filter beginning with `!kind` in
+   [Maintenance](../bases/maintenance.base) retains its outer quotes. Keep
+   explanatory comments in examples and put lasting rationale in
+   [Tooling](tooling.md). Generic upstream sample properties and statuses
+   are illustrative. Keep the function reference intact where applicable.
 3. Try one representative edit in a temporary copy. Run the
    [repository checks](tooling.md#checks-and-their-limits) and capture
    the file before opening it. Embed the copy in a temporary host Note in
@@ -57,6 +64,14 @@ to one Base.
    native save adds no file diff. If it rewrites the file, keep the diff,
    adjust the local example, and retry. Record any untested desktop step
    alongside the offline result.
+
+For upkeep, the proposal is to keep the upstream URL, directory, full commit
+SHA and reasons for local edits in a short README beside the skill. Review
+updates when a task needs an upstream fix or a desktop change affects verified
+behavior. Compare the pinned upstream revision with the candidate, reconcile
+the changes with the local edits, and rerun the affected checks. A change to
+output guidance calls for the desktop trial above. Advance the recorded SHA
+with the verified update.
 
 ## Confirmed Tool Defects
 
