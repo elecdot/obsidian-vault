@@ -20,8 +20,11 @@ Recent writing view, but is present in All content and Maintenance Captures.
 
 ## Obsidian Setup
 
-Open this repository folder as a separate vault. Install and enable Templater
-from the community plugin directory. The maintained configuration uses:
+On a new desktop, clone this repository and open the checkout as a separate
+vault. In **Settings → Community plugins**, install and enable the plugins
+listed under [Git and File Coverage](#git-and-file-coverage). A clone restores
+the vault settings and plugin IDs. Obsidian downloads plugin files when you
+install them. The maintained configuration uses:
 
 - Commands in `templates/commands` and desktop user scripts in `scripts/templater`.
 - No script autorun on startup or file creation, and no folder rules.
@@ -305,11 +308,11 @@ Change preferences in Obsidian as they become useful and review the resulting
 file diffs. Add native settings files when they capture a deliberate
 preference that should follow the vault.
 
-`community-plugins.json` tracks Templater, Paste image rename, and Style
-Settings. Install them from the community directory on a new machine to
-restore their respective workflows. Git carries Templater's command settings
-and Paste image rename's attachment naming settings in their `data.json`
-files. Style Settings currently has only an enablement entry.
+`community-plugins.json` tracks Templater, Advanced Tables, Paste image rename,
+and Style Settings. Git carries Templater's command settings and Paste image
+rename's attachment naming settings in their `data.json` files. Advanced
+Tables uses its default `Tab` and `Enter` navigation in Markdown tables in
+Source mode. Advanced Tables and Style Settings have only enablement entries.
 
 [Ignore rules](../.gitignore) exclude workspace state, caches, trash,
 dependencies, and community plugin folders with specific exceptions for
