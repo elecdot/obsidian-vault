@@ -1,102 +1,74 @@
 # Verification
 
-This document records verification coverage and the limits of available
-runtime evidence. Documentation and configuration alone do not establish
-successful use. [Tooling](tooling.md#checks-and-their-limits) describes the
-checks and where to record routine results.
+Use this page when taking over a task to see which vault operations have
+been exercised, where they ran, and how far the checks went. Update a
+finding in place when new evidence changes what the next person can rely
+on. A change of phase is a good time to prune findings that no longer
+affect writing or maintenance. Git retains earlier results.
 
-## Offline
-
-Use `mise run verify`, `mise run audit`, and
-`mise run vault -- inventory` for the [documented checks](tooling.md#checks-and-their-limits).
-The underlying `npm test` and `npm run check` scripts remain available;
-[tool setup](operations.md#tool-setup-and-upgrades) selects their environment.
-Behavioral tests use temporary vaults outside personal content and remove
-their fixtures. A passing suite covers its tested cases; it does not rule
-out the [confirmed tool defects](maintenance-notes.md#confirmed-tool-defects).
-
-Offline checks establish structural behavior. They do not establish useful
-research writing or successful operation in the intended desktop vault.
-The [first-use assessment](first-use.md) exercises that real path.
-
-## Maintenance Tool Environment
-
-The mise entry points have been exercised in WSL/Linux and native Windows
-x64 with the pinned Node and bundled npm. The Windows run used Scoop's
-mise 2026.11.9 in an isolated Windows-native directory with spaces in its
-path. Coverage includes tool installation, task validation, locked npm
-dependency installation, both verification tasks, audit, inventory, argument
-forwarding with spaces, dry-run preservation, and failure exit propagation.
-
-The directory-link rejection test uses a junction on Windows and passed
-natively, as did Source replacement and ownership tests. These CLI checks
-are distinct from the [desktop Obsidian checks](#obsidian).
+[Maintenance notes](maintenance-notes.md) tracks observations that need
+follow-up, open decisions, and conditions for reopening an investigation.
+[Tooling](tooling.md#checks-and-their-limits) describes the checks and where
+to record routine results.
 
 ## Obsidian
 
-On **2026-11-23**, the Windows [desktop CLI](../.agents/skills/vault-obsidian-cli/SKILL.md)
-resolved the registered name `vault` to `P:\vault` in Obsidian 1.15.1
-(installer 1.12.4). With automatic link updates enabled, `move` moved and
-renamed a temporary Note from `inbox/` to `knowledge/`. The old path
-disappeared, the destination retained the original text, and the referring
-Note's aliased body link changed on disk. `backlinks` listed the referring
-Note at the original target before the move and at the new target afterward.
-Both temporary Notes were removed.
+### Current desktop vault
 
-On **2026-11-22**, Templater 2.27.0 ran Capture, Vault Menu, and Inspect via
-their registered Insert commands in `P:\vault`. The plugin needed a reload
-to register the recovered commands. Each command opened its dialog from a
-temporary note in Source mode. Dismissing the dialogs preserved the note text
-and created no additional notes. The temporary note was removed. The
-[first real writing and retrieval cycle](first-use.md) has separate criteria.
+These checks used temporary Notes in `P:\vault` on Windows with Obsidian
+1.15.1. Writing about a real research question, finding that writing again,
+and continuing it remain to be tested in the [first-use assessment](first-use.md#agreed-use-and-first-assessment).
 
-On **2026-11-22**, the [Bases workflow](../.agents/skills/vault-bases/SKILL.md)
-was exercised in `P:\vault` with Obsidian 1.15.1 (installer 1.12.4).
-A temporary Domain embedded an edited copy of [Related](../bases/related.base).
-Its direct-notes view returned exactly the Note linked to the Domain and
-excluded the Note linked only to its Activity. Opening the embed preserved
-the initial file hash. In the standalone Base, renaming the view and pressing
-Enter wrote exactly the intended name change to disk. Restoring the name
-and pressing Enter reproduced the original SHA-256. The five fixtures were
-removed. This trial covers the tested table and native save on this version.
+- **Command palette (2026-11-22).** After a plugin reload, Templater 2.27.0
+  registered the Capture, Vault Menu, and Inspect Insert commands. Each
+  opened its dialog in Source mode. Cancelling preserved the Note's text
+  and created no additional Notes.
+- **Related Base (2026-11-22).** In a Domain embed, the direct-notes view
+  showed the Note linked to the Domain and excluded the Note linked only
+  to its Activity. Opening the embed left the Base file intact. Saving a
+  view rename in the standalone Base changed only the view name. Restoring
+  the name reproduced the original bytes. See the [native save procedure](tooling.md#native-base-saves).
+- **Move and backlinks (2026-11-23).** With automatic link updates enabled,
+  the desktop CLI moved and renamed a Note from `inbox/` to `knowledge/`.
+  Its text stayed intact and Obsidian updated the referring Note's aliased
+  link on disk.
+  The CLI listed the referring Note in the backlinks before and after the move.
 
-Earlier checks ran on **2026-10-04** in the author's copy at
-`P:\new-vault`; the source repository was then `/home/elecdot/vault/new-vault`.
-Observed versions: Obsidian application 1.13.7, installer 1.12.4, Templater 2.25.1.
-Native CLI calls and the three Templater command entries were available.
+### Earlier desktop coverage
 
-Through installed Templater and native Vault/FileManager APIs, checks passed for:
+On 2026-10-04, checks in `P:\new-vault` used Obsidian 1.13.7 and
+Templater 2.25.1. Contextual creation preserved the Activity association
+without copying its Domains. Existing periods reopened with their text
+intact, name collisions blocked creation, and cancelling Capture with
+Escape preserved the selected text. A native rename also preserved the
+resolved target of a `sources` property link.
 
-- Contextual creation without copying the Activity's Domain relationships.
-- Existing-period reopening, collision refusal, and cancellation before creation.
-- Synthetic Source re-import preserving personal reading, and native rename
-  preserving the resolved `sources` target even when link spelling changed.
-- Native audit and refinement locations; planned Activities in the appropriate
-  view; direct Domain Notes separated from Activity-only Captures.
-- Related Activity entry points, descending recent-writing order, period embeds,
-  and Source aliases displayed while stable paths remained intact.
-- The real capture command preserving selected text after Escape cancellation.
-- Core Daily Notes creating the expected date and metadata, and native YAML
-  rejecting duplicate keys.
+Checks in that copy also covered audit and refinement locations, Activity
+and recent-writing views, period embeds, Source aliases, Daily Notes
+metadata, and duplicate YAML key rejection. The [desktop probe](../tests/obsidian-runtime.cjs)
+runs separately from the offline suite.
 
-`tests/obsidian-runtime.cjs` supplies the desktop probe and explicit fixture
-cleanup. Its checks are separate from `npm test`; historical fixtures were
-removed. The three local skills also passed the skill packaging validator,
-which does not establish every future assistant judgment.
+## Offline
+
+The mise tasks ran in WSL/Linux and on native Windows x64 with the pinned
+Node and bundled npm. The Windows run covered setup, behavioral and
+structural checks, audit, and inventory in a path containing spaces. It
+also confirmed argument forwarding with spaces, dry runs that preserved
+files, failure exit codes, and rejection of directory junctions. See
+[confirmed tool defects](maintenance-notes.md#confirmed-tool-defects)
+for cases outside the passing suite's coverage.
 
 ## Source Integration
 
-Controlled snapshot import and its ownership checks passed offline and
-synthetic native-app tests. **Live selected-item import is not verified and
-is not exposed as a working menu action.**
+**Zotero snapshots.** Offline and synthetic desktop tests exercised
+explicit snapshot import and Source ownership checks. Re-import preserved
+the author's separate reading Note.
 
-The attempted item was *SALS: Sparse attention in latent space for KV cache
-compression*, using Zotero 9.0.6 and Better BibTeX 9.0.68. Selection failed with
-`Selected-item identity has an unsupported shape` while interpreting
-citation-key selection data, before item export, annotation retrieval, or
-Source writing. SALS was not imported. The raw selection mapping was not
-retained, so its shape and the cause cannot be inferred from that error alone.
-
-The candidate transport is in [zotero-transport.cjs](../scripts/zotero-transport.cjs).
-The [Better BibTeX API](https://retorque.re/zotero-better-bibtex/exporting/json-rpc/)
-documents the export interface.
+**Live Zotero selection.** On 2026-10-04, with Zotero 9.0.6 and Better
+BibTeX 9.0.68, the adapter stopped at citation-key selection with
+`Selected-item identity has an unsupported shape`. The failure preceded
+item export, annotation retrieval, and Source writing. The raw selection
+mapping is unavailable, so the cause remains unknown. The menu accepts
+[explicit snapshots](operations.md#source-import) as its Zotero input.
+[Maintenance notes](maintenance-notes.md#deferred-extensions)
+records when to revisit live selection.
