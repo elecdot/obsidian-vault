@@ -62,5 +62,21 @@
       ],
       "key": "R"
     }
+  ],
+  "file-explorer:new-file-in-new-pane": [],
+  "command-palette:open": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "P"
+    },
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "P"
+    }
   ]
 }

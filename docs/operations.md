@@ -36,7 +36,8 @@ If installation replaces the tracked Templater settings, restore the script
 folder and template commands in the installed version's settings format,
 then reload Templater to register the commands.
 
-From an existing Markdown Note, use the command palette:
+From an existing Markdown Note, open the command palette with `Ctrl/Cmd+P`
+or `Ctrl/Cmd+Shift+P`.
 
 | Command | Use |
 | --- | --- |
