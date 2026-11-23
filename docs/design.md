@@ -86,6 +86,8 @@ Windows desktop Obsidian, using a Windows-native vault directory, is the
 primary environment. Windows remains a first-class target for vault tooling.
 WSL/Linux may host technical maintenance in a separate workspace; opening
 its filesystem directory in Windows Obsidian is not the intended setup.
+The author will assess the [native CLI options for WSL](../.agents/skills/vault-obsidian-cli/README.md#wsl)
+from within that environment.
 Intended platform support is distinct from the
 [verified runtime coverage](verification.md).
 

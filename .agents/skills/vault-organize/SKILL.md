@@ -19,9 +19,10 @@ locations. Mechanical findings do not decide the author's intended Domain
 relationships or whether the content is worth retaining. Surface uncertain
 interpretations; execute unambiguous changes already within the request.
 
-Use native Obsidian rename/move with the explicit target vault for reference
-maintenance. If that interface is unavailable, preserve the files and report
-the unresolved move rather than claim a shell rename maintained the graph.
+Move or rename Notes through native Obsidian so it can update references.
+From the terminal, use [vault-obsidian-cli](../vault-obsidian-cli/SKILL.md)
+with the explicit target vault. If the native interface is unavailable,
+preserve the files and report the unresolved move.
 Do not overwrite importer-owned Sources with personal organization; put the
 author's classifications and explanations in authored Notes.
 

@@ -34,6 +34,15 @@ are distinct from the [desktop Obsidian checks](#obsidian).
 
 ## Obsidian
 
+On **2026-11-23**, the Windows [desktop CLI](../.agents/skills/vault-obsidian-cli/SKILL.md)
+resolved the registered name `vault` to `P:\vault` in Obsidian 1.15.1
+(installer 1.12.4). With automatic link updates enabled, `move` moved and
+renamed a temporary Note from `inbox/` to `knowledge/`. The old path
+disappeared, the destination retained the original text, and the referring
+Note's aliased body link changed on disk. `backlinks` listed the referring
+Note at the original target before the move and at the new target afterward.
+Both temporary Notes were removed.
+
 On **2026-11-22**, Templater 2.27.0 ran Capture, Vault Menu, and Inspect via
 their registered Insert commands in `P:\vault`. The plugin needed a reload
 to register the recovered commands. Each command opened its dialog from a

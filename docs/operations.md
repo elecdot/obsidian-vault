@@ -218,12 +218,16 @@ with actual selection/export samples. See [Verification](verification.md#source-
 
 ## Maintenance and Rename
 
-Use the helper menu, native file explorer, or native CLI with an explicit
-vault and exact path for moves. Confirm the target vault first:
+Use the helper menu, native file explorer, or native CLI for moves. For a
+desktop action from the terminal, invoke [vault-obsidian-cli](../.agents/skills/vault-obsidian-cli/SKILL.md)
+directly or through the organization workflow. On this Windows machine the
+registered name is `vault`. Check that the first command returns `P:\vault`
+before using the second command with the intended file paths. On another
+machine, use the registered name and expected vault root for that machine.
 
-```sh
-obsidian vault=new-vault vault info=path
-obsidian vault=new-vault move path=inbox/example.md to=knowledge/example.md
+```powershell
+obsidian vault=vault vault info=path
+obsidian vault=vault move path=inbox/example.md to=knowledge/example.md
 ```
 
 Native rename follows Obsidian's link-update setting; a shell rename has no

@@ -19,7 +19,7 @@ when a helper is unavailable.
 | Snapshot import and live transport candidate | `scripts/zotero.cjs`, `scripts/zotero-transport.cjs` |
 | Native settings and command configuration | `.obsidian/`; see [Git coverage](operations.md#git-and-file-coverage) |
 | Behavioral checks and desktop probe | `tests/run.cjs`, `tests/obsidian-runtime.cjs`, `scripts/check.cjs` |
-| Task-specific agent support | `.agents/skills/vault-write/`, `vault-organize/`, `vault-maintain/`, and [vault-bases](../.agents/skills/vault-bases/SKILL.md) for Base work |
+| Task-specific agent support | `.agents/skills/vault-write/`, `vault-organize/`, `vault-maintain/`, [vault-bases](../.agents/skills/vault-bases/SKILL.md) for Base work, and [vault-obsidian-cli](../.agents/skills/vault-obsidian-cli/SKILL.md) for live desktop operations |
 | Teaching examples | `examples/`, outside live content scope |
 
 `npm run vault -- inventory` reports implemented actions and files. It is
@@ -76,7 +76,9 @@ of a temporary Base before opening it. If opening produces no write, rename
 a view in the standalone Base and press Enter. Confirm the disk diff contains
 only that edit. Restore the name, press Enter, and compare the bytes with
 the captured file. Report any additional changes. Check row membership
-separately in the intended embed. See the [desktop trial](verification.md#obsidian).
+separately in the intended embed. For CLI inspection of the live host, use
+[vault-obsidian-cli](../.agents/skills/vault-obsidian-cli/SKILL.md). See
+the [desktop trial](verification.md#obsidian).
 
 ## Exact Write Boundary
 
