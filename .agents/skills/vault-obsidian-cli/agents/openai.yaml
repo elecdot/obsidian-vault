@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vault Obsidian CLI"
+  short_description: "Inspect and operate the vault through Obsidian desktop"
+  default_prompt: "Use $vault-obsidian-cli to show which notes link to the active note in Obsidian."

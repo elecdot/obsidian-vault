@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vault Bases"
+  short_description: "Create, edit, and diagnose Obsidian Base views"
+  default_prompt: "Use $vault-bases to explain why this note is missing from the embedded Base view."
