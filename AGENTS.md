@@ -44,10 +44,9 @@ This is an independent Git repository. Commit completed, verified phases
 using the [commit convention](docs/operations.md#commit-messages), preserving
 concurrent author changes.
 
-Record newly confirmed decisions in their owning document during the
-discussion. Keep definitions in CONTEXT.md, workflow decisions in
-docs/design.md, field contracts in docs/metadata.md, and maintenance
-observations and investigations in [Maintenance notes](docs/maintenance-notes.md).
+During the discussion, record confirmed decisions that will guide future use
+or maintenance in their owning document. When choosing where a change belongs,
+consult the [documentation guide](docs/README.md).
 
 Label proposals and unverified assumptions where they appear. Update the
 maintenance record as evidence or dependencies change, following the

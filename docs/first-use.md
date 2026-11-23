@@ -44,7 +44,6 @@ or meaningful Chinese; English-only content is not an assessment condition.
 The first cycle establishes initial usability, not long-term effectiveness.
 
 Existing [operations](operations.md) and the [metadata contract](metadata.md)
-provide the starting capabilities. [Verification](verification.md) separates
-offline checks from historical desktop observations and the stopped live
-Zotero integration. Actual writing and retrieval in the intended Obsidian
-vault remain to be exercised with this task.
+provide the starting capabilities. [Verification](verification.md) covers
+offline and desktop checks. This task tests writing and retrieval in the
+author's research.

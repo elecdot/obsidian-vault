@@ -23,25 +23,23 @@ For command-line maintenance, follow
 [tool setup](docs/operations.md#tool-setup-and-upgrades), then use `mise tasks`
 to discover commands and `mise run verify` to check changes.
 
-## Documentation
+## Vault Layout
 
-| Need | Read |
+| Folder | What you'll find |
 | --- | --- |
-| Daily use, setup, refinement, commit messages, or Git coverage | [Operations](docs/operations.md) |
-| Why the model and workflows work this way | [Design](docs/design.md) |
-| Meaning of Note, Source, Activity, Domain, and related terms | [Domain language](CONTEXT.md) |
-| Field meanings, identity, ownership, or the consumed registry | [Metadata contract](docs/metadata.md) |
-| Change tools, templates, views, or shared conventions | [Tooling](docs/tooling.md) |
-| Check what was actually verified and in which environment | [Verification](docs/verification.md) |
-| Vault-model observations, investigations, or deferred work | [Maintenance notes](docs/maintenance-notes.md) |
-| Check application behavior against primary documentation | [References](docs/references.md) |
+| `inbox/` | Captures whose use or home is still open. |
+| `activities/` | Writing and progress records for a particular course of learning or work. |
+| `domains/` | Entry Notes for enduring areas of inquiry, starting with [AI Systems](domains/ai-systems.md). |
+| `sources/` | Source records and the author's reading Notes alongside them. |
+| `knowledge/` | Explanations and other Notes maintained independently for reuse. |
+| `journals/` | Daily, weekly, and monthly writing. |
+| `docs/` | How the vault works and how to maintain it. Start with the [documentation guide](docs/README.md). |
+| `examples/` | [Illustrative Notes](examples/README.md) excluded from live views. |
+| `templates/`, `bases/` | Starting text and commands for writing, and views for finding Notes. |
+| `scripts/`, `tests/` | Vault tools and their behavioral checks. |
+| `.obsidian/`, `.agents/skills/` | Obsidian settings and task-specific agent guidance. |
 
-The [first-use task](docs/first-use.md) is the existing MoE expert load
-balancing research project. The research repository carries the main work;
-the vault supports knowledge accumulation. One real cycle of writing,
-retrieval, and continuation will establish initial usability.
-
-The [AI Systems entry](domains/ai-systems.md) is the starting Domain.
-[Examples](examples/README.md) are illustrative and excluded from live views.
-English writing is a long-term direction; temporary or meaningful Chinese is
-allowed. [Agent instructions](AGENTS.md) route contribution and maintenance.
+The [first-use task](docs/first-use.md) follows the MoE expert load balancing
+project. English writing is a long-term direction, with room for temporary
+or meaningful Chinese. [Agent instructions](AGENTS.md) route contribution
+and maintenance.

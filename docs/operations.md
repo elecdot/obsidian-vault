@@ -199,7 +199,8 @@ requirement. An adopted action can become a Task with one completion record.
 
 The controlled importer takes one explicit JSON snapshot with a stable synced
 Zotero URI, title, and available creators, tags, notes, and annotations.
-Paste it through the menu or use:
+Choose **Import a Zotero JSON snapshot** in the vault menu and paste the
+snapshot, or import it from a file with the CLI.
 
 ```sh
 mise run vault -- import-zotero --input selected-item.json --dry-run
@@ -213,9 +214,8 @@ identity. Unknown/local-only identities are refused; manual Source records
 and direct citations remain possible. Originals stay in Zotero. Numbered
 annotation headings can change on import; prefer a precise Zotero locator.
 
-Live selection is stopped and is not a working menu action. Its failure
-preceded any Source write; resume only on an explicit integration request
-with actual selection/export samples. See [Verification](verification.md#source-integration).
+See [Verification](verification.md#source-integration) for the limits of
+live Zotero selection.
 
 ## Maintenance and Rename
 
@@ -297,12 +297,9 @@ keeps current knowledge and work narratives in their maintained Notes.
 
 ## Git and File Coverage
 
-The [preservation approach](design.md#scope-and-workspace-boundaries) uses
-local Git history and a GitHub copy. Remote setup and coverage remain an
-[open check](maintenance-notes.md#first-use-checks).
-
-Git history covers committed files; a remote copy covers the commits pushed
-to it. Untracked, ignored, and uncommitted material is outside that committed
+Under the [vault's preservation policy](design.md#scope-and-workspace-boundaries),
+local Git history covers committed files. A GitHub copy covers the commits
+pushed to it. Untracked, ignored, and uncommitted material is outside that committed
 copy. Use `git status --short`, `git ls-files`, and `git remote` to inspect
 coverage when setting up or changing the arrangement.
 
@@ -335,7 +332,3 @@ vault rather than copying the global registration file. Remove obsolete
 test locations through **Manage Vaults > More options > Remove from list**;
 this removes the registration without deleting the vault files. See the
 [settings and vault-management references](references.md).
-
-Obsidian remains the primary reader, and no recurring restore exercise is
-required. A future device setup can establish the normal clone, dependency,
-and plugin setup path when it is actually needed.

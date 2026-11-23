@@ -6,17 +6,12 @@ defines its scope and when items leave. Accepted workflows live in
 [Design](design.md) and field definitions in [Metadata](metadata.md).
 [Verification](verification.md) records coverage and runtime limits.
 
-## First-use Checks
-
-The selected [MoE research task](first-use.md) has an agreed Workspace
-boundary and one-cycle readiness criterion. English-only content is not a
-stage gate. The [pre-use review](design.md#launch-requirements) addresses
-definite problems; actual writing and retrieval will inform further changes.
+## Open Checks
 
 | Open item | Evidence or decision needed | Scope |
 | --- | --- | --- |
-| First real use | A real question, the author's writing, successful return, and continuation in the intended desktop vault | Initial usability; does not prove long-term effectiveness |
-| GitHub copy | When implementing the backup arrangement, identify the remote and which content is committed and pushed | This checkout has no configured remote. Git is the intended approach; remote setup is not an added first-use gate. |
+| First real use | Complete the [MoE writing and retrieval cycle](first-use.md#agreed-use-and-first-assessment) in the intended desktop vault. | Initial usability of the vault. |
+| GitHub copy | Confirm which intended notes and settings are covered by commits pushed to GitHub. | [Git coverage](operations.md#git-and-file-coverage). |
 
 ## Confirmed Tool Defects
 
@@ -57,10 +52,6 @@ author's preferred route. A legal raw Capture without `kind` is absent from
 Home's default Recent writing view but appears in All content and Maintenance
 Captures. Whether that distinction causes missed writing remains a use question.
 
-The proposed separate restore exercise was not adopted. Obsidian remains the
-primary reader. Git coverage is described in [Operations](operations.md#git-and-file-coverage);
-no recurring recovery routine or reader-parity requirement follows from it.
-
 ## Recoverable Obsidian Preferences
 
 The [tracked settings](operations.md#git-and-file-coverage) carry forward the
@@ -86,7 +77,8 @@ becomes part of regular use.
 
 | Candidate | Reopen when | Known boundary |
 | --- | --- | --- |
-| Live selected-item Zotero import | The author explicitly resumes integration work | Zotero remains part of the Source workflow. Live import and its portable settings are deferred. The last selection failed before export or writes. Obtain actual selection and export samples before changing the adapter. See [evidence](verification.md#source-integration). |
+| Obsidian CLI from WSL | The author is working in WSL and wants to choose a route for the intended action. | For opening a Note or inspecting a rendered view, evaluate the Windows desktop app via `Obsidian.com` or a Linux desktop instance in WSL. [Obsidian Headless](https://obsidian.md/help/headless) is a candidate for Sync or Publish. These routes are untested here. |
+| Live selected-item Zotero import | The author explicitly resumes integration work. | Collect the actual selection mapping and an exporter sample before changing the adapter. Portable settings for live import are also deferred. See the [failed selection](verification.md#source-integration). |
 | Domain list flattened through Activities | Direct Notes plus Activity entry points cause a concrete retrieval problem | Cross-file `file.properties` and `file.backlinks` have refresh limitations in the documented API; the proposed combined query and refresh strategy are unverified. See [references](references.md). |
 | Additional Source identity/locator profiles | Actual material cannot use the supported snapshot identity or direct locators | Define identity, ownership, and affected consumers before extending the contract. |
 | New formal formats or generated support files | An identifiable writing or maintenance action benefits | Apply the format admission rule or specify authoritative inputs, outputs, preview, and ownership; no generic framework is planned. |

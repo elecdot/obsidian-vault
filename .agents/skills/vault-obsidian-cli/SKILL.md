@@ -5,9 +5,8 @@ description: Use the Obsidian desktop CLI to open a Note, inspect live vault sta
 
 # Obsidian desktop CLI
 
-On Windows, use the `obsidian` command supplied by the desktop installer.
-In WSL, the author will choose a runtime after the [WSL evaluation](README.md#wsl).
-The instructions below apply to the running Windows desktop app.
+These commands target the running Windows desktop app through the
+`obsidian` command supplied by its installer.
 
 **Target the vault.** Follow the [path check](../../../docs/operations.md#maintenance-and-rename)
 before acting. Pass the registered `vault=<name>` first, before the command.

@@ -51,9 +51,13 @@ its source revision, and its maintenance guidance together in the repository.
 
 Use [Maintenance notes](maintenance-notes.md) for day-to-day observations
 and investigations about the vault's model, conventions, and supporting
-tools. Observations can be recorded before they become concrete questions.
-Recording an observation or proposal does not commit to a change. The
-[Maintenance guide](../maintenance.md) serves content-note refinement.
+tools. A concrete observation can go into Maintenance notes while the
+question is still taking shape. Also keep possibilities the author explicitly
+wants to revisit. For each deferred item, say what evidence or situation
+would reopen it. An agent's suggestion stays in the discussion until there
+is a concrete problem, a use case, or a request to revisit it. Recording a
+proposal leaves the decision open. The [Maintenance guide](../maintenance.md)
+serves content-note refinement.
 
 Investigate a concrete problem from its intended use, examining both the
 relevant conventions and their implementation. When evidence challenges an
@@ -71,8 +75,7 @@ Keep an item while it needs follow-up. Once a change is complete or an item
 is closed without a change, preserve any lasting decision or rationale in
 its owning document and remove the item. This includes rejected proposals
 and findings that the existing design is sufficient. Git retains the
-history. Keep deferred items with the evidence or condition needed to
-reopen them.
+history.
 
 ## Scope and Workspace Boundaries
 
@@ -86,8 +89,6 @@ Windows desktop Obsidian, using a Windows-native vault directory, is the
 primary environment. Windows remains a first-class target for vault tooling.
 WSL/Linux may host technical maintenance in a separate workspace; opening
 its filesystem directory in Windows Obsidian is not the intended setup.
-The author will assess the [native CLI options for WSL](../.agents/skills/vault-obsidian-cli/README.md#wsl)
-from within that environment.
 Intended platform support is distinct from the
 [verified runtime coverage](verification.md).
 
@@ -120,8 +121,8 @@ useful reasons; current explanations, provenance, and lasting rationale stay
 in their owning Notes or contracts. A commit's time records the revision,
 while the date of an experience or represented period belongs in the Note.
 The [commit convention](operations.md#commit-messages) provides a common
-message structure for maintenance and content changes. Coverage and
-implementation status are explicit in [Operations](operations.md#git-and-file-coverage).
+message structure for maintenance and content changes. [Operations](operations.md#git-and-file-coverage)
+describes which files Git tracks and how to check coverage.
 Separate restore exercises are not an initial readiness condition.
 
 ## Model Relationships

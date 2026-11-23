@@ -97,7 +97,6 @@ citation-key selection data, before item export, annotation retrieval, or
 Source writing. SALS was not imported. The raw selection mapping was not
 retained, so its shape and the cause cannot be inferred from that error alone.
 
-The author stopped repeated attempts. Resume only when explicitly requested,
-using the actual selection mapping and exporter sample. The candidate remains
-in `scripts/zotero-transport.cjs`; the [Better BibTeX API](https://retorque.re/zotero-better-bibtex/exporting/json-rpc/)
-is a reference, not proof the candidate works. Snapshot input remains available.
+The candidate transport is in [zotero-transport.cjs](../scripts/zotero-transport.cjs).
+The [Better BibTeX API](https://retorque.re/zotero-better-bibtex/exporting/json-rpc/)
+documents the export interface.
