@@ -1,17 +1,16 @@
-# Maintained view; content scope follows docs/metadata.md.
 filters:
   and:
-    - 'file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))'
-    - 'file.path != this.file.path'
+    - file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))
+    - file.path != this.file.path
 formulas:
-  title: 'link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))'
+  title: link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))
 properties:
   formula.title:
     displayName: Note
 views:
   - type: table
-    name: "Direct notes"
-    filters: 'kind == "note" && (list(domains).contains(this) || list(activities).contains(this) || list(sources).contains(this))'
+    name: Direct notes
+    filters: kind == "note" && (list(domains).contains(this) || list(activities).contains(this) || list(sources).contains(this))
     order:
       - formula.title
       - format
@@ -19,8 +18,8 @@ views:
       - sources
       - file.mtime
   - type: table
-    name: "Related activities"
-    filters: 'kind == "activity" && list(domains).contains(this)'
+    name: Related activities
+    filters: kind == "activity" && list(domains).contains(this)
     order:
       - formula.title
       - status

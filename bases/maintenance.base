@@ -1,35 +1,34 @@
-# Maintained view; content scope follows docs/metadata.md.
 filters:
   and:
-    - 'file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))'
+    - file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))
 formulas:
-  title: 'link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))'
+  title: link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))
 properties:
   formula.title:
     displayName: Note
 views:
   - type: table
-    name: "Captures"
-    sort:
-      - property: file.mtime
-        direction: DESC
-    filters: 'file.inFolder("inbox")'
+    name: Captures
+    filters: file.inFolder("inbox")
     order:
       - formula.title
       - kind
       - activities
       - domains
       - file.mtime
+    sort:
+      - property: file.mtime
+        direction: DESC
   - type: table
-    name: "Missing role or lifecycle"
+    name: Missing role or lifecycle
     filters: '!kind || (["activity", "domain"].contains(kind) && !status)'
     order:
       - formula.title
       - kind
       - status
   - type: table
-    name: "Unassociated authored notes"
-    filters: 'kind == "note" && !domains && !activities && !sources'
+    name: Unassociated authored notes
+    filters: kind == "note" && !domains && !activities && !sources
     order:
       - formula.title
       - file.mtime

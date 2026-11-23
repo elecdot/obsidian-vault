@@ -1,31 +1,30 @@
-# Maintained view; content scope follows docs/metadata.md.
 filters:
   and:
-    - 'file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))'
-    - 'kind == "activity"'
+    - file.ext == "md" && !file.path.contains("/attachments/") && (file.path == "home.md" || file.path == "maintenance.md" || file.inFolder("inbox") || file.inFolder("knowledge") || file.inFolder("activities") || file.inFolder("domains") || file.inFolder("sources") || file.inFolder("journals"))
+    - kind == "activity"
 formulas:
-  title: 'link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))'
+  title: link(file.path, if(aliases && list(aliases).length > 0, list(aliases)[0], file.name))
 properties:
   formula.title:
     displayName: Note
 views:
   - type: table
-    name: "Current"
-    filters: 'status == "active"'
+    name: Current
+    filters: status == "active"
     order:
       - formula.title
       - domains
       - file.mtime
   - type: table
-    name: "Future and paused"
-    filters: 'status == "planned" || status == "paused"'
+    name: Future and paused
+    filters: status == "planned" || status == "paused"
     order:
       - formula.title
       - status
       - domains
   - type: table
-    name: "History"
-    filters: 'status == "completed" || status == "abandoned"'
+    name: History
+    filters: status == "completed" || status == "abandoned"
     order:
       - formula.title
       - status
