@@ -11,7 +11,7 @@ defines its scope and when items leave. Accepted workflows live in
 | Open item | Evidence or decision needed | Scope |
 | --- | --- | --- |
 | First real use | Complete the [MoE writing and retrieval cycle](first-use.md#agreed-use-and-first-assessment) in the intended desktop vault. | Initial usability of the vault. |
-| GitHub copy | Confirm which intended notes and settings are covered by commits pushed to GitHub. | [Git coverage](operations.md#git-and-file-coverage). |
+| Portable plugin preferences | On 2026-11-23, GitHub `main` and local HEAD both pointed to `f1ac0c9`, which includes Home, Maintenance, AI Systems, and the tracked Obsidian settings. The local plugin list also enabled `open-vscode` and `obsidian-zotero-desktop-connector`. Revisit their inclusion in Git if the author wants those preferences on another setup. | [Git coverage](operations.md#git-and-file-coverage). |
 
 ## Confirmed Tool Defects
 
@@ -30,6 +30,14 @@ defines its scope and when items leave. Accepted workflows live in
   the [Obsidian reader](../scripts/obsidian.cjs) already filters contexts but
   also needs that boundary on candidate Notes. This contradicts the
   [example isolation rule](../examples/README.md).
+- **An internal Source reference can resolve to a Base.** Running
+  `node scripts/vault.cjs note --name Probe --source bases/related.base --dry-run`
+  previews a Note with `[[bases/related.base]]` in `sources`. The shared
+  [validator](../scripts/core.cjs) accepts that target without a finding.
+  The [relationship contract](metadata.md#existing-targets-and-exploratory-links)
+  requires an existing Note for an internal structural reference. A reader
+  following this citation would reach a view definition instead of the
+  intended research material.
 
 ## Practice and Design Observations
 
