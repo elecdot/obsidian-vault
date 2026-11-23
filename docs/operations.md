@@ -315,9 +315,11 @@ preference that should follow the vault.
 
 `community-plugins.json` tracks Templater, Advanced Tables, Paste image rename,
 and Style Settings. Git carries Templater's command settings and Paste image
-rename's attachment naming settings in their `data.json` files. Advanced
-Tables uses its default `Tab` and `Enter` navigation in Markdown tables in
-Source mode. Advanced Tables and Style Settings have only enablement entries.
+rename's attachment naming settings in their `data.json` files. The tracked
+Advanced Tables settings use `weak` formatting so edits to one row create
+less unrelated whitespace in Git diffs. The default `Tab` and `Enter`
+navigation in Markdown tables in Source mode remains enabled. Style Settings
+has an enablement entry.
 
 [Ignore rules](../.gitignore) exclude workspace state, caches, trash,
 dependencies, and community plugin folders with specific exceptions for

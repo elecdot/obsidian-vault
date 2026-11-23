@@ -6,6 +6,8 @@ node_modules/
 !/.obsidian/plugins/templater-obsidian/data.json
 !/.obsidian/plugins/obsidian-paste-image-rename/
 !/.obsidian/plugins/obsidian-paste-image-rename/data.json
+!/.obsidian/plugins/table-editor-obsidian/
+!/.obsidian/plugins/table-editor-obsidian/data.json
 .trash/
 .DS_Store
 *.tmp
