@@ -10,7 +10,7 @@ Use this guide to find an answer about the vault or choose where to record a cha
 | How do I use the vault? | [Operations](operations.md) covers setup, writing commands, refinement, commits, and Git coverage. |
 | How do I change a tool, template, view, or shared convention? | [Tooling](tooling.md) identifies the affected components and how to check a change. |
 | What behavior has been verified, and where? | [Verification](verification.md) records coverage, runtime evidence, and its limits. |
-| What still needs investigation or a later decision? | Record observations, open questions, and when to revisit them in [Maintenance notes](maintenance-notes.md). |
+| What still needs investigation or a later decision? | [Maintenance notes](maintenance-notes.md) tracks observations, open questions, and when to revisit them. |
 | Which primary sources support the implementation? | [References](references.md) links to the relevant specifications and application documentation. |
 | How will we assess the first real use of the vault? | [First use](first-use.md) gives the MoE research scenario and its completion criteria. |
 
