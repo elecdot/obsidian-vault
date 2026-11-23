@@ -16,6 +16,11 @@ Improve wording directly when meaning is already clear. The author's
 write-better-english skill can help when available, but its absence does not
 block ordinary editing.
 
+Write the substance of the Note directly, including the author's reasoning
+and the specific qualifications readers need. Before handing back a draft,
+remove phrases you introduced solely to announce the next point, narrate
+your editing process, or defend your wording.
+
 Use the supported [creation operations](../../../docs/operations.md#command-line-operations)
 for a new Note, including a preview when placement is uncertain. Existing
 authored Notes can be edited normally within the request. A correct Source
@@ -25,6 +30,10 @@ Let coherence and independent reuse guide note boundaries. Reading templates
 offer a return point, not a mandatory chapter/session structure. Keep the
 author's uncertainty and source context visible; record refinement markers
 when the request or response adopts them.
+
+When using or troubleshooting Obsidian links, embeds, properties, tags,
+annotations, or technical notation, read the relevant section of the
+[syntax reference](references/obsidian-syntax.md).
 
 Report the changes, meaningful unresolved reasoning, and actual checks.
 Avoid assigning understanding, lifecycle state, or new Tasks on the basis of

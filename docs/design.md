@@ -190,6 +190,12 @@ The author leads important Domain relationships and organizing judgments.
 Agent proposals remain optional until adopted. Preserve provenance, source
 context, and uncertainty when editing or extracting material.
 
+In paired writing, the agent may choose notation and layout that fit the
+passage. Keep the explanation and its material qualifications visible to
+the reader. An editor may leave a passage-specific comment for the author
+when the reason for a choice will help with a later revision. Raise decisions
+that need the author's input now in the conversation.
+
 ## Capture and Refinement
 
 When the writing context is clear, continue in the relevant Note or create
