@@ -63,23 +63,19 @@ no recurring recovery routine or reader-parity requirement follows from it.
 
 ## Recoverable Obsidian Preferences
 
-The [app configuration](../.obsidian/app.json) records the editing defaults
-carried forward. Minimal and its companion settings were deferred. These
-observations keep useful prior settings available after the temporary
-configuration snapshot is removed.
+The [tracked settings](operations.md#git-and-file-coverage) carry forward the
+preferences already adopted. The older settings below are available to
+reconsider when they help with a specific action during regular use. Minimal
+and its companion settings remain deferred.
 
 | When it helps | Previous setting |
 | --- | --- |
-| Scanning and editing Markdown source | In Editor settings, the author enabled line numbers, indentation guides, heading and indent folding, and readable line length. |
-| Reducing interface controls | The previous appearance hid the Ribbon and view header. These controls are available in Obsidian's native settings. |
+| Scanning and editing Markdown source | In Editor settings, the author enabled indentation guides, heading and indent folding, and readable line length. |
 | Switching how Markdown is displayed | `Mod+Shift+M` was bound to `editor:toggle-source`. Obsidian uses `Ctrl+E` or `Cmd+E` for switching between Reading and Editing views. |
-| Returning to a note or rearranging text | In Hotkeys, `Alt+Left/Right` navigated backward and forward, `Alt+L/R` toggled the sidebars, and `Alt+Up/Down` moved lines. |
+| Rearranging text | In Hotkeys, `Alt+Up/Down` moved lines. |
 | Inserting fragments and navigating template placeholders | `Mod+M` invoked core Templates. Templater had automatic cursor jump enabled and used `Shift+Enter` for the next cursor position. The current vault menu places the cursor through its own script. |
-| Finding links and attachments | Backlinks showed results at the bottom of the note. Quick Switcher showed attachments and other file types. |
-| Working in Canvas | The scroll wheel panned the canvas, with snapping to grid and objects enabled. |
+| Moving around a Canvas | The scroll wheel panned the canvas. |
 | Exporting a Note as PDF | The previous export used A4 portrait, included the file name as the title, and kept the scale at 100 percent. |
-| Naming pasted screenshots | Paste Image Rename automatically renamed images using `{{fileName}}` and always appended a number with `-` as the separator. This affects the saved attachment name. |
-| Editing Markdown tables | Advanced Tables bound `Tab` and `Enter` and used normal formatting. Check whether the table behavior fits the current editing bindings before adding it. |
 
 Use the [Obsidian settings reference](https://obsidian.md/help/settings) and
 [Hotkeys help](https://obsidian.md/help/hotkeys) to find the native controls.
