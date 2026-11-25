@@ -85,6 +85,14 @@ maintenance interfaces. The plain files remain readable elsewhere; matching
 Obsidian's full navigation in every reader is not a requirement. Mobile
 convenience is an improvement rather than an initial launch condition.
 
+Repository documentation uses GitHub-style heading fragments in relative
+Markdown links. For example, `Git and File Coverage` uses
+`#git-and-file-coverage`. This preserves direct section navigation when
+browsing the repository on GitHub. When Obsidian cannot resolve a fragment,
+find the heading in the current file through Outline or across the vault
+through Search. Revisit this choice if failed jumps disrupt routine reading
+or Obsidian adds native support for GitHub-style fragments.
+
 Windows desktop Obsidian, using a Windows-native vault directory, is the
 primary environment. Windows remains a first-class target for vault tooling.
 WSL/Linux may host technical maintenance in a separate workspace; opening
