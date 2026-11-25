@@ -20,18 +20,19 @@ current contracts. New local skills must follow current authoritative specs.
 
 ## Route the Work
 
-- For orientation, read [README.md](README.md).
-- When using or changing model terminology, read [CONTEXT.md](CONTEXT.md).
+- For vault entry points and layout, see [README.md](README.md).
+- To look up or change model terminology, consult [CONTEXT.md](CONTEXT.md).
 - Before changing content conventions, metadata, workflows, or automation,
-  read [the design](docs/design.md) and the relevant
-  [maintenance notes](docs/maintenance-notes.md).
-- For metadata, creation, import, view, or audit work, read the
-  [metadata contract](docs/metadata.md).
-- For commands and runtime limits, read [Operations](docs/operations.md)
-  and [Verification](docs/verification.md).
-- For paired writing use [vault-write](.agents/skills/vault-write/SKILL.md);
-  for organization use [vault-organize](.agents/skills/vault-organize/SKILL.md);
-  for audits or tool changes use [vault-maintain](.agents/skills/vault-maintain/SKILL.md).
+  read the relevant sections of [Design](docs/design.md) and
+  [Maintenance notes](docs/maintenance-notes.md).
+- For fields, relationships, and content scope, consult the relevant section
+  of the [metadata contract](docs/metadata.md).
+- For command usage, consult [Operations](docs/operations.md). For verified
+  behavior and runtime limits, consult [Verification](docs/verification.md).
+- For paired writing use [vault-write](.agents/skills/vault-write/SKILL.md).
+  For organization use [vault-organize](.agents/skills/vault-organize/SKILL.md).
+  For audits, vault diagnosis, or shared tool and convention changes use
+  [vault-maintain](.agents/skills/vault-maintain/SKILL.md).
 - Before editing a note, inspect its purpose, the author's draft, and the
   directly relevant sources and surrounding notes.
 - For English editing of settled ideas, use the available
