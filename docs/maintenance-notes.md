@@ -60,6 +60,13 @@ author's preferred route. A legal raw Capture without `kind` is absent from
 Home's default Recent writing view but appears in All content and Maintenance
 Captures. Whether that distinction causes missed writing remains a use question.
 
+**Documentation ownership.** [Design](design.md#design-scale) and this
+section both say to keep the current command menu while observing use. Use
+the next change to a documentation rule to see how easily its owner can be
+found. Open a focused maintenance pass if finding the owner repeatedly
+requires searching several files or if an update leaves a second copy of
+the guidance out of date.
+
 ## Recoverable Obsidian Preferences
 
 The [tracked settings](operations.md#git-and-file-coverage) carry forward the
